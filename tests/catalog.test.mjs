@@ -54,3 +54,17 @@ test("rejects invalid IDs", () => {
   const errors = validateCatalog([{ ...validTool, id: "Bad_ID" }]);
   assert.ok(errors.some(error => error.includes("lowercase letters")));
 });
+
+test("the CLI Hub keeps its monospace, square-corner visual system", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  assert.match(html, /--mono\s*:\s*ui-monospace/);
+  assert.match(html, /body\s*\{[^}]*font:[^}]*var\(--mono\)/s);
+  assert.match(html, /\.btn\s*\{[^}]*border-radius:\s*0/s);
+  assert.match(html, /\.searchbox,\.filter,\.search-submit\s*\{[^}]*border-radius:\s*0/s);
+});
+
+test("the tool submission action points to the repository issue template", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  assert.match(html, /issues\/new\?template=tool-submission\.md/);
+  assert.match(html, /class="submit-tool"/);
+});
