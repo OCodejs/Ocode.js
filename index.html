@@ -92,6 +92,48 @@ footer a{padding:0 8px}
 @media(max-width:1100px){.searchbar{grid-template-columns:minmax(0,1fr) 1fr 1fr}.search-submit{grid-column:1/-1}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){.layout{grid-template-columns:1fr;grid-template-rows:auto 54px 1fr auto;border:0}.sidebar{grid-column:1;grid-row:1;min-height:0;padding:12px;border-right:0;border-bottom:1px solid var(--line)}.brand{padding:4px 6px 12px;font-size:17px}.brand-mark{font-size:28px}.nav{display:flex;overflow-x:auto;margin-top:10px;gap:5px;padding-bottom:2px}.nav a{white-space:nowrap;padding:8px 10px;font-size:12px}.side-card{display:none}.topbar{grid-column:1;grid-row:2;padding:0 12px}.content{grid-column:1;grid-row:3;padding:22px 14px}.hero{grid-template-columns:1fr;gap:8px}.hero-mark{display:none}h1{font-size:clamp(27px,8vw,40px)}.subtitle{font-size:13px}.stats{gap:7px;margin:18px 0 22px}.stat{font-size:11px;padding:7px 9px;min-height:36px}.searchbar{grid-template-columns:1fr 1fr;gap:8px}.searchbox{grid-column:1/-1}.filter,.searchbox,.search-submit{height:46px}.search-submit{grid-column:1/-1}.grid{grid-template-columns:1fr}.card p{min-height:0}.section-head{margin-top:20px}footer{grid-column:1;grid-row:4;padding:14px;font-size:10px}}
 .light-preview .layout{background:#edf2fb;color:#101827}.light-preview .sidebar,.light-preview .topbar,.light-preview footer{background:#f7f9fd;color:#263449}.light-preview .brand small,.light-preview .meta,.light-preview .result-count{color:#245ac7}.light-preview .nav a{color:#34445c}.light-preview .nav a:hover,.light-preview .nav a.active{background:#dce8ff;color:#102b61}.light-preview .side-card,.light-preview .card,.light-preview .detail-panel,.light-preview .searchbox,.light-preview .filter,.light-preview .shortcut,.light-preview .icon-button,.light-preview .btn{background:#fff;color:#17243a}.light-preview .card p,.light-preview .section-head h2,.light-preview .subtitle{color:#52627a}.light-preview .command{background:#f2f6fc;color:#08764d}.light-preview .stat{background:#fff}.light-preview .card{border-color:#9eb4d4}.light-preview .layout{border-color:#9eb4d4}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Mobile viewport hardening: prevent the document from exceeding the device width. */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+*,*::before,*::after{min-width:0}
+button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,input,select,textarea,.filter,.searchbox,.stat,.card,.detail-panel,.nav a{border-radius:0!important}
+@media(max-width:720px){
+  .layout{width:100%;max-width:100%;min-width:0;overflow-x:clip;grid-template-columns:minmax(0,1fr)}
+  .sidebar,.topbar,.content,footer{width:100%;max-width:100%;min-width:0}
+  .sidebar{padding:12px 14px}
+  .brand{min-width:0}
+  .nav{width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{flex:0 0 auto}
+  .topbar{min-height:54px;height:auto;flex-wrap:wrap;justify-content:flex-end;gap:8px;padding:8px 14px}
+  .content{padding:22px 14px}
+  .hero{min-width:0}
+  h1{max-width:100%;overflow-wrap:anywhere;letter-spacing:-1.2px}
+  .subtitle{max-width:100%;overflow-wrap:anywhere}
+  .stats{width:100%;max-width:100%;min-width:0;flex-wrap:wrap}
+  .stat{max-width:100%;min-width:0;white-space:normal}
+  .searchbar{width:100%;max-width:100%;min-width:0;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .searchbox{min-width:0;max-width:100%}
+  .searchbox input{min-width:0;width:100%}
+  .filter,.search-submit{width:100%;min-width:0;max-width:100%}
+  .grid{width:100%;max-width:100%;min-width:0;grid-template-columns:minmax(0,1fr)}
+  .card{width:100%;max-width:100%;min-width:0}
+  .card-head,.card-actions{min-width:0;flex-wrap:wrap}
+  .card h3,.card p,.meta{min-width:0;overflow-wrap:anywhere}
+  footer{flex-wrap:wrap;overflow-wrap:anywhere}
+}
+@media(max-width:520px){
+  .content{padding:20px 12px}
+  .searchbar{grid-template-columns:minmax(0,1fr)}
+  .searchbox,.filter,.search-submit{grid-column:1/-1;height:46px}
+  .stats{gap:6px}
+  .stat{flex:1 1 calc(50% - 6px);justify-content:flex-start;padding:7px 8px;font-size:10px}
+  .section-head{align-items:flex-start;flex-wrap:wrap}
+  .card{padding:13px}
+  .card-actions .btn{flex:1 1 auto}
+  footer{padding:14px 12px}
+}
+
 </style>
 </head>
 <body>
