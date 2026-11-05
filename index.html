@@ -190,6 +190,76 @@ footer a{padding:0 8px}
 .light-preview .command{background:#f2f6fc;color:#08764d;padding:8px}
 .light-preview .card,.light-preview .layout{border-color:#9eb4d4}
 @media(max-width:768px){.light-preview .topbar{background:rgba(247,249,253,.94)}.light-preview .sidebar{background:rgba(247,249,253,.97)}}
+
+/* OCode.js UI system: 8pt spacing, fluid canvas, accessible touch targets. */
+:root{
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;
+  --space-5:24px;--space-6:32px;--space-7:48px;--space-8:64px;
+  --content-max:1200px;--mobile-gutter:16px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{width:100%;max-width:100%;overflow-x:hidden}
+body{width:100%;max-width:100%;margin:0;overflow-x:hidden}
+.layout{width:100%;max-width:100%;min-width:0}
+.content{width:100%;max-width:calc(var(--content-max) + 2 * var(--space-6));min-width:0;margin-inline:auto}
+button,a,input,select,textarea{font:inherit}
+button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,.nav a{
+  border-radius:0!important
+}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{
+  outline:2px solid var(--cyan);outline-offset:2px
+}
+@media(min-width:1200px){
+  .content{padding-inline:clamp(32px,5vw,80px)}
+  .stats{gap:16px;margin-block:32px}
+  .searchbar{gap:12px;margin-bottom:32px}
+  .grid{gap:16px}
+  .card{padding:16px}
+  .section-head{margin-block:32px 16px}
+}
+@media(min-width:769px) and (max-width:1199px){
+  .content{padding:32px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:768px){
+  :root{--mobile-gutter:16px}
+  .content{padding:24px var(--mobile-gutter) 32px}
+  .hero{gap:16px;margin-bottom:24px}
+  h1{font-size:clamp(28px,7vw,32px);line-height:1.2;letter-spacing:-.8px}
+  .subtitle{font-size:14px;line-height:1.5}
+  .stats{gap:8px;margin:24px 0}
+  .stat{min-height:40px;padding:8px}
+  .searchbar{gap:8px;margin-bottom:32px}
+  .searchbox,.filter{height:44px;min-height:44px;padding-inline:12px}
+  .search-submit{height:48px;min-height:48px;padding-inline:16px}
+  .grid{gap:12px}
+  .card{padding:16px;gap:12px}
+  .card-actions{gap:8px}
+  .card-actions .btn{min-height:36px;padding:8px 12px}
+  .section-head{margin:24px 0 12px}
+  .topbar{padding-inline:16px}
+  .submit-tool{min-height:40px;padding-inline:16px}
+  .icon-button,.shortcut{min-height:40px}
+  .nav{gap:8px}
+  .nav a{min-height:40px;padding:8px 12px}
+  footer{gap:12px;padding:16px}
+}
+@media(max-width:420px){
+  .content{padding:24px 16px 32px}
+  .hero{margin-bottom:16px}
+  h1{font-size:28px}
+  .subtitle{font-size:13px}
+  .stats{gap:8px;margin:16px 0 24px}
+  .stat{min-height:36px;padding:8px;font-size:10px}
+  .searchbar{gap:8px;margin-bottom:32px}
+  .searchbox,.filter{height:44px;min-height:44px}
+  .search-submit{height:48px;min-height:48px}
+  .card{padding:12px}
+  .card-actions .btn{min-height:36px}
+}
+/* Maintain the explicit 100% square-corner visual requirement. */
+button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,input,select,textarea,.filter,.searchbox,.stat,.card,.detail-panel,.nav a{border-radius:0!important}
+
 </style>
 </head>
 <body>
