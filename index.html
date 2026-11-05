@@ -134,6 +134,47 @@ button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,input,selec
   footer{padding:14px 12px}
 }
 
+
+/* Reference viewport: 390 × 844 CSS px (responsive fallback for narrower phones). */
+@media screen and (max-width:390px){
+  html,body{width:100%;min-height:100%;overflow-x:hidden}
+  .layout{width:100%;min-height:100vh;min-height:100svh;grid-template-rows:auto auto minmax(0,1fr) auto}
+  .sidebar{padding:10px 12px}
+  .brand{gap:10px;padding:2px 4px 10px;font-size:16px}
+  .brand-mark{font-size:26px}
+  .brand small{font-size:10px}
+  .nav{margin-top:8px;gap:4px}
+  .nav a{gap:7px;padding:8px 9px;font-size:11px}
+  .nav-icon{width:15px;font-size:14px}
+  .topbar{min-height:46px;padding:6px 12px;gap:6px}
+  .submit-tool{height:34px;padding:0 10px;font-size:11px}
+  .icon-button,.shortcut{height:34px;min-width:34px;padding:0 8px;font-size:11px}
+  .shortcut{gap:6px}
+  .content{padding:16px 12px}
+  .hero{margin-bottom:14px;gap:0}
+  h1{font-size:clamp(25px,7.2vw,29px);line-height:1.15;letter-spacing:-1.3px;white-space:normal}
+  .subtitle{margin-top:7px;font-size:11px;line-height:1.45}
+  .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:14px 0 16px}
+  .stat{min-width:0;min-height:34px;padding:6px 8px;gap:6px;font-size:9px;line-height:1.3;overflow-wrap:anywhere}
+  .searchbar{grid-template-columns:minmax(0,1fr);gap:6px;margin-bottom:18px}
+  .searchbox,.filter,.search-submit{grid-column:1;height:42px;min-height:42px;padding:0 11px;font-size:11px}
+  .searchbox{gap:8px}
+  .searchbox input{font-size:11px}
+  .section-head{margin:14px 0 9px;gap:6px}
+  .section-head h2{font-size:11px}
+  .result-count{font-size:10px}
+  .grid{grid-template-columns:minmax(0,1fr);gap:9px}
+  .card{padding:11px;gap:8px}
+  .tool-icon{width:38px;height:38px;font-size:13px}
+  .card h3{font-size:14px}
+  .card p{font-size:11px;line-height:1.45}
+  .meta{font-size:10px;gap:7px;flex-wrap:wrap}
+  .card-actions{gap:6px}
+  .card-actions .btn{min-height:32px;padding:5px 8px;font-size:10px}
+  footer{padding:11px 12px;gap:5px;font-size:9px;line-height:1.4}
+  footer a{padding:0 4px}
+}
+
 </style>
 </head>
 <body>
