@@ -37,6 +37,7 @@ button{cursor:pointer}
 .topbar{grid-column:2;grid-row:1;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:0 22px}
 .icon-button,.shortcut{height:38px;min-width:40px;border:1px solid var(--line-strong);border-radius:0;background:transparent;color:var(--fg);padding:0 12px}
 .shortcut{display:flex;align-items:center;gap:10px;color:var(--muted)}
+.submit-tool{height:38px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--blue);border-radius:0;background:#102b67;color:#fff;padding:0 14px;font-size:12px;font-weight:700;white-space:nowrap}.submit-tool:hover{background:#1b43a0;border-color:var(--cyan);color:#fff}
 .content{grid-column:2;grid-row:2;min-width:0;padding:clamp(22px,4vw,48px)}
 .hero{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:24px;margin:0 0 26px}
 .hero-mark{font-size:74px;line-height:1;color:var(--blue);text-shadow:10px 7px 0 var(--purple)}
@@ -107,7 +108,7 @@ footer a{padding:0 8px}
 </nav>
 <div class="side-card"><strong>OCode.js</strong><p>Open-source CLI hub for developers and AI agents.</p><span class="version">v1.0.0</span></div>
 </aside>
-<header class="topbar"><button class="icon-button" id="theme-toggle" type="button" aria-label="Toggle theme">☾</button><button class="shortcut" id="focus-search" type="button">⌕ <span>Ctrl + K</span></button></header>
+<header class="topbar"><a class="submit-tool" href="https://github.com/zskbot/ocodejs-cli/issues/new?template=tool-submission.md" target="_blank" rel="noopener noreferrer">+ Gửi công cụ</a><button class="icon-button" id="theme-toggle" type="button" aria-label="Toggle theme">☾</button><button class="shortcut" id="focus-search" type="button">⌕ <span>Ctrl + K</span></button></header>
 <main class="content" id="app" aria-live="polite"><p>Loading catalog…</p></main>
 <footer><span>© 2026 OCode.js. Open-source developer tools.</span><span><a href="https://github.com/zskbot/ocodejs-cli">GitHub</a> | <a href="https://github.com/zskbot/ocodejs-cli#readme">Docs</a> | <a href="https://github.com/zskbot/ocodejs-cli/issues/new">Contribute</a> | <a href="https://github.com/zskbot/ocodejs-cli/blob/main/LICENSE">License</a></span></footer>
 </div>
