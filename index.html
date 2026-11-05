@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#05070d">
+<meta name="theme-color" content="#000000">
 <title>OCode.js CLI Hub — Developer tools</title>
 <meta name="description" content="Khám phá, tìm kiếm và sử dụng các công cụ CLI/TUI dành cho developer và AI agents.">
 <link rel="canonical" href="https://zskbot.github.io/ocodejs-cli/">
@@ -407,6 +407,80 @@ button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,input,selec
   .filter-panel{display:none!important}
 }
 button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,input,select,textarea,.filter,.searchbox,.stat,.card,.detail-panel,.nav a,.filter-chip,.filter-toggle,.copy-code{border-radius:0!important}
+
+
+/* ===== OCode.js minimal monochrome theme ===== */
+:root{
+  color-scheme:dark;
+  --bg:#000;
+  --panel:#050505;
+  --line:#777;
+  --line-strong:#fff;
+  --fg:#f7f7f7;
+  --muted:#b8b8b8;
+  --blue:#fff;
+  --cyan:#fff;
+  --purple:#fff;
+  --yellow:#fff;
+  --pink:#fff;
+  --green:#eee;
+}
+html,body,.layout{background:#000!important;color:#f7f7f7}
+.layout{background:#000!important;border-color:#333!important}
+.sidebar,.topbar,footer{background:#000!important;border-color:#555!important}
+.brand-mark,.mbrand b,.brand small,.mbrand small{color:#fff!important;text-shadow:none!important}
+.hero-mark{color:#fff!important;text-shadow:none!important}
+h1 span,.meta,.result-count{color:#eee!important}
+.subtitle,.card p,.section-head h2,.side-card p,footer{color:#bdbdbd!important}
+.side-card,.card,.detail-panel,.stat,.searchbox,.filter,.shortcut,.icon-button,.btn,.back,.version,.tool-icon,.nav a,.submit-tool,.search-submit,.filter-chip,.filter-toggle,.copy-code{
+  background:#000!important;
+  color:#f5f5f5!important;
+  border:1px solid #fff!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+.card,.detail-panel,.side-card{background:#030303!important}
+.card:nth-child(n),.card:nth-child(4n+1),.card:nth-child(4n+2),.card:nth-child(4n+3),.card:nth-child(4n){
+  border:1px solid #777!important;
+  border-top:1px solid #fff!important;
+}
+.card:hover,.nav a:hover,.nav a.active,.btn:hover,.icon-button:hover,.submit-tool:hover,.filter-chip:hover{
+  border-color:#fff!important;
+  background:#171717!important;
+  color:#fff!important;
+}
+.stat:nth-child(n){border-color:#777!important;color:#eee!important}
+.tool-icon,.card:nth-child(n) .tool-icon{border:1px solid #fff!important;color:#fff!important}
+.btn.primary,.submit-tool,.search-submit{
+  background:#f5f5f5!important;
+  color:#000!important;
+  border:1px solid #fff!important;
+  font-weight:700;
+}
+.btn.primary:hover,.submit-tool:hover,.search-submit:hover{background:#d9d9d9!important;color:#000!important}
+.btn.favorite[aria-pressed=true]{border-color:#fff!important;color:#fff!important;background:#222!important}
+.searchbox:focus-within,.searchbox input:focus-visible,.filter:focus-visible{
+  border-color:#fff!important;outline:1px solid #fff!important;outline-offset:2px
+}
+.searchbox input{color:#fff!important}
+.searchbox input::placeholder{color:#999!important;opacity:1}
+.filter option{background:#000;color:#fff}
+.nav a{color:#ddd!important}
+.nav a.active{background:#1a1a1a!important;border-color:#fff!important}
+.version{color:#fff!important}
+.command,.code-canvas pre{color:#eee!important;background:#080808!important}
+.copy-code{background:#000!important;color:#fff!important}
+.empty{border:1px dashed #aaa!important;color:#bbb!important}
+.drawer-scrim{background:#000b!important}
+@media(max-width:768px){
+  .topbar{background:rgba(0,0,0,.97)!important;border-bottom:1px solid #555!important}
+  .sidebar{background:rgba(0,0,0,.99)!important;border-right:1px solid #fff!important;border-top:1px solid #555!important}
+  .nav a.active{border-color:#fff!important;background:#171717!important}
+  .filter-chip.active{background:#f5f5f5!important;color:#000!important;border-color:#fff!important}
+  .filter-toggle{background:#000!important;color:#fff!important;border:1px solid #fff!important}
+  .card-actions .btn{border:1px solid #fff!important}
+  .code-canvas{border:1px solid #777!important;background:#050505!important}
+}
 
 </style>
 </head>
