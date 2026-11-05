@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#05070f">
 <title>OCode.js CLI Hub — Developer tools</title>
 <meta name="description" content="Khám phá, tìm kiếm và sử dụng các công cụ CLI/TUI dành cho developer và AI agents.">
@@ -181,6 +181,35 @@ button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,input,selec
   html,body,.layout{touch-action:pan-x pan-y}
   input,select,textarea{font-size:16px}
 }
+
+/* Robust mobile fit: never let inner content define a wider page than the viewport. */
+html,body{width:100%;max-width:100%;min-width:0;margin:0;overflow-x:hidden}
+.layout,.sidebar,.topbar,.content,footer,.hero,.stats,.searchbar,.grid,.card{box-sizing:border-box;min-width:0;max-width:100%}
+img,svg,video,canvas{max-width:100%;height:auto}
+@media screen and (max-width:720px){
+  .layout{width:100%;grid-template-columns:minmax(0,1fr);overflow-x:hidden}
+  .sidebar,.topbar,.content,footer{grid-column:1;width:100%;min-width:0;max-width:100%}
+  .sidebar{overflow:hidden}
+  .brand{max-width:100%;overflow:hidden}
+  .nav{display:flex;width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;white-space:nowrap;overscroll-behavior-x:contain}
+  .nav a{flex:0 0 auto}
+  .topbar{display:flex;flex-wrap:wrap;justify-content:flex-end;overflow:hidden}
+  .submit-tool,.icon-button,.shortcut{max-width:100%;flex:0 0 auto}
+  .content{padding-left:12px;padding-right:12px;overflow-wrap:anywhere}
+  .hero{display:block;width:100%}
+  h1{max-width:100%;font-size:clamp(25px,7vw,36px);line-height:1.15;overflow-wrap:anywhere;word-break:normal}
+  .subtitle{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+  .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .stat{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+  .searchbar{display:grid;width:100%;grid-template-columns:minmax(0,1fr);gap:8px}
+  .searchbox,.filter,.search-submit{grid-column:1;width:100%;min-width:0;max-width:100%}
+  .searchbox input{width:100%;min-width:0}
+  .grid{grid-template-columns:minmax(0,1fr);width:100%}
+  .card{width:100%;overflow:hidden}
+  .card p,.card h3,.meta{overflow-wrap:anywhere;word-break:break-word}
+  footer{overflow-wrap:anywhere}
+}
+
 </style>
 </head>
 <body>
