@@ -41,7 +41,7 @@ export function validateCatalog(tools) {
       }
     }
 
-    if (typeof tool.install === "string" && /[\\r\\n\\0]/.test(tool.install)) {
+    if (typeof tool.install === "string" && /[\r\n\0]/.test(tool.install)) {
       errors.push(`${prefix}: install must be a single-line command.`);
     }
   }
@@ -61,7 +61,7 @@ async function main() {
 
   const errors = validateCatalog(tools);
   if (errors.length) {
-    console.error(errors.join("\\n"));
+    console.error(errors.join("\n"));
     process.exitCode = 1;
     return;
   }
