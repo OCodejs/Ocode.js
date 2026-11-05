@@ -18,7 +18,7 @@ code,.term,.bar,.keys,.inp,.st,.logo,.chip,.tags,footer,input,.card h3,.box,h2{f
 .in{padding:18px}
 .logo{font-size:clamp(30px,9vw,76px);font-weight:900;letter-spacing:-.03em;line-height:1;margin:10px 0 6px;background:linear-gradient(90deg,var(--a),var(--b),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
 .tag{color:var(--mut);margin:0 0 18px}
-input{width:100%;padding:12px 14px;background:var(--card);color:var(--fg);border:1.5px solid var(--a);border-radius:8px;font:inherit}
+a{color:var(--a);text-decoration:none}select,textarea,input{width:100%;padding:12px 14px;background:var(--card);color:var(--fg);border:1.5px solid var(--a);border-radius:8px;font:inherit}
 input:focus{outline:none;box-shadow:0 0 0 3px rgba(0,216,255,.25)}
 h2{font-size:12px;color:var(--mut);margin:24px 0 10px;text-transform:uppercase;letter-spacing:.1em}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -44,38 +44,30 @@ code{display:block;margin-top:10px;background:var(--bg);padding:7px 9px;border-r
 .term p{margin:2px 0}.pr{color:var(--c)}.cm{color:var(--a)}.ok{color:var(--g)}
 .inp{border:1.5px solid var(--a);border-radius:8px;padding:10px;margin-top:12px;color:var(--mut)}
 .st{display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--bd);margin-top:14px;padding-top:10px;color:var(--a);font-size:12px}
+.btn{background:var(--a);color:#000;border:0;border-radius:8px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;margin-top:12px}label{display:block;margin-top:12px;color:var(--mut);font-size:12px}textarea{resize:vertical;min-height:80px}
 .empty,footer{color:var(--mut)}footer{padding:14px 18px;border-top:1px solid var(--bd);font-size:12px}
 </style>
 </head>
 <body>
 <div class="win">
-<div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>OCODEJS — Công cụ TUI/CLI</span><em>~/trove</em></div>
+<div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>OCODEJS — Công cụ TUI/CLI</span><em><a href="#submit">+ Gửi công cụ</a></em></div>
 <div class="in" id="app"></div>
 <footer>● online · <span id="cnt"></span> công cụ · /help · ⌘K phím tắt</footer>
 </div>
 <script>
-const TOOLS=[
-{id:"flow",n:"flow",d:"Theo dõi mạng thật êm: xem băng thông download/upload thở theo thời gian.",l:"Go",c:"Mạng",i:"go install flow@latest",k:"flow"},
-{id:"ocodejs",n:"ocodejs",d:"Không gian lập trình AI ngay trong terminal. Chạy file, nạp config, gõ @path/to/file.",l:"TypeScript",c:"AI",i:"npm i -g ocodejs",k:"oc"},
-{id:"trex",n:"trex",d:"Ứng dụng terminal trực quan hóa RegEx.",l:"Rust",c:"Văn bản",i:"cargo install trex"},
-{id:"dnspyre",n:"dnspyre",d:"CLI benchmark DNS với QPS cao.",l:"Go",c:"Mạng",i:"go install dnspyre"},
-{id:"b4n",n:"b4n",d:"TUI cho Kubernetes API.",l:"Rust",c:"DevOps",i:"cargo install b4n"},
-{id:"pygitzen",n:"pygitzen",d:"Git client terminal viết bằng Python.",l:"Python",c:"Git",i:"pip install pygitzen"},
-{id:"framework-tool-tui",n:"framework-tool-tui",d:"Điều khiển và giám sát phần cứng Framework.",l:"Rust",c:"Hệ thống",i:"cargo install framework-tool-tui"},
-{id:"qo",n:"qo",d:"TUI truy vấn JSON, CSV, TSV bằng SQL.",l:"Go",c:"Dữ liệu",i:"go install qo"}
-];
+let TOOLS=[];
+const REPO="OWNER/REPO"; // đổi thành tên repo GitHub của bạn
 const $=s=>document.querySelector(s),esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let lang=null,cat=null,q="",timer=null;
-$("#cnt").textContent=TOOLS.length;
 function chips(key,cur){const v=[...new Set(TOOLS.map(t=>t[key]))].sort();return v.map(x=>`<button class="chip${cur===x?" on":""}" data-k="${key}" data-v="${esc(x)}">${esc(x)}</button>`).join("")}
 function home(){
- const r=TOOLS.filter(t=>(!lang||t.l===lang)&&(!cat||t.c===cat)&&(t.n+t.d).toLowerCase().includes(q));
+ const r=TOOLS.filter(t=>(!lang||t.language===lang)&&(!cat||t.category===cat)&&(t.name+t.description).toLowerCase().includes(q));
  $("#app").innerHTML=`<div class="logo">&gt;_OCODEJS</div><p class="tag">Tìm công cụ terminal tiếp theo của bạn.</p>
  <input id="q" type="search" placeholder="Type a message or tìm: git, json, mạng…" value="${esc(q)}">
- <h2>Ngôn ngữ</h2><div class="chips" id="L">${chips("l",lang)}</div>
- <h2>Danh mục</h2><div class="chips" id="C">${chips("c",cat)}</div>
+ <h2>Ngôn ngữ</h2><div class="chips" id="L">${chips("language",lang)}</div>
+ <h2>Danh mục</h2><div class="chips" id="C">${chips("category",cat)}</div>
  <h2>${q||lang||cat?"Kết quả ("+r.length+")":"Mới thêm"}</h2>
- <div class="grid">${r.length?r.map(t=>`<div class="card" data-id="${t.id}"><h3>${esc(t.n)}</h3><p>${esc(t.d)}</p><div class="tags"><b>${t.l}</b><b>${t.c}</b></div><code>${esc(t.i)}</code></div>`).join(""):'<div class="empty">Không tìm thấy.</div>'}</div>`;
+ <div class="grid">${r.length?r.map(t=>`<div class="card" data-id="${t.id}"><h3>${esc(t.name)}</h3><p>${esc(t.description)}</p><div class="tags"><b>${t.language}</b><b>${t.category}</b></div><code>${esc(t.install)}</code></div>`).join(""):'<div class="empty">Không tìm thấy.</div>'}</div>`;
  const i=$("#q");i.oninput=()=>{q=i.value.toLowerCase();const p=i.selectionStart;home();const n=$("#q");n.focus();n.setSelectionRange(p,p)};
 }
 function spark(el,max){el.innerHTML=Array.from({length:40},()=>`<s style="height:${10+Math.random()*max}px"></s>`).join("")}
@@ -96,22 +88,35 @@ function ocView(){
  <div class="st"><span>OCODEJS CLI</span><span class="ok">● online</span><span>⬡ workspace ready</span><span>/help</span><span>⌘K shortcuts</span></div>`;
 }
 function detail(t){
- let pv=t.id==="flow"?flowView():t.id==="ocodejs"?ocView():`<div class="logo" style="font-size:clamp(28px,8vw,56px)">${esc(t.n.toUpperCase())}</div>`;
+ let pv=t.id==="flow"?flowView():t.id==="ocodejs"?ocView():`<div class="logo" style="font-size:clamp(28px,8vw,56px)">${esc(t.name.toUpperCase())}</div>`;
  $("#app").innerHTML=`<button class="back" id="bk">← Quay lại</button>${pv}
- <h2>Thông tin</h2><p>${esc(t.d)}</p><div class="tags"><b>${t.l}</b><b>${t.c}</b></div><code>${esc(t.i)}</code>`;
+ <h2>Thông tin</h2><p>${esc(t.description)}</p><div class="tags"><b>${t.language}</b><b>${t.category}</b></div><code>${esc(t.install)}</code>`;
  $("#bk").onclick=()=>{location.hash=""};
  if(t.id==="flow"){const go=()=>{spark($("#s1"),44);spark($("#s2"),20);$("#dn").textContent="↓ "+(0.8+Math.random()*.8).toFixed(1)+" MB/s";$("#ul").textContent="↑ "+Math.round(40+Math.random()*30)+" KB/s"};go();timer=setInterval(go,900)}
 }
+function submitView(){
+ const O=["Mạng","AI","Văn bản","DevOps","Git","Hệ thống","Dữ liệu","Khác"];
+ $("#app").innerHTML=`<button class="back" id="bk">← Quay lại</button><div class="logo" style="font-size:clamp(28px,8vw,56px)">SUBMIT</div><p class="tag">Gửi công cụ mới. Form sẽ mở một GitHub Issue điền sẵn để duyệt.</p>
+ <label>Tên công cụ</label><input id="fn"><label>Mô tả ngắn</label><textarea id="fd"></textarea>
+ <label>Ngôn ngữ</label><input id="fl" placeholder="Rust, Go, Python…"><label>Danh mục</label><select id="fc">${O.map(o=>`<option>${o}</option>`).join("")}</select>
+ <label>Lệnh cài đặt</label><input id="fi"><label>Link repo (https://…)</label><input id="fr">
+ <button class="btn" id="go">Mở GitHub Issue →</button>`;
+ $("#bk").onclick=()=>{location.hash=""};
+ $("#go").onclick=()=>{const v=i=>$(i).value.trim();
+  const body=`**Tên:** ${v("#fn")}\n**Mô tả:** ${v("#fd")}\n**Ngôn ngữ:** ${v("#fl")}\n**Danh mục:** ${v("#fc")}\n**Cài đặt:** ${v("#fi")}\n**Repo:** ${v("#fr")}`;
+  window.open(`https://github.com/${REPO}/issues/new?labels=submission&title=${encodeURIComponent("Gửi công cụ: "+v("#fn"))}&body=${encodeURIComponent(body)}`,"_blank")};
+}
 function route(){
  clearInterval(timer);const id=location.hash.slice(1),t=TOOLS.find(x=>x.id===id);
- t?detail(t):home();window.scrollTo(0,0);
+ id==="submit"?submitView():t?detail(t):home();window.scrollTo(0,0);
 }
 document.addEventListener("click",e=>{
  const c=e.target.closest(".card"),h=e.target.closest(".chip");
  if(c){location.hash=c.dataset.id}
- else if(h){const k=h.dataset.k,v=h.dataset.v;if(k==="l")lang=lang===v?null:v;else cat=cat===v?null:v;home()}
+ else if(h){const k=h.dataset.k,v=h.dataset.v;if(k==="language")lang=lang===v?null:v;else cat=cat===v?null:v;home()}
 });
-addEventListener("hashchange",route);route();
+addEventListener("hashchange",route);
+fetch("tools.json").then(r=>r.json()).then(d=>{TOOLS=d;$("#cnt").textContent=d.length;route()}).catch(()=>{$("#app").innerHTML='<p class="empty">Không tải được tools.json. Hãy chạy qua máy chủ (vd: npx serve) hoặc GitHub Pages.</p>'});
 </script>
 </body>
 </html>
