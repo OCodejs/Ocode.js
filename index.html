@@ -56,7 +56,7 @@ code{display:block;margin-top:10px;background:var(--bg);padding:7px 9px;border-r
 </div>
 <script>
 let TOOLS=[];
-const REPO="OWNER/REPO"; // đổi thành tên repo GitHub của bạn
+const REPO="zskbot/ocodejs-cli";
 const $=s=>document.querySelector(s),esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let lang=null,cat=null,q="",timer=null;
 function chips(key,cur){const v=[...new Set(TOOLS.map(t=>t[key]))].sort();return v.map(x=>`<button class="chip${cur===x?" on":""}" data-k="${key}" data-v="${esc(x)}">${esc(x)}</button>`).join("")}
@@ -67,7 +67,7 @@ function home(){
  <h2>Ngôn ngữ</h2><div class="chips" id="L">${chips("language",lang)}</div>
  <h2>Danh mục</h2><div class="chips" id="C">${chips("category",cat)}</div>
  <h2>${q||lang||cat?"Kết quả ("+r.length+")":"Mới thêm"}</h2>
- <div class="grid">${r.length?r.map(t=>`<div class="card" data-id="${t.id}"><h3>${esc(t.name)}</h3><p>${esc(t.description)}</p><div class="tags"><b>${t.language}</b><b>${t.category}</b></div><code>${esc(t.install)}</code></div>`).join(""):'<div class="empty">Không tìm thấy.</div>'}</div>`;
+ <div class="grid">${r.length?r.map(t=>`<div class="card" data-id="${esc(t.id)}"><h3>${esc(t.name)}</h3><p>${esc(t.description)}</p><div class="tags"><b>${esc(t.language)}</b><b>${esc(t.category)}</b></div><code>${esc(t.install)}</code></div>`).join(""):'<div class="empty">Không tìm thấy.</div>'}</div>`;
  const i=$("#q");i.oninput=()=>{q=i.value.toLowerCase();const p=i.selectionStart;home();const n=$("#q");n.focus();n.setSelectionRange(p,p)};
 }
 function spark(el,max){el.innerHTML=Array.from({length:40},()=>`<s style="height:${10+Math.random()*max}px"></s>`).join("")}
