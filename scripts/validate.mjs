@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 
 const REQUIRED = ["id", "name", "description", "language", "category", "install"];
 const ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -67,6 +68,6 @@ async function main() {
   console.log(`OK: ${tools.length} catalog entries validated.`);
 }
 
-if (import.meta.url === new URL(`file://${process.argv[1]}`).href) {
+if (import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   await main();
 }
