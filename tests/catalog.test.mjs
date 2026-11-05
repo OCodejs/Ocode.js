@@ -46,7 +46,7 @@ test("rejects repository URLs with embedded credentials", () => {
 });
 
 test("rejects multiline install commands", () => {
-  const errors = validateCatalog([{ ...validTool, install: "npm install\\necho unsafe" }]);
+  const errors = validateCatalog([{ ...validTool, install: "npm install\necho unsafe" }]);
   assert.ok(errors.some(error => error.includes("single-line command")));
 });
 
