@@ -137,7 +137,7 @@ document.addEventListener("click",event=>{
  const filter=event.target.closest("[data-filter]"),detail=event.target.closest("[data-open-detail]"),copy=event.target.closest("[data-copy]");
  if(filter){const key=filter.dataset.filter,value=filter.dataset.value;if(key==="language")language=language===value?"":value;else category=category===value?"":value;renderHome();return}
  if(detail){location.hash=detail.dataset.openDetail;return}
- if(copy){const value=copy.dataset.copy;navigator.clipboard?.writeText(value).then(()=>{copy.textContent="Đã copy ✓"}).catch(()=>{copy.textContent="Copy thất bại"});return}
+ if(copy){const value=copy.dataset.copy;if(!navigator.clipboard?.writeText){copy.textContent="Không hỗ trợ copy";return}navigator.clipboard.writeText(value).then(()=>{copy.textContent="Đã copy ✓"}).catch(()=>{copy.textContent="Copy thất bại"});return}
 });
 document.addEventListener("keydown",event=>{
  if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==="k"){event.preventDefault();if(!location.hash){$("#search")?.focus()}else{location.hash=""}}
