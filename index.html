@@ -3,7 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>OCODEJS</title>
+<title>OCodeJS CLI Hub — Công cụ TUI/CLI</title>
+<meta name="description" content="Khám phá, tìm kiếm và đề xuất các công cụ TUI/CLI dành cho lập trình viên trong hệ sinh thái OCodeJS.">
+<link rel="canonical" href="https://zskbot.github.io/ocodejs-cli/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OCodeJS CLI Hub">
+<meta property="og:description" content="Khám phá công cụ terminal dành cho lập trình viên.">
+<meta property="og:url" content="https://zskbot.github.io/ocodejs-cli/">
 <style>
 :root{--bg:#000;--card:#0a0a0c;--fg:#ededed;--mut:#8a8a93;--a:#00d8ff;--b:#9a6bff;--c:#ff3df0;--g:#22e58a;--bd:#1f1f24;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#eef3ff;--card:#fff;--fg:#0d1a3f;--mut:#51608a;--a:#0877c9;--b:#6b3fd6;--c:#c01fb0;--g:#0a8f54;--bd:#c3d0f2;color-scheme:light}}
@@ -90,7 +96,7 @@ function ocView(){
 function detail(t){
  let pv=t.id==="flow"?flowView():t.id==="ocodejs"?ocView():`<div class="logo" style="font-size:clamp(28px,8vw,56px)">${esc(t.name.toUpperCase())}</div>`;
  $("#app").innerHTML=`<button class="back" id="bk">← Quay lại</button>${pv}
- <h2>Thông tin</h2><p>${esc(t.description)}</p><div class="tags"><b>${t.language}</b><b>${t.category}</b></div><code>${esc(t.install)}</code>`;
+ <h2>Thông tin</h2><p>${esc(t.description)}</p><div class="tags"><b>${esc(t.language)}</b><b>${esc(t.category)}</b></div><code>${esc(t.install)}</code>`;
  $("#bk").onclick=()=>{location.hash=""};
  if(t.id==="flow"){const go=()=>{spark($("#s1"),44);spark($("#s2"),20);$("#dn").textContent="↓ "+(0.8+Math.random()*.8).toFixed(1)+" MB/s";$("#ul").textContent="↑ "+Math.round(40+Math.random()*30)+" KB/s"};go();timer=setInterval(go,900)}
 }
@@ -104,7 +110,7 @@ function submitView(){
  $("#bk").onclick=()=>{location.hash=""};
  $("#go").onclick=()=>{const v=i=>$(i).value.trim();
   const body=`**Tên:** ${v("#fn")}\n**Mô tả:** ${v("#fd")}\n**Ngôn ngữ:** ${v("#fl")}\n**Danh mục:** ${v("#fc")}\n**Cài đặt:** ${v("#fi")}\n**Repo:** ${v("#fr")}`;
-  window.open(`https://github.com/${REPO}/issues/new?labels=submission&title=${encodeURIComponent("Gửi công cụ: "+v("#fn"))}&body=${encodeURIComponent(body)}`,"_blank")};
+  window.open(`https://github.com/${REPO}/issues/new?template=tool-submission.md&title=${encodeURIComponent("Gửi công cụ: "+v("#fn"))}&body=${encodeURIComponent(body)}`,"_blank")};
 }
 function route(){
  clearInterval(timer);const id=location.hash.slice(1),t=TOOLS.find(x=>x.id===id);
