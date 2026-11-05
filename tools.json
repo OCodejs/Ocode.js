@@ -21,7 +21,7 @@
     "id": "clihub",
     "name": "clihub",
     "description": "Quản lý đồng bộ skills, MCP, prompt và cấu hình cho nhiều AI coding CLI; có TUI và CLI.",
-    "language": "Rust",
+    "language": "TypeScript",
     "category": "AI Agents",
     "install": "curl -fsSL https://raw.githubusercontent.com/wikieden/clihub/main/scripts/install.sh | sh",
     "repo": "https://github.com/wikieden/clihub"
