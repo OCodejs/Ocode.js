@@ -268,6 +268,73 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{
 /* Maintain the explicit 100% square-corner visual requirement. */
 button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,input,select,textarea,.filter,.searchbox,.stat,.card,.detail-panel,.nav a{border-radius:0!important}
 
+
+/* ===== OCode.js Pages layout: portrait mobile / 16:9 desktop ===== */
+@media (min-width:769px){
+  body{min-height:100vh}
+  .layout{
+    width:min(100%,1920px);
+    min-height:100vh;
+    margin-inline:auto;
+    grid-template-columns:240px minmax(0,1fr);
+    grid-template-rows:64px minmax(0,1fr) auto;
+  }
+  .content{max-width:1280px;padding:clamp(32px,4vw,64px)}
+}
+@media (max-width:768px){
+  html,body{width:100%;height:100%;min-height:100%;overflow-x:hidden}
+  body{min-height:100svh;min-height:100dvh;padding:0 0 calc(64px + env(safe-area-inset-bottom,0px))}
+  .layout{display:flex;flex-direction:column;width:100%;min-height:100svh;min-height:100dvh;height:auto;max-width:100%;border:0}
+  .topbar{position:sticky;top:0;z-index:50;flex:0 0 auto;min-height:56px;padding:calc(8px + env(safe-area-inset-top,0px)) 16px 8px;justify-content:space-between}
+  .mbrand{font-size:15px}
+  .submit-tool{height:40px;min-height:40px;padding:0 12px}
+  .icon-button{height:40px;min-width:40px}
+  .content{flex:1 0 auto;width:100%;max-width:100%;padding:20px 16px 28px;margin:0}
+  .hero{display:block;margin:0 0 18px}
+  .hero-mark{display:none}
+  h1{font-size:clamp(27px,8vw,34px);line-height:1.12;letter-spacing:-1px}
+  .subtitle{max-width:38ch;font-size:13px;line-height:1.5}
+  .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:18px 0}
+  .stat{min-width:0;min-height:42px;padding:8px 10px;white-space:normal;font-size:11px}
+  .searchbar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 22px}
+  .searchbox{grid-column:1/-1;min-width:0;height:48px}
+  .searchbox input{min-width:0;font-size:16px}
+  .filter{min-width:0;width:100%;height:44px;font-size:12px}
+  .search-submit{grid-column:1/-1;display:block;height:44px}
+  .section-head{margin:22px 0 12px}
+  .grid{grid-template-columns:minmax(0,1fr);gap:10px}
+  .card{min-width:0;padding:14px;gap:10px}
+  .card p{min-height:0}
+  .card-actions{display:flex;flex-wrap:wrap;gap:8px}
+  .card-actions .btn{min-height:40px;padding:8px 12px;font-size:11px}
+  .card-actions .btn.primary{flex:1 1 120px}
+  .detail{width:100%;max-width:100%}
+  .detail h2{font-size:24px;line-height:1.2}
+  .detail-panel{min-width:0;padding:14px}
+  footer{flex:0 0 auto;display:block;padding:16px}
+  footer span{display:block}
+  .sidebar{position:fixed;inset:auto 0 0;z-index:60;min-height:0;padding:0 0 env(safe-area-inset-bottom,0px);border:0;border-top:1px solid var(--line-strong);background:rgba(8,12,21,.98)}
+  .brand,.side-card{display:none}
+  .nav{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;margin:0}
+  .nav a{display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0;min-height:58px;padding:6px 1px;border:0;border-top:2px solid transparent;font-size:9px;white-space:nowrap}
+  .nav-icon{width:auto;font-size:17px;line-height:1}
+  button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,input,select,textarea,.filter,.searchbox,.stat,.card,.detail-panel,.nav a{border-radius:0!important}
+}
+@media(max-width:380px){
+  .topbar{padding-inline:12px}
+  .mbrand small{display:none}
+  .content{padding-inline:12px}
+  .stats{gap:6px}
+  .stat{font-size:10px}
+  .nav a{font-size:8px}
+}
+@media(orientation:landscape) and (max-width:900px){
+  .content{padding-top:14px}
+  .hero{margin-bottom:12px}
+  .stats{grid-template-columns:repeat(4,minmax(0,1fr));margin:12px 0}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
 </style>
 </head>
 <body>
