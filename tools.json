@@ -1,10 +1,92 @@
 [
-{"id":"flow","name":"flow","description":"Theo dõi mạng thật êm: xem băng thông download/upload thở theo thời gian.","language":"Go","category":"Mạng","install":"go install flow@latest"},
-{"id":"ocodejs","name":"ocodejs","description":"Không gian lập trình AI ngay trong terminal. Chạy file, nạp config, gõ @path/to/file.","language":"TypeScript","category":"AI","install":"npm i -g ocodejs"},
-{"id":"trex","name":"trex","description":"Ứng dụng terminal trực quan hóa RegEx.","language":"Rust","category":"Văn bản","install":"cargo install trex"},
-{"id":"dnspyre","name":"dnspyre","description":"CLI benchmark DNS với QPS cao.","language":"Go","category":"Mạng","install":"go install dnspyre"},
-{"id":"b4n","name":"b4n","description":"TUI cho Kubernetes API.","language":"Rust","category":"DevOps","install":"cargo install b4n"},
-{"id":"pygitzen","name":"pygitzen","description":"Git client terminal viết bằng Python.","language":"Python","category":"Git","install":"pip install pygitzen"},
-{"id":"framework-tool-tui","name":"framework-tool-tui","description":"Điều khiển và giám sát phần cứng Framework.","language":"Rust","category":"Hệ thống","install":"cargo install framework-tool-tui"},
-{"id":"qo","name":"qo","description":"TUI truy vấn JSON, CSV, TSV bằng SQL.","language":"Go","category":"Dữ liệu","install":"go install qo"}
+  {
+    "id": "dnspyre",
+    "name": "dnspyre",
+    "description": "Công cụ benchmark DNS qua UDP/TCP, DoT, DoH và DoQ; hỗ trợ đo tải và xuất biểu đồ.",
+    "language": "Go",
+    "category": "Mạng",
+    "install": "go install github.com/Tantalor93/dnspyre/v3@latest",
+    "repo": "https://github.com/Tantalor93/dnspyre"
+  },
+  {
+    "id": "cli-anything-hub",
+    "name": "cli-hub",
+    "description": "Duyệt, tìm kiếm, cài đặt và quản lý các CLI harness từ hệ sinh thái CLI-Anything.",
+    "language": "Python",
+    "category": "AI Agents",
+    "install": "pip install cli-anything-hub",
+    "repo": "https://github.com/HKUDS/CLI-Anything"
+  },
+  {
+    "id": "clihub",
+    "name": "clihub",
+    "description": "Quản lý đồng bộ skills, MCP, prompt và cấu hình cho nhiều AI coding CLI; có TUI và CLI.",
+    "language": "Rust",
+    "category": "AI Agents",
+    "install": "curl -fsSL https://raw.githubusercontent.com/wikieden/clihub/main/scripts/install.sh | sh",
+    "repo": "https://github.com/wikieden/clihub"
+  },
+  {
+    "id": "ripgrep",
+    "name": "ripgrep (rg)",
+    "description": "Tìm kiếm chuỗi và biểu thức chính quy tốc độ cao trong cây thư mục, tôn trọng .gitignore.",
+    "language": "Rust",
+    "category": "Tìm kiếm",
+    "install": "brew install ripgrep",
+    "repo": "https://github.com/BurntSushi/ripgrep"
+  },
+  {
+    "id": "fd",
+    "name": "fd",
+    "description": "Tìm file và thư mục với cú pháp thân thiện, nhanh hơn find cho các tác vụ phổ biến.",
+    "language": "Rust",
+    "category": "Tệp tin",
+    "install": "brew install fd",
+    "repo": "https://github.com/sharkdp/fd"
+  },
+  {
+    "id": "fzf",
+    "name": "fzf",
+    "description": "Bộ lọc fuzzy finder tổng quát cho terminal, có thể kết hợp với shell và các lệnh khác.",
+    "language": "Go",
+    "category": "Tìm kiếm",
+    "install": "brew install fzf",
+    "repo": "https://github.com/junegunn/fzf"
+  },
+  {
+    "id": "lazygit",
+    "name": "lazygit",
+    "description": "Giao diện terminal tương tác để quản lý Git repository, commit, branch và stash.",
+    "language": "Go",
+    "category": "Git",
+    "install": "brew install lazygit",
+    "repo": "https://github.com/jesseduffield/lazygit"
+  },
+  {
+    "id": "k9s",
+    "name": "k9s",
+    "description": "TUI quan sát và tương tác với Kubernetes cluster trực tiếp từ terminal.",
+    "language": "Go",
+    "category": "DevOps",
+    "install": "brew install k9s",
+    "repo": "https://github.com/derailed/k9s"
+  },
+  {
+    "id": "jq",
+    "name": "jq",
+    "description": "Bộ xử lý JSON trên command line để lọc, biến đổi và truy vấn dữ liệu.",
+    "language": "C",
+    "category": "Dữ liệu",
+    "install": "brew install jq",
+    "repo": "https://github.com/jqlang/jq"
+  },
+  {
+    "id": "yq",
+    "name": "yq",
+    "description": "Bộ xử lý YAML, JSON, XML, INI và CSV/TSV từ terminal.",
+    "language": "Go",
+    "category": "Dữ liệu",
+    "install": "brew install yq",
+    "repo": "https://github.com/mikefarah/yq"
+  }
 ]
