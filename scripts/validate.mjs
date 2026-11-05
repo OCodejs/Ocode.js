@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
-const REQUIRED = ["id", "name", "description", "language", "category", "install"];
+const REQUIRED = ["id", "name", "description", "language", "category", "install", "repo"];
 const ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export function validateCatalog(tools) {
