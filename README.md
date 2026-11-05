@@ -53,7 +53,7 @@ Mở URL local do `serve` cung cấp. Không mở HTML bằng `file://`, vì tr�
 }
 ```
 
-Các trường `id`, `name`, `description`, `language`, `category` và `install` bắt buộc. `repo` tùy chọn nhưng nếu có phải là URL HTTPS hợp lệ.
+Các trường `id`, `name`, `description`, `language`, `category` và `install` bắt buộc. `repo` bắt buộc và phải là URL HTTPS hợp lệ. Mọi entry đều cần upstream source để người dùng tự kiểm tra.
 
 ## GitHub Pages
 
