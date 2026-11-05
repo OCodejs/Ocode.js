@@ -76,7 +76,7 @@ async function main() {
     return;
   }
 
-  const inlineScripts = [...html.matchAll(/<script(?:\\s[^>]*)?>([\\s\\S]*?)<\\/script>/gi)];
+  const inlineScripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)];
   if (!inlineScripts.length) {
     console.error("index.html must contain at least one inline script.");
     process.exitCode = 1;
