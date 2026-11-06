@@ -1098,6 +1098,90 @@ footer a{color:#b5c7dd}
 }
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<style id="ocode-monochrome-button-system">
+  :root{
+    --button-primary-bg:#ffffff;
+    --button-primary-fg:#000000;
+    --button-secondary-bg:#000000;
+    --button-secondary-fg:#ffffff;
+    --button-border:#ffffff;
+  }
+  /* One monochrome interaction system across every workspace and repository page. */
+  button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,
+  .copy-code,.filter-chip,.filter-toggle,.page-tile,.library-tabs button,
+  .library-card .library-open,.library-repo-actions button{
+    border-radius:0!important;
+    box-shadow:none!important;
+    transition:background-color .15s ease,color .15s ease,border-color .15s ease;
+  }
+  button,.btn,.icon-button,.shortcut,.back,.copy-code,
+  .filter-chip,.filter-toggle,.library-tabs button,.library-repo-actions .btn,
+  .library-links .btn{
+    background:#000000!important;
+    color:#ffffff!important;
+    border:1px solid #ffffff!important;
+  }
+  .btn.primary,.submit-tool,.search-submit,
+  .library-card .library-open,.library-links .library-open,
+  .library-repo-actions .btn.primary,.detail .btn.primary,
+  button.primary,[data-variant="primary"]{
+    min-height:46px!important;
+    padding:0 18px!important;
+    background:#ffffff!important;
+    color:#000000!important;
+    border:1px solid #ffffff!important;
+    font-weight:800!important;
+  }
+  .btn:not(.primary),.icon-button,.shortcut,.back,.copy-code,
+  .filter-chip,.filter-toggle,.library-repo-actions .btn:not(.primary),
+  .library-links .btn:not(.library-open){
+    background:#000000!important;
+    color:#ffffff!important;
+    border-color:#ffffff!important;
+  }
+  button:hover,.btn:hover,.icon-button:hover,.shortcut:hover,.back:hover,
+  .copy-code:hover,.filter-chip:hover,.filter-toggle:hover,
+  .library-tabs button:hover,.library-repo-actions .btn:hover{
+    background:#ffffff!important;
+    color:#000000!important;
+    border-color:#ffffff!important;
+  }
+  .btn.primary:hover,.submit-tool:hover,.search-submit:hover,
+  .library-card .library-open:hover,.library-links .library-open:hover,
+  .library-repo-actions .btn.primary:hover,.detail .btn.primary:hover,
+  button.primary:hover,[data-variant="primary"]:hover{
+    background:#000000!important;
+    color:#ffffff!important;
+    border-color:#ffffff!important;
+  }
+  .btn.favorite[aria-pressed="true"]{
+    background:#ffffff!important;color:#000000!important;border-color:#ffffff!important;
+  }
+  .btn.danger,.btn.danger:hover{
+    background:#000000!important;color:#ffffff!important;border-color:#ffffff!important;
+  }
+  .library-tabs button{border-width:1px!important}
+  .library-tabs button.active{
+    background:#ffffff!important;color:#000000!important;
+    border-color:#ffffff!important;border-bottom:2px solid #ffffff!important;
+  }
+  .page-actions .btn,.card-actions .btn,.marketplace-actions .btn,
+  .library-links .btn,.library-repo-actions .btn{
+    min-height:44px!important;
+  }
+  @media(max-width:600px){
+    .btn.primary,.submit-tool,.search-submit,
+    .library-card .library-open,.detail .btn.primary,
+    button.primary,[data-variant="primary"]{
+      min-height:48px!important;
+    }
+  }
+  @media(prefers-reduced-motion:reduce){
+    button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back{transition:none!important}
+  }
+</style>
+
 </head>
 <body>
 <div class="layout">
