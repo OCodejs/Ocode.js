@@ -72,9 +72,11 @@ test("the tool submission action points to the repository issue template", async
 
 test("the CLI Hub exposes 25 unique routes across six navigation groups", async () => {
   const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
-  const match = html.match(/const pageDefinitions=(\\[\\[.*?\\]\\])\\.map\\(\\(\\[id,title,group,description,status\\]\\)=>/s);
-  assert.ok(match, "pageDefinitions must remain a JSON-compatible route list");
-  const pages = JSON.parse(match[1]);
+  const marker = "const pageDefinitions=";
+  const start = html.indexOf(marker);
+  const end = html.indexOf(".map(([id,title,group,description,status])=>", start);
+  assert.ok(start >= 0 && end > start, "pageDefinitions must remain a JSON-compatible route list");
+  const pages = JSON.parse(html.slice(start + marker.length, end));
   assert.equal(pages.length, 25);
   assert.equal(new Set(pages.map(([id]) => id)).size, 25);
   assert.deepEqual(
