@@ -94,3 +94,26 @@ test("the CLI Hub keeps grouped navigation and browser history routing", async (
   assert.match(html, /data-go-page/);
   assert.match(html, /drawer-open/);
 });
+
+
+test("local project workspace pages are implemented without a backend", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  assert.match(html, /function renderProjects\(/);
+  assert.match(html, /function renderNewProject\(/);
+  assert.match(html, /function renderDashboard\(/);
+  assert.match(html, /function renderEnvironments\(/);
+  assert.match(html, /function renderActivity\(/);
+  assert.match(html, /ocodejs-cli-projects/);
+  assert.match(html, /id="project-form"/);
+  assert.match(html, /data-delete-project=/);
+});
+
+test("local project creation and deletion record browser-local activity", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  assert.match(html, /addEventListener\("submit"/);
+  assert.match(html, /projects\.unshift\(project\)/);
+  assert.match(html, /projects=projects\.filter/);
+  assert.match(html, /recordWorkspaceEvent\("Project created"/);
+  assert.match(html, /recordWorkspaceEvent\("Project deleted"/);
+  assert.match(html, /ocodejs-cli-activity/);
+});
