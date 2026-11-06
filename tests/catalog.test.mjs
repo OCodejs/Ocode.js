@@ -137,3 +137,18 @@ test("community ranking uses npm last-month downloads and labels its scope", asy
   assert.match(html, /not a ranking of all npm packages|không phải bảng xếp hạng toàn bộ npm/i);
   assert.match(html, /https:\/\/www\.npmjs\.com\/package\//);
 });
+
+
+test("navigation exposes 50 unique pages across 11 groups", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  const match = html.match(/const pageDefinitions=(\[[\s\S]*?\])\.map\(\(\[id,title,group,description,status\]\)/);
+  assert.ok(match, "page definitions should be present");
+  const pages = JSON.parse(match[1]);
+  assert.equal(pages.length, 50);
+  assert.equal(new Set(pages.map(page => page[0])).size, 50);
+  assert.equal(new Set(pages.map(page => page[2])).size, 11);
+  assert.match(html, /id="nav-search"/);
+  assert.match(html, /function buildNavigation\(\)/);
+  assert.match(html, /nav-search.*addEventListener/s);
+  assert.match(html, /overflow-y:auto/);
+});
