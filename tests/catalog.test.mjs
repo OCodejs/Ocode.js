@@ -172,3 +172,15 @@ test("Lucide icons are applied to navigation and tool cards", async () => {
   assert.match(html, /DOMContentLoaded,refreshIcons/);
   assert.match(html, /renderCatalog\(\);refreshIcons\(\)/);
 });
+
+
+test("Marketplace page links to official VS Code GitHub and Google catalogs", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  assert.match(html, /\["marketplace","Marketplace","Developer Hub"/);
+  assert.match(html, /https:\/\/marketplace\.visualstudio\.com\/vscode/);
+  assert.match(html, /https:\/\/github\.com\/marketplace/);
+  assert.match(html, /https:\/\/console\.cloud\.google\.com\/marketplace/);
+  assert.match(html, /marketplace-grid/);
+  assert.match(html, /marketplace:"store"/);
+  assert.match(html, /"marketplace"\]\?\.includes|marketplace.*quick access/i);
+});

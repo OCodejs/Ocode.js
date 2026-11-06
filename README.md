@@ -89,3 +89,8 @@ The CLI Hub navigation contains 50 unique page routes across 11 groups: Workspac
 ## Brand assets and iconography
 
 Community library cards load their brand marks from Simple Icons using the corresponding brand color hex values. Navigation and CLI tool cards use the Lucide icon set, initialized after the deferred CDN script loads and refreshed after route rendering. The animated Home banner keeps its source GIF and uses full saturation with a subtle color overlay. Brand assets are loaded from external CDNs and require network access in the browser.
+
+
+## Marketplace hub
+
+The **Marketplace** page links to the official Visual Studio Code Marketplace, GitHub Marketplace, and Google Cloud Marketplace. Each provider card includes a direct catalog link and official documentation. These are outbound discovery links only; extension installation, account authorization, purchasing, and synchronization are not implemented until provider APIs and credentials are configured. Marketplace is also available from Home quick access.
