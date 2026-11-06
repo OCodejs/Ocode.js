@@ -117,3 +117,23 @@ test("local project creation and deletion record browser-local activity", async 
   assert.match(html, /recordWorkspaceEvent\("Project deleted"/);
   assert.match(html, /ocodejs-cli-activity/);
 });
+
+
+test("home introduces community libraries with real brand marks and animated media", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  assert.match(html, /media\.giphy\.com\/media\/.+\/giphy\.gif/);
+  assert.match(html, /cdn\.simpleicons\.org/);
+  assert.match(html, /alt="\'+esc\(lib\.name\)\+' logo"/);
+  assert.match(html, /communityLibraries=/);
+  assert.match(html, /function renderLibraryCards\(/);
+  assert.match(html, /function renderHome\(/);
+});
+
+test("community ranking uses npm last-month downloads and labels its scope", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  assert.match(html, /api\.npmjs\.org\/downloads\/point\/last-month/);
+  assert.match(html, /sort\(\(a,b\)=>b\.downloads-a\.downloads\)/);
+  assert.match(html, /last 30 days/);
+  assert.match(html, /not a ranking of all npm packages|không phải bảng xếp hạng toàn bộ npm/i);
+  assert.match(html, /https:\/\/www\.npmjs\.com\/package\//);
+});
