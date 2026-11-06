@@ -1182,6 +1182,84 @@ footer a{color:#b5c7dd}
   }
 </style>
 
+
+<style id="ocode-pure-black-surface-system">
+  :root{
+    --bg:#000000!important;
+    --panel:#080808!important;
+    --line:#292929!important;
+    --line-strong:#454545!important;
+    --fg:#f5f5f5!important;
+    --muted:#a6a6a6!important;
+    --ui-surface:#080808!important;
+    --ui-border:#292929!important;
+  }
+  html,body{background:#000!important;color:#f5f5f5}
+  body,.layout,main,.main,.content,.workspace,.app-shell{
+    background:#000!important;
+    background-image:none!important;
+  }
+  .layout{border-color:#292929!important}
+  .sidebar,.topbar,footer,.side-card,.stat,.searchbar,.searchbox,.filter,
+  .filter-panel,.nav-search-wrap,.page-panel,.page-tile,.card,.detail-panel,
+  .library-card,.library-repo-main,.library-repo-side,.library-install,
+  .library-empty,.marketplace-card,.workspace-panel,.workspace-card,
+  .code-canvas,.command,.library-readme,.library-source,.tool-card{
+    background:#080808!important;
+    background-image:none!important;
+    border-color:#303030!important;
+    box-shadow:none!important;
+  }
+  .sidebar,.topbar,footer{background:#000!important}
+  .nav a,.nav a:hover,.nav a.active,.page-tile:hover,.card:hover,
+  .library-file-list tr:hover,.filter-chip,.filter-chip.active,
+  .filter-toggle,.version,.shortcut{
+    background:#111!important;
+    background-image:none!important;
+    border-color:#454545!important;
+    color:#f2f2f2!important;
+  }
+  .home-hero,.home-hero-copy,.home-hero-media,.home-intro-grid .page-panel,
+  .community-section,.library-repo-title,.library-file-toolbar{
+    background:#080808!important;
+    background-image:none!important;
+    border-color:#303030!important;
+  }
+  .home-hero-media:after{background:#000!important;opacity:.12}
+  .home-hero-media span{background:#000!important;color:#fff!important;border-color:#555!important}
+  .tool-card,.tool-card:nth-child(n){
+    background:#080808!important;
+    background-image:none!important;
+    border-top:1px solid #454545!important;
+  }
+  .tool-icon,.tool-card .tool-icon{
+    background:#111!important;
+    border-color:#555!important;
+    /* Preserve each library/tool's original icon color. */
+  }
+  .library-brand img,.library-repo-title img{background:#111!important}
+  .library-install,.library-repo-main,.library-repo-side{background:#080808!important}
+  .command,.code-canvas pre{background:#050505!important}
+  input,textarea,select,.workspace-field input,.workspace-field textarea,
+  .workspace-field select{
+    background:#050505!important;
+    color:#f5f5f5!important;
+    border-color:#454545!important;
+  }
+  .searchbox input,.nav-search-wrap input{background:transparent!important}
+  .drawer-scrim{background:#000d!important}
+  /* Neutralize leftover blue/purple surface accents without recoloring brand artwork. */
+  .nav a.active{box-shadow:inset 2px 0 0 #fff!important}
+  .nav a:hover,.nav a.active{border-color:#555!important}
+  .library-tabs button.active{border-bottom-color:#fff!important}
+  .library-install,.library-empty{border-color:#454545!important}
+  .library-repo-actions .btn:not(.primary):hover,
+  .library-file-toolbar .btn:hover{background:#fff!important;color:#000!important;border-color:#fff!important}
+  @media(max-width:768px){
+    .topbar,.sidebar{background:#000!important;border-color:#444!important}
+  }
+</style>
+
 </head>
 <body>
 <div class="layout">
