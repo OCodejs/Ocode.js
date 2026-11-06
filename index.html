@@ -890,6 +890,19 @@ button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,.filter-chi
 
 .library-tabs button[data-library-tab="commits"],.library-tabs button[data-library-tab="branches"],.library-tabs button[data-library-tab="tags"],.library-tabs button[data-library-tab="contributors"]{white-space:nowrap}.library-tabs button[data-library-tab="commits"].active,.library-tabs button[data-library-tab="branches"].active,.library-tabs button[data-library-tab="tags"].active,.library-tabs button[data-library-tab="contributors"].active{color:#a5a8ff;border-bottom-color:#646cff}
 
+
+/* Repository browsing interactions */
+.library-readme{white-space:normal;overflow-wrap:anywhere;padding:16px;line-height:1.75;color:#dbe5f3}
+.library-readme h1,.library-readme h2,.library-readme h3{margin:18px 0 9px;padding-bottom:7px;border-bottom:1px solid var(--line);color:var(--fg)}
+.library-readme p{margin:10px 0}
+.library-readme pre{white-space:pre;overflow:auto;padding:12px;background:#05070d;border:1px solid var(--line)}
+.library-readme code{font:12px/1.6 var(--mono);color:#b9d5ff}
+.library-readme a{color:var(--ui-accent);text-decoration:underline}
+.library-filter-empty{padding:18px;color:var(--muted);font-size:12px}
+.library-file-list tr[hidden]{display:none}
+.library-repo-grid{min-width:0}
+.library-code-view pre{tab-size:2}
+
 /* React and Next.js branded repository workspaces */
 .react-workspace,.next-workspace{margin:12px 0;padding:14px;border:1px solid var(--line);background:#090e16}
 .react-workspace{--workspace-accent:#61dafb}
@@ -941,8 +954,369 @@ button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,.filter-chi
 .mobile-profile span:first-child{color:#c4cfdd}
 .light-preview .btn,.light-preview .icon-button,.light-preview .shortcut,.light-preview .back,.light-preview .filter-chip,.light-preview .filter-toggle,.light-preview .page-tile{background:#fff;color:#17243a;border-color:#cbd5e1}
 .light-preview .nav a:hover,.light-preview .nav a.active{background:#e8eef8;color:#17243a;border-left-color:#526b91}
+
+/* OCode.js visual polish: community actions, profile icon and repository surfaces */
+.library-links .library-open{
+  background:#fff!important;color:#101827!important;border:1px solid #fff!important;
+  font-weight:700;letter-spacing:.01em;transition:background .16s ease,border-color .16s ease,transform .16s ease
+}
+.library-links .library-open:hover{background:#e8edf5!important;border-color:#e8edf5!important;transform:translateY(-1px)}
+.library-links .library-download{background:#101722!important;color:#e7edf7!important;border:1px solid #3b4a60!important}
+.library-links .library-download:hover{background:#172235!important;border-color:#7d91ad!important;color:#fff!important}
+.mobile-profile{display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.mobile-profile [data-lucide]{width:17px;height:17px;stroke-width:1.9}
+.mobile-profile .profile-label{font-size:11px;font-weight:650}
+.library-repo-shell{gap:16px}
+.library-ocode-brand,.library-repo-overview{
+  border:1px solid #34445b!important;background:linear-gradient(120deg,#0d1420,#090e17)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035)
+}
+.library-repo-title{display:flex;align-items:center;gap:12px}
+.library-repo-title img{width:42px;height:42px;object-fit:contain;padding:7px;background:#111a28;border:1px solid var(--library-accent,#53657d)!important}
+.library-repo-title h1{font-weight:750;letter-spacing:-.035em}
+.library-repo-actions .btn,.library-tabs button{border:1px solid #34445b!important;background:#111a27!important;color:#dbe5f3!important}
+.library-repo-actions .btn:hover,.library-tabs button:hover{border-color:var(--library-accent,#7b91ae)!important;color:#fff!important;background:#172337!important}
+.library-tabs button[aria-selected="true"],.library-tabs button.active{background:#eaf0f8!important;color:#111827!important;border-color:#eaf0f8!important}
+.library-repo-toolbar,.library-file-list,.library-repo-side,.library-install,.library-readme,.library-source-panel{
+  border:1px solid #2b3a50!important;background:#0a111c!important
+}
+.library-repo-toolbar input,.library-repo-toolbar select{border:1px solid #3a4b63!important;background:#080e17!important;color:#e7edf7!important}
+.library-file-list{border-collapse:collapse;width:100%}
+.library-file-list th{background:#111b2a;color:#aebed3;font-size:10px;text-transform:uppercase;letter-spacing:.07em}
+.library-file-list td,.library-file-list th{border-bottom:1px solid #26364a!important;padding:10px 12px}
+.library-file-list tr:hover td{background:#111c2b!important}
+.library-file-list td:first-child{color:#e7edf7}
+.library-source{background:#080e17!important;border:1px solid #26364a!important;color:#dce6f5!important;line-height:1.7}
+.library-readme{padding:18px!important;color:#d5dfed!important}
+.library-readme h1,.library-readme h2,.library-readme h3{color:#f4f7fb;border-bottom:1px solid #2b3a50;padding-bottom:8px}
+.library-repo-side .library-install code{background:#111c2b;border:1px solid #2b3a50;color:#e9f0fa;padding:8px 10px;display:block;overflow-x:auto}
+.library-repo-overview .overview-stat{padding:5px 8px;border:1px solid #2b3a50;background:#0a111c}
+.library-repo-shell button,.library-repo-shell a,.library-card button{border-radius:0!important}
+@media(max-width:560px){
+ .library-repo-overview{gap:8px;padding:10px}
+ .library-repo-title img{width:36px;height:36px}
+ .library-file-list td,.library-file-list th{padding:8px 7px}
+}
+
+/* OCode.js Hub — unified minimal design system, precise surfaces and iconography */
+:root{
+ --bg:#070a10;--panel:#0b111b;--panel-raised:#101927;--panel-soft:#0d1521;
+ --line:#202d3e;--line-strong:#34465e;--line-focus:#52749c;
+ --fg:#edf2f9;--muted:#91a0b4;--muted-strong:#b7c3d2;
+ --surface-glow:rgba(91,145,220,.07)
+}
+html{background:#06090f}
+body{
+ background:
+  radial-gradient(ellipse at 78% -18%,rgba(43,91,157,.12),transparent 38rem),
+  linear-gradient(180deg,#080c13 0%,#06090f 58%,#070a10 100%);
+ color:var(--fg)
+}
+.layout{background:transparent;border-color:#1d2939;box-shadow:0 0 0 1px rgba(255,255,255,.012)}
+.sidebar{
+ background:linear-gradient(180deg,#0b111b 0%,#090e16 100%);
+ border-right:1px solid #29384b
+}
+.brand{border-bottom:1px solid #2a394d}
+.brand-mark{
+ display:grid;place-items:center;width:38px;height:38px;flex:0 0 38px;
+ border:1px solid #34547b;background:linear-gradient(145deg,#142945,#0b1422);
+ color:#8bbcff;text-shadow:3px 2px 0 rgba(151,92,255,.45);font-size:20px;font-weight:900
+}
+.brand small{letter-spacing:.16em;font-size:9px;color:#8fbaff}
+.nav{gap:3px}
+.nav a{min-height:39px;border:1px solid transparent;border-left:2px solid transparent;color:#9aa9bc;transition:background .15s,border-color .15s,color .15s}
+.nav a:hover{background:#111c2b;border-color:#263950;color:#edf4ff}
+.nav a.active{background:linear-gradient(90deg,rgba(54,111,190,.16),rgba(17,28,43,.82));border-color:#2c4563;border-left-color:#70aaff;color:#f4f8ff}
+.nav-icon{display:grid;place-items:center;width:21px;height:21px;flex:0 0 21px}
+.nav-icon [data-lucide],.tool-icon [data-lucide],.page-tile-icon [data-lucide]{
+ width:17px;height:17px;stroke-width:1.8;vector-effect:non-scaling-stroke
+}
+.topbar{
+ background:rgba(9,14,22,.94);border-bottom:1px solid #2a394d;
+ box-shadow:0 1px 0 rgba(255,255,255,.018);backdrop-filter:blur(14px)
+}
+.content{padding-top:26px;padding-bottom:34px}
+.content>.section-head,.content>.page-header{border-bottom:1px solid #27364a;padding-bottom:14px;margin-bottom:18px}
+h1,h2,h3,h4{color:#f0f5fc;letter-spacing:-.025em}
+h1{font-weight:780}
+.section-head h2{font-weight:720}
+p{color:#a6b3c5}
+.card,.detail-panel,.page-tile,.stat,.marketplace-card{
+ background:linear-gradient(145deg,#0e1724 0%,#0a111b 72%)!important;
+ border:1px solid #2a394d!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important
+}
+.card{border-top:2px solid var(--tool-accent,#344b68)!important;transition:border-color .16s,background .16s}
+.card:hover{border-color:#49617e!important;background:linear-gradient(145deg,#121e2d,#0b121d)!important}
+.tool-icon,.page-tile-icon,.marketplace-brand-icon{
+ display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--tool-accent,#496b91) 48%,#26364a);
+ background:linear-gradient(145deg,#142236,#0b1421);color:var(--tool-accent,#a9c7ed)
+}
+.tool-icon [data-lucide]{width:21px;height:21px;stroke-width:1.9}
+.page-tile-icon [data-lucide],.marketplace-brand-icon [data-lucide]{width:20px;height:20px}
+.stat{border-top:2px solid var(--page-accent,#46658b)!important}
+.btn,.icon-button,.shortcut,.back,.filter-chip,.filter-toggle,.page-tile,.library-repo-shell button{
+ border-radius:0!important;box-shadow:none!important
+}
+.btn{border:1px solid #3a4b61;transition:background .15s,border-color .15s,color .15s}
+.btn:not(.primary){background:#101a28;color:#dce6f3}
+.btn:not(.primary):hover{background:#17263a;border-color:#6683a8;color:#fff}
+.btn.primary{background:#eaf1fa!important;color:#101827!important;border:1px solid #eaf1fa!important;font-weight:750}
+.btn.primary:hover{background:#d5e2f2!important;border-color:#d5e2f2!important}
+.icon-button{border:1px solid #34465d;background:#0e1724;color:#d8e4f3}
+.icon-button:hover{background:#17263a;border-color:#6b86a7}
+input,select,textarea{
+ background:#080f19!important;color:#e7eef8!important;border:1px solid #304158!important;
+ border-radius:0!important;box-shadow:none!important
+}
+input::placeholder,textarea::placeholder{color:#718198}
+input:focus,select:focus,textarea:focus{border-color:#76a9e8!important;outline:1px solid rgba(118,169,232,.2)}
+table{border-collapse:collapse}
+th{background:#111c2a;color:#b8c8dc;border-bottom:1px solid #3a4c64}
+td{border-bottom:1px solid #26364a}
+tr:hover td{background:rgba(41,67,99,.16)}
+hr,.divider{border:0;border-top:1px solid #29394d}
+.badge,.tag,.chip{border-radius:0!important}
+a{ text-underline-offset:3px }
+a:hover{color:#a9ceff}
+:focus-visible{outline-color:#83b8f5!important;outline-offset:3px}
+footer{border-top:1px solid #29394d;background:#080d15;color:#8292a8}
+footer a{color:#b5c7dd}
+.library-grid,.library-repo-shell{border-color:#29394d}
+.library-card{border-bottom-color:#29394d!important}
+.library-brand img{box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.library-repo-shell .library-tabs{border-bottom:1px solid #34465d}
+.library-file-list tr:last-child td{border-bottom:0}
+@media(max-width:768px){
+ .content{padding:18px 14px 28px}
+ .topbar{border-bottom-color:#2c3c51}
+ .sidebar{box-shadow:14px 0 40px rgba(0,0,0,.35)}
+ .card{padding:12px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<style id="ocode-monochrome-button-system">
+  :root{
+    --button-primary-bg:#ffffff;
+    --button-primary-fg:#000000;
+    --button-secondary-bg:#000000;
+    --button-secondary-fg:#ffffff;
+    --button-border:#ffffff;
+  }
+  /* One monochrome interaction system across every workspace and repository page. */
+  button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,
+  .copy-code,.filter-chip,.filter-toggle,.page-tile,.library-tabs button,
+  .library-card .library-open,.library-repo-actions button{
+    border-radius:0!important;
+    box-shadow:none!important;
+    transition:background-color .15s ease,color .15s ease,border-color .15s ease;
+  }
+  button,.btn,.icon-button,.shortcut,.back,.copy-code,
+  .filter-chip,.filter-toggle,.library-tabs button,.library-repo-actions .btn,
+  .library-links .btn{
+    background:#000000!important;
+    color:#ffffff!important;
+    border:1px solid #ffffff!important;
+  }
+  .btn.primary,.submit-tool,.search-submit,
+  .library-card .library-open,.library-links .library-open,
+  .library-repo-actions .btn.primary,.detail .btn.primary,
+  button.primary,[data-variant="primary"]{
+    min-height:46px!important;
+    padding:0 18px!important;
+    background:#ffffff!important;
+    color:#000000!important;
+    border:1px solid #ffffff!important;
+    font-weight:800!important;
+  }
+  .btn:not(.primary),.icon-button,.shortcut,.back,.copy-code,
+  .filter-chip,.filter-toggle,.library-repo-actions .btn:not(.primary),
+  .library-links .btn:not(.library-open){
+    background:#000000!important;
+    color:#ffffff!important;
+    border-color:#ffffff!important;
+  }
+  button:hover,.btn:hover,.icon-button:hover,.shortcut:hover,.back:hover,
+  .copy-code:hover,.filter-chip:hover,.filter-toggle:hover,
+  .library-tabs button:hover,.library-repo-actions .btn:hover{
+    background:#ffffff!important;
+    color:#000000!important;
+    border-color:#ffffff!important;
+  }
+  .btn.primary:hover,.submit-tool:hover,.search-submit:hover,
+  .library-card .library-open:hover,.library-links .library-open:hover,
+  .library-repo-actions .btn.primary:hover,.detail .btn.primary:hover,
+  button.primary:hover,[data-variant="primary"]:hover{
+    background:#000000!important;
+    color:#ffffff!important;
+    border-color:#ffffff!important;
+  }
+  .btn.favorite[aria-pressed="true"]{
+    background:#ffffff!important;color:#000000!important;border-color:#ffffff!important;
+  }
+  .btn.danger,.btn.danger:hover{
+    background:#000000!important;color:#ffffff!important;border-color:#ffffff!important;
+  }
+  .library-tabs button{border-width:1px!important}
+  .library-tabs button.active{
+    background:#ffffff!important;color:#000000!important;
+    border-color:#ffffff!important;border-bottom:2px solid #ffffff!important;
+  }
+  .page-actions .btn,.card-actions .btn,.marketplace-actions .btn,
+  .library-links .btn,.library-repo-actions .btn{
+    min-height:44px!important;
+  }
+  @media(max-width:600px){
+    .btn.primary,.submit-tool,.search-submit,
+    .library-card .library-open,.detail .btn.primary,
+    button.primary,[data-variant="primary"]{
+      min-height:48px!important;
+    }
+  }
+  @media(prefers-reduced-motion:reduce){
+    button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back{transition:none!important}
+  }
+</style>
+
+
+<style id="ocode-pure-black-surface-system">
+  :root{
+    --bg:#000000!important;
+    --panel:#080808!important;
+    --line:#292929!important;
+    --line-strong:#454545!important;
+    --fg:#f5f5f5!important;
+    --muted:#a6a6a6!important;
+    --ui-surface:#080808!important;
+    --ui-border:#292929!important;
+  }
+  html,body{background:#000!important;color:#f5f5f5}
+  body,.layout,main,.main,.content,.workspace,.app-shell{
+    background:#000!important;
+    background-image:none!important;
+  }
+  .layout{border-color:#292929!important}
+  .sidebar,.topbar,footer,.side-card,.stat,.searchbar,.searchbox,.filter,
+  .filter-panel,.nav-search-wrap,.page-panel,.page-tile,.card,.detail-panel,
+  .library-card,.library-repo-main,.library-repo-side,.library-install,
+  .library-empty,.marketplace-card,.workspace-panel,.workspace-card,
+  .code-canvas,.command,.library-readme,.library-source,.tool-card{
+    background:#080808!important;
+    background-image:none!important;
+    border-color:#303030!important;
+    box-shadow:none!important;
+  }
+  .sidebar,.topbar,footer{background:#000!important}
+  .nav a,.nav a:hover,.nav a.active,.page-tile:hover,.card:hover,
+  .library-file-list tr:hover,.filter-chip,.filter-chip.active,
+  .filter-toggle,.version,.shortcut{
+    background:#111!important;
+    background-image:none!important;
+    border-color:#454545!important;
+    color:#f2f2f2!important;
+  }
+  .home-hero,.home-hero-copy,.home-hero-media,.home-intro-grid .page-panel,
+  .community-section,.library-repo-title,.library-file-toolbar{
+    background:#080808!important;
+    background-image:none!important;
+    border-color:#303030!important;
+  }
+  .home-hero-media:after{background:#000!important;opacity:.12}
+  .home-hero-media span{background:#000!important;color:#fff!important;border-color:#555!important}
+  .tool-card,.tool-card:nth-child(n){
+    background:#080808!important;
+    background-image:none!important;
+    border-top:1px solid #454545!important;
+  }
+  .tool-icon,.tool-card .tool-icon{
+    background:#111!important;
+    border-color:#555!important;
+    /* Preserve each library/tool's original icon color. */
+  }
+  .library-brand img,.library-repo-title img{background:#111!important}
+  .library-install,.library-repo-main,.library-repo-side{background:#080808!important}
+  .command,.code-canvas pre{background:#050505!important}
+  input,textarea,select,.workspace-field input,.workspace-field textarea,
+  .workspace-field select{
+    background:#050505!important;
+    color:#f5f5f5!important;
+    border-color:#454545!important;
+  }
+  .searchbox input,.nav-search-wrap input{background:transparent!important}
+  .drawer-scrim{background:#000d!important}
+  /* Neutralize leftover blue/purple surface accents without recoloring brand artwork. */
+  .nav a.active{box-shadow:inset 2px 0 0 #fff!important}
+  .nav a:hover,.nav a.active{border-color:#555!important}
+  .library-tabs button.active{border-bottom-color:#fff!important}
+  .library-install,.library-empty{border-color:#454545!important}
+  .library-repo-actions .btn:not(.primary):hover,
+  .library-file-toolbar .btn:hover{background:#fff!important;color:#000!important;border-color:#fff!important}
+  @media(max-width:768px){
+    .topbar,.sidebar{background:#000!important;border-color:#444!important}
+  }
+</style>
+
+
+<style id="ocode-home-prompt-composer">
+  .home-prompt-section{max-width:1040px;margin:34px auto 42px;padding:0 4px}
+  .home-prompt-composer{border:1px solid #454545;background:#050505;padding:20px 22px 14px;display:grid;gap:16px}
+  .home-prompt-composer:focus-within{border-color:#fff}
+  .home-prompt-composer textarea{width:100%;min-height:86px;max-height:240px;resize:vertical;border:0!important;outline:0!important;background:transparent!important;color:#fff!important;padding:8px 4px;font:600 clamp(18px,2.2vw,25px)/1.45 var(--mono)!important}
+  .home-prompt-composer textarea::placeholder{color:#777}
+  .home-prompt-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .home-prompt-tools{display:flex;align-items:center;gap:12px;min-width:0}
+  .home-prompt-tools select{min-height:42px;padding:0 12px;background:#000!important;color:#fff!important;border:1px solid #555!important;font:12px var(--mono)}
+  .home-prompt-hint{font-size:11px;color:#888}
+  .home-prompt-send{width:52px;height:52px;display:grid;place-items:center;background:#fff!important;color:#000!important;border:1px solid #fff!important}
+  .home-prompt-send svg{width:25px;height:25px;stroke-width:2.5}
+  .home-prompt-send:hover{background:#000!important;color:#fff!important}
+  .home-prompt-suggestions{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .home-prompt-suggestions button{min-height:54px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 18px;background:#000!important;color:#eee!important;border:1px solid #303030!important;font:500 15px var(--mono)}
+  .home-prompt-suggestions button:hover{background:#fff!important;color:#000!important;border-color:#fff!important}
+  .home-prompt-suggestions svg{width:22px;height:22px;flex:0 0 auto}
+  .home-prompt-suggestions .home-prompt-clear{width:54px;padding:0}
+  .home-prompt-status{text-align:center;min-height:18px;margin:10px 0 0;color:#777;font-size:11px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  @media(max-width:680px){
+    .home-prompt-section{margin:24px 0 32px;padding:0}
+    .home-prompt-composer{padding:14px;gap:12px}
+    .home-prompt-composer textarea{min-height:100px;font-size:17px!important}
+    .home-prompt-hint{display:none}
+    .home-prompt-suggestions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .home-prompt-suggestions button{min-height:48px;padding:0 8px;font-size:11px;gap:7px}
+    .home-prompt-suggestions .home-prompt-clear{width:auto;grid-column:1/-1}
+  }
+</style>
+
+
+<style id="ocode-agent-prompt-queue">
+ .agent-queue-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 0;border-bottom:1px solid #303030}
+ .agent-queue-toolbar p,.agent-task-footer{font-size:11px;color:#888;margin:5px 0 0}
+ .agent-task-list{display:grid;gap:10px;margin:16px 0}
+ .agent-task-card{background:#080808;border:1px solid #303030;padding:18px}
+ .agent-task-top,.agent-task-footer{display:flex;justify-content:space-between;align-items:center;gap:12px}
+ .agent-task-mode,.agent-task-state{font:11px var(--mono);color:#aaa;letter-spacing:.06em}
+ .agent-task-card>p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;margin:16px 0}
+ .agent-task-footer .page-actions{margin:0;gap:8px}
+ .agent-connection-note{margin-top:20px}
+ .agent-empty{margin-top:16px}
+ @media(max-width:600px){.agent-task-footer{align-items:flex-start;flex-direction:column}.agent-task-footer .page-actions{width:100%}.agent-task-footer .btn{flex:1}}
+</style>
+
+
+<style id="ocode-agent-queue-lifecycle">
+ .agent-queue-toolbar .page-actions{margin:0;gap:8px}
+ .agent-task-state{padding:5px 8px;border:1px solid #555;color:#fff!important}
+ .agent-task-card[data-status="READY"]{border-color:#666}
+ .agent-task-footer .page-actions{flex-wrap:wrap}
+ .agent-task-footer .btn{min-height:38px;padding:0 10px;font-size:11px}
+ @media(max-width:600px){.agent-queue-toolbar{align-items:flex-start;flex-direction:column}.agent-queue-toolbar .page-actions{width:100%}.agent-queue-toolbar .btn{flex:1}.agent-task-footer .page-actions{width:100%}}
+</style>
+
 </head>
 <body>
 <div class="layout">
@@ -952,7 +1326,7 @@ button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,.filter-chi
 <div class="side-card"><strong>OCode.js</strong><p>Open-source CLI hub for developers and AI agents.</p><span class="version">v1.0.0</span></div>
 </aside>
 <div class="drawer-scrim" id="drawer-scrim"></div>
-<header class="topbar"><button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false">☰</button><span class="mbrand"><b>&gt;_</b>OCode.js<small>CLI HUB</small></span><button class="icon-button mobile-profile" id="open-profile" type="button" aria-label="Tôi" title="Tôi"><span aria-hidden="true">👤</span><span class="profile-label">Tôi</span></button><a class="submit-tool" href="https://github.com/zskbot/ocodejs-cli/issues/new?template=tool-submission.md" target="_blank" rel="noopener noreferrer">+ Gửi công cụ</a><button class="icon-button" id="theme-toggle" type="button" aria-label="Đổi giao diện sáng/tối">☾</button><button class="shortcut desktop-search" id="desktop-search" type="button">⌕ <span>Ctrl + K</span></button></header>
+<header class="topbar"><button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false">☰</button><span class="mbrand"><b>&gt;_</b>OCode.js<small>CLI HUB</small></span><button class="icon-button mobile-profile" id="open-profile" type="button" aria-label="Tôi" title="Tôi"><i data-lucide="user-round" aria-hidden="true"></i><span class="profile-label">Tôi</span></button><a class="submit-tool" href="https://github.com/zskbot/ocodejs-cli/issues/new?template=tool-submission.md" target="_blank" rel="noopener noreferrer">+ Gửi công cụ</a><button class="icon-button" id="theme-toggle" type="button" aria-label="Đổi giao diện sáng/tối">☾</button><button class="shortcut desktop-search" id="desktop-search" type="button">⌕ <span>Ctrl + K</span></button></header>
 <main class="content" id="app" aria-live="polite"><p>Loading catalog…</p></main>
 <footer><span>© 2026 OCode.js. Open-source developer tools.</span><span><a href="https://github.com/zskbot/ocodejs-cli">GitHub</a> | <a href="https://github.com/zskbot/ocodejs-cli#readme">Docs</a> | <a href="https://github.com/zskbot/ocodejs-cli/issues/new">Contribute</a> | <a href="https://github.com/zskbot/ocodejs-cli/blob/main/LICENSE">License</a></span></footer>
 </div>
@@ -1018,6 +1392,11 @@ function libraryByPkg(pkg){return communityLibraries.find(x=>x.pkg===pkg)}
 function repoCoordinates(url){const parts=new URL(url).pathname.split("/").filter(Boolean);return {owner:parts[0],repo:parts[1]}}
 function libraryApi(path){const base="https://api.github.com/repos/"+encodeURIComponent(libraryState.owner)+"/"+encodeURIComponent(libraryState.repo)+"/contents/"+path.split("/").filter(Boolean).map(encodeURIComponent).join("/");return base+"?ref="+encodeURIComponent(libraryState.branch||libraryState.repoData?.default_branch||"main")}
 async function githubJson(url){const r=await fetch(url,{headers:{Accept:"application/vnd.github+json"}});if(!r.ok)throw Error("GitHub API "+r.status);return r.json()}
+
+function renderLibraryReadme(markdown){let html=esc(markdown);html=html.replace(/^### (.+)$/gm,"<h3>$1</h3>").replace(/^## (.+)$/gm,"<h2>$1</h2>").replace(/^# (.+)$/gm,"<h1>$1</h1>").replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/\*([^*]+)\*/g,"<em>$1</em>");const tick=String.fromCharCode(96);html=html.replace(new RegExp(tick+"([^"+tick+"]+)"+tick,"g"),"<code>$1</code>").replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>').replace(/^> (.+)$/gm,"<blockquote>$1</blockquote>");return html.split(/\n{2,}/).map(part=>/^<h[1-3]>|^<blockquote>/.test(part)?part:"<p>"+part.replace(/\n/g,"<br>")+"</p>").join("")}
+function renderLibraryFileFilter(query){const rows=document.querySelectorAll("#library-file-rows tr");let visible=0;rows.forEach(row=>{const show=row.textContent.toLowerCase().includes(query.toLowerCase());row.hidden=!show;if(show)visible++});let empty=document.querySelector(".library-filter-empty");if(!visible&&rows.length){if(!empty)$("#library-file-rows")?.insertAdjacentHTML("afterend",'<div class="library-filter-empty">No files match this filter.</div>')}else empty?.remove()}
+function renderLibrarySourceSearch(query){const source=libraryState.currentSource||"",lines=source.split("\n"),view=$("#library-source-code"),numbers=document.querySelector(".library-line-numbers");if(!view||!numbers)return;const matches=[];const needle=query.toLowerCase();lines.forEach((line,i)=>{if(!needle||line.toLowerCase().includes(needle))matches.push(i)});view.innerHTML=matches.map(i=>'<span class="library-code-row" id="source-line-'+(i+1)+'">'+esc(lines[i])+'</span>').join("\n");numbers.textContent=matches.map(i=>String(i+1)).join("\n");const count=document.querySelector(".library-code-head span");if(count)count.textContent=needle?matches.length+" matching lines":lines.length+" lines"}
+
 function libraryInstallCommands(lib){return ["npm install "+lib.pkg,"pnpm add "+lib.pkg,"yarn add "+lib.pkg,"bun add "+lib.pkg]}
 async function downloadLibrary(pkg){const lib=libraryByPkg(pkg);if(!lib)return;const coords=repoCoordinates(lib.repo);const button=document.querySelector('[data-download-library="'+CSS.escape(pkg)+'"]');if(button){button.disabled=true;button.textContent="Preparing…"}try{const meta=await githubJson("https://api.github.com/repos/"+encodeURIComponent(coords.owner)+"/"+encodeURIComponent(coords.repo));const branch=meta.default_branch||"main";window.location.href="https://github.com/"+coords.owner+"/"+coords.repo+"/archive/refs/heads/"+encodeURIComponent(branch)+".zip"}catch(err){if(button){button.disabled=false;button.textContent="Download ↓"}alert("Could not prepare repository download: "+err.message)}}
 function renderLibraryDetail(pkg,push=true){const lib=libraryByPkg(pkg);if(!lib)return;const coords=repoCoordinates(lib.repo);libraryState={pkg,owner:coords.owner,repo:coords.repo,path:"",tab:"code",repoData:null,branch:""};if(push)history.pushState({library:pkg},"","#library="+encodeURIComponent(pkg));$("#app").innerHTML='<section class="library-repo-shell"><div class="library-ocode-brand"><div><strong>&gt;_ OCode.js CLI HUB</strong><small>OPEN SOURCE REPOSITORY EXPLORER</small></div><button class="btn" id="library-back">← Community / Trending</button></div><section class="library-repo" style="--library-accent:#'+(libraryBrandColors[lib.icon]||"347cff")+'"><div class="library-repo-head"><div class="library-repo-title"><img src="https://cdn.simpleicons.org/'+esc(lib.icon)+'/'+(libraryBrandColors[lib.icon]||"FFFFFF")+'" alt="'+esc(lib.name)+'"><div><h1>'+esc(lib.name)+'</h1><p>'+esc(coords.owner)+' / '+esc(coords.repo)+' · '+esc(lib.category)+'</p></div></div><div class="library-repo-actions"><a class="btn primary" href="'+esc(lib.repo)+'" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="btn" href="'+esc(lib.repo)+'/issues" target="_blank" rel="noopener noreferrer">Issues ↗</a><a class="btn" href="'+esc(lib.repo)+'/pulls" target="_blank" rel="noopener noreferrer">Pull requests ↗</a><a class="btn" href="'+esc(lib.repo)+'/releases" target="_blank" rel="noopener noreferrer">Releases ↗</a><a class="btn" href="'+esc(lib.repo)+'/stargazers" target="_blank" rel="noopener noreferrer">Star ☆</a><a class="btn" href="'+esc(lib.repo)+'/fork" target="_blank" rel="noopener noreferrer">Fork ↗</a><a class="btn" href="'+esc(lib.repo)+'/discussions" target="_blank" rel="noopener noreferrer">Discussions ↗</a><a class="btn" href="'+esc(lib.repo)+'/archive/refs/heads/main.zip" target="_blank" rel="noopener noreferrer">Download ZIP ↓</a></div></div><div class="library-repo-overview"><p>'+esc(lib.description)+' · Browse repository source and activity inside OCode.js.</p><span class="overview-stat">Default branch <b id="library-current-branch">Loading…</b></span><span class="overview-stat">Language <b id="library-primary-language">—</b></span><span class="overview-stat">Updated <b id="library-updated-at">—</b></span></div><div class="library-tabs"><button class="active" data-library-tab="code">Code</button><button data-library-tab="readme">README</button><button data-library-tab="commits">Commits</button><button data-library-tab="branches">Branches</button><button data-library-tab="tags">Tags</button><button data-library-tab="contributors">Contributors</button><button data-library-tab="issues">Issues</button><button data-library-tab="pulls">Pull requests</button><button data-library-tab="actions">Actions</button><button data-library-tab="releases">Releases</button></div><div class="library-repo-grid"><section class="library-repo-main" id="library-content"><div class="library-loading">Loading repository files…</div></section><aside class="library-repo-side"><div class="library-install"><h3>Install package</h3><p>Choose your package manager</p>'+libraryInstallCommands(lib).map(cmd=>'<div class="library-install-row"><code style="flex:1">'+esc(cmd)+'</code><button class="btn" data-copy="'+esc(cmd)+'">Copy</button></div>').join("")+'</div><h3>About</h3><p>'+esc(lib.description)+'</p>'+(lib.pkg==="typescript"?'<div class="library-ts-note"><strong>TypeScript compiler workspace</strong><br>Explore compiler source, language services, tests and project configuration. Switch branches and inspect files directly in OCode.js.</div><div class="library-ts-overview"><div class="library-ts-stat"><strong>TS</strong><span>Language</span></div><div class="library-ts-stat"><strong>MIT</strong><span>License</span></div><div class="library-ts-stat"><strong>Microsoft</strong><span>Maintainer</span></div></div>':"")+'<div class="library-meta-list" id="library-meta"><span>Loading repository metadata…</span></div><p><a href="'+esc(lib.url)+'" target="_blank" rel="noopener noreferrer">Official website ↗</a></p><p><a href="https://www.npmjs.com/package/'+encodeURIComponent(lib.pkg)+'" target="_blank" rel="noopener noreferrer">npm package ↗</a></p><p><a href="'+esc(lib.repo)+'/actions" target="_blank" rel="noopener noreferrer">GitHub Actions ↗</a></p></aside></div></section></section>';
@@ -1031,7 +1410,7 @@ async function loadLibraryRepo(){const host=$("#library-content");if(!host)retur
 function renderLibraryFiles(files){const host=$("#library-content");if(!host)return;libraryState.files=files;const dirs=libraryState.path?libraryState.path.split("/"):[];const branchOptions=libraryState.branches.map(b=>'<option value="'+esc(b.name)+'"'+(b.name===libraryState.branch?" selected":"")+'>'+esc(b.name)+'</option>').join("");host.innerHTML='<div class="library-file-toolbar"><div class="library-breadcrumbs"><button data-library-path="">'+esc(libraryState.repo)+'</button>'+dirs.map((part,i)=>'<span>/</span><button data-library-path="'+esc(dirs.slice(0,i+1).join("/"))+'">'+esc(part)+'</button>').join("")+'</div><select class="library-branch-select" id="library-branch-select" aria-label="Select repository branch">'+(branchOptions||'<option>'+esc(libraryState.branch)+'</option>')+'</select><a class="btn" href="https://github.com/'+libraryState.owner+'/'+libraryState.repo+'/tree/'+encodeURIComponent(libraryState.branch)+'/'+libraryState.path+'" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div><div class="library-file-filter"><input class="library-file-search" id="library-file-search" placeholder="Filter files in this folder…" aria-label="Filter repository files"><span>'+files.length+' items</span></div><table class="library-file-list"><tbody id="library-file-rows">'+files.map(file=>'<tr data-library-file="'+esc(file.path)+'" data-library-type="'+(file.type==="dir"?"dir":"file")+'"><td>'+(file.type==="dir"?"📁":"▤")+' '+esc(file.name)+'</td><td>'+(file.type==="dir"?"Directory":file.size?formatDownloads(file.size)+" bytes":"File")+'</td></tr>').join("")+'</tbody></table><div class="library-file-toolbar"><span>'+files.length+' items · branch '+esc(libraryState.branch)+'</span><button class="btn" data-library-readme="true">Open README</button></div>';if(!files.length)host.innerHTML+='<div class="library-empty">This directory is empty.</div>'}
 async function openLibraryPath(path){libraryState.path=path;const host=$("#library-content");if(host)host.innerHTML='<div class="library-loading">Loading '+esc(path||"repository root")+'…</div>';try{const files=await githubJson(libraryApi(path));if(Array.isArray(files))renderLibraryFiles(files);else await openLibraryFile(files)}catch(err){if(host)host.innerHTML='<div class="library-empty">Unable to load this path: '+esc(err.message)+'</div>'}}
 async function openLibraryFile(file){const host=$("#library-content");if(!host)return;libraryState.currentFile=file;host.innerHTML='<div class="library-file-toolbar"><button class="btn" id="library-file-back">← Back to files</button><strong>'+esc(file.path)+'</strong></div><div class="library-loading">Loading source…</div>';$("#library-file-back").onclick=()=>openLibraryPath(libraryState.path);try{const raw=await fetch(file.download_url);if(!raw.ok)throw Error("HTTP "+raw.status);const source=await raw.text();libraryState.currentSource=source;const lines=source.split("\n");const lineNums=lines.map((_,i)=>String(i+1)).join("\n");host.innerHTML='<div class="library-code-head"><strong>'+esc(file.path)+'</strong><span>'+esc((file.name.split(".").pop()||"FILE").toUpperCase())+' · '+lines.length+' lines</span><button class="btn" data-copy-source="true">Copy</button><a class="btn" href="'+esc(file.download_url)+'" target="_blank" rel="noopener noreferrer">Raw ↗</a><a class="btn" href="https://github.com/'+libraryState.owner+'/'+libraryState.repo+'/blob/'+encodeURIComponent(libraryState.branch)+'/'+file.path.split("/").map(encodeURIComponent).join("/")+'" target="_blank" rel="noopener noreferrer">Permalink ↗</a></div><div class="library-code-head"><input id="library-source-search" class="library-file-search" placeholder="Find in this file…" aria-label="Find in source file"><span>'+formatDownloads(source.length)+' chars</span></div><div class="library-code-view"><div class="library-line-numbers">'+lineNums+'</div><pre id="library-source-code">'+esc(source)+'</pre></div>'}catch(err){const el=host.querySelector(".library-loading");if(el)el.textContent="Unable to load source: "+err.message}}
-async function showLibraryTab(tab){libraryState.tab=tab;document.querySelectorAll("[data-library-tab]").forEach(b=>b.classList.toggle("active",b.dataset.libraryTab===tab));const host=$("#library-content");if(!host)return;if(tab==="code"){openLibraryPath("");return}if(tab==="readme"){host.innerHTML='<div class="library-loading">Loading README…</div>';try{const data=await githubJson("https://api.github.com/repos/"+libraryState.owner+"/"+libraryState.repo+"/readme?ref="+encodeURIComponent(libraryState.branch||"main"));const raw=await fetch(data.download_url);const md=await raw.text();host.innerHTML='<div class="library-file-toolbar"><strong>README.md</strong><a class="btn" href="'+esc(data.html_url)+'" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></div><pre class="library-readme">'+esc(md)+'</pre>'}catch(err){host.innerHTML='<div class="library-empty">README unavailable: '+esc(err.message)+'</div>'}return}const endpoint=tab==="releases"?"releases":tab==="pulls"?"pulls?state=open&per_page=30":tab==="actions"?"actions/runs?per_page=30":tab==="commits"?"commits?per_page=30":tab==="branches"?"branches?per_page=100":tab==="tags"?"tags?per_page=100":tab==="contributors"?"contributors?per_page=100":"issues?state=open&per_page=30";host.innerHTML='<div class="library-loading">Loading '+tab+'…</div>';try{const data=await githubJson("https://api.github.com/repos/"+libraryState.owner+"/"+libraryState.repo+"/"+endpoint);const rows=tab==="actions"?(data.workflow_runs||[]):data;host.innerHTML=rows.length?rows.map(item=>'<div class="library-file-toolbar"><div><strong>'+esc(item.name||item.title||item.display_title||item.commit?.message?.split("\n")[0]||item.login||item.sha?.slice(0,12)||"Untitled")+'</strong><p class="community-note">'+esc(item.tag_name||item.commit?.author?.date||item.commit?.committer?.date||item.pushed_at||("#"+(item.number||item.id)+" · "+(item.state||item.status||(item.protected===true?"Protected":item.protected===false?"Unprotected":""))))+' · '+esc(item.published_at||item.created_at||"")+(item.conclusion?' · '+esc(item.conclusion):"")+'</p></div><a class="btn" href="'+esc(item.html_url||item.url||"#")+'" target="_blank" rel="noopener noreferrer">Open ↗</a></div>').join(""):'<div class="library-empty">No '+tab+' found.</div>'}catch(err){host.innerHTML='<div class="library-empty">Unable to load '+tab+': '+esc(err.message)+'</div>'}}
+async function showLibraryTab(tab){libraryState.tab=tab;document.querySelectorAll("[data-library-tab]").forEach(b=>b.classList.toggle("active",b.dataset.libraryTab===tab));const host=$("#library-content");if(!host)return;if(tab==="code"){openLibraryPath("");return}if(tab==="readme"){host.innerHTML='<div class="library-loading">Loading README…</div>';try{const data=await githubJson("https://api.github.com/repos/"+libraryState.owner+"/"+libraryState.repo+"/readme?ref="+encodeURIComponent(libraryState.branch||"main"));const raw=await fetch(data.download_url);const md=await raw.text();host.innerHTML='<div class="library-file-toolbar"><strong>README.md</strong><a class="btn" href="'+esc(data.html_url)+'" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></div><article class="library-readme">'+renderLibraryReadme(md)+'</article>'}catch(err){host.innerHTML='<div class="library-empty">README unavailable: '+esc(err.message)+'</div>'}return}const endpoint=tab==="releases"?"releases":tab==="pulls"?"pulls?state=open&per_page=30":tab==="actions"?"actions/runs?per_page=30":tab==="commits"?"commits?per_page=30":tab==="branches"?"branches?per_page=100":tab==="tags"?"tags?per_page=100":tab==="contributors"?"contributors?per_page=100":"issues?state=open&per_page=30";host.innerHTML='<div class="library-loading">Loading '+tab+'…</div>';try{const data=await githubJson("https://api.github.com/repos/"+libraryState.owner+"/"+libraryState.repo+"/"+endpoint);const rows=tab==="actions"?(data.workflow_runs||[]):data;host.innerHTML=rows.length?rows.map(item=>'<div class="library-file-toolbar"><div><strong>'+esc(item.name||item.title||item.display_title||item.commit?.message?.split("\n")[0]||item.login||item.sha?.slice(0,12)||"Untitled")+'</strong><p class="community-note">'+esc(item.tag_name||item.commit?.author?.date||item.commit?.committer?.date||item.pushed_at||("#"+(item.number||item.id)+" · "+(item.state||item.status||(item.protected===true?"Protected":item.protected===false?"Unprotected":""))))+' · '+esc(item.published_at||item.created_at||"")+(item.conclusion?' · '+esc(item.conclusion):"")+'</p></div><a class="btn" href="'+esc(item.html_url||item.url||"#")+'" target="_blank" rel="noopener noreferrer">Open ↗</a></div>').join(""):'<div class="library-empty">No '+tab+' found.</div>'}catch(err){host.innerHTML='<div class="library-empty">Unable to load '+tab+': '+esc(err.message)+'</div>'}}
 
 async function loadCommunityRankings(){
  const host=$("#community-library-grid");if(!host)return;
@@ -1041,7 +1420,32 @@ async function loadCommunityRankings(){
  host.innerHTML=renderLibraryCards([...available,...unavailable]);
  const status=$("#community-status");if(status)status.textContent=available.length===communityLibraries.length?"Live npm registry · last 30 days · refreshed on page load":"npm registry partially unavailable · showing available figures";
 }
-function renderHome(){const picks=pageDefinitions.filter(p=>["dashboard","projects","new-project","environments","tools","agents","github","docs","marketplace"].includes(p.id));$("#app").innerHTML='<section class="home-hero"><div class="home-hero-copy"><div class="page-kicker">OPEN-SOURCE DEVELOPER ECOSYSTEM</div><h1>Discover. Build. <span>Ship.</span></h1><p class="subtitle">OCode.js CLI Hub — khám phá thư viện, công cụ và nền tảng mã nguồn mở để xây dựng sản phẩm.</p><div class="page-actions"><button class="btn primary" data-go-page="tools">Explore CLI tools →</button><a class="btn" href="https://github.com/zskbot/ocodejs-cli" target="_blank" rel="noopener noreferrer">View source ↗</a></div></div><div class="home-hero-media"><img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" alt="Animated developer coding workspace" fetchpriority="high"><span>OPEN SOURCE / BUILD IN PUBLIC</span></div></section><div class="home-intro-grid"><div class="page-panel"><div class="page-kicker">ABOUT THE LIBRARY</div><h2>Thư viện dành cho builder</h2><p>Khám phá các thư viện và framework được cộng đồng sử dụng, xem tài liệu chính thức, mã nguồn, hệ sinh thái npm và công cụ CLI trong một nơi.</p></div><div class="page-panel"><div class="page-kicker">CURATED DIRECTORY</div><h2>Chọn đúng công nghệ</h2><p>Thông tin từng thư viện dẫn về website và repository upstream. Bảng xếp hạng được sắp xếp bằng lượt tải npm 30 ngày gần nhất trong nhóm thư viện được tuyển chọn.</p></div></div><section class="community-section"><div class="section-head"><div><div class="page-kicker">COMMUNITY / TRENDING</div><h2>Top thư viện được sử dụng nhiều</h2></div><span class="result-count" id="community-status">Loading npm download statistics…</span></div><p class="community-note">Xếp hạng tương đối trong danh sách tuyển chọn OCode.js, dựa trên lượt tải npm 30 ngày gần nhất — không phải bảng xếp hạng toàn bộ npm.</p><div class="library-grid" id="community-library-grid">'+renderLibraryCards(communityLibraries)+'</div><div class="library-source">Statistics: <a href="https://github.com/npm/registry/blob/main/docs/download-counts.md" target="_blank" rel="noopener noreferrer">npm download counts API ↗</a> · Brand marks: <a href="https://simpleicons.org" target="_blank" rel="noopener noreferrer">Simple Icons ↗</a></div></section><section class="home-tools-section"><div class="section-head"><h2>OCode.js workspace</h2><span class="result-count">25 pages · '+tools.length+' CLI tools</span></div><div class="page-panel"><h2>Developer workspace</h2><p>Quản lý project local, tìm công cụ terminal và mở các khu vực phát triển trong giao diện OCode.js.</p><div class="page-actions"><button class="btn primary" data-go-page="dashboard">Open dashboard →</button><button class="btn" data-go-page="projects">Manage projects →</button><button class="btn" data-go-page="tools">Browse CLI catalog →</button></div></div><div class="section-head"><h2>Quick access</h2></div><div class="page-grid">'+picks.map(p=>'<button class="page-tile" data-go-page="'+p.id+'"><strong>'+esc(p.title)+' →</strong><span>'+esc(p.description)+'</span><small class="page-status">'+(p.status==="ready"?"READY":"UI FOUNDATION")+'</small></button>').join("")+'</div></section>';loadCommunityRankings();refreshIcons()}
+function renderHome(){const picks=pageDefinitions.filter(p=>["dashboard","projects","new-project","environments","tools","agents","github","docs","marketplace"].includes(p.id));$("#app").innerHTML='<section class="home-hero"><div class="home-hero-copy"><div class="page-kicker">OPEN-SOURCE DEVELOPER ECOSYSTEM</div><h1>Discover. Build. <span>Ship.</span></h1><p class="subtitle">OCode.js CLI Hub — khám phá thư viện, công cụ và nền tảng mã nguồn mở để xây dựng sản phẩm.</p><div class="page-actions"><button class="btn primary" data-go-page="tools">Explore CLI tools →</button><a class="btn" href="https://github.com/zskbot/ocodejs-cli" target="_blank" rel="noopener noreferrer">View source ↗</a></div></div><div class="home-hero-media"><img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" alt="Animated developer coding workspace" fetchpriority="high"><span>OPEN SOURCE / BUILD IN PUBLIC</span></div></section><section class="home-prompt-section" aria-labelledby="home-prompt-title">
+  <form class="home-prompt-composer" id="home-prompt-form">
+    <label class="sr-only" id="home-prompt-title" for="home-prompt-input">Ask OCode.js CLI Hub to build</label>
+    <textarea id="home-prompt-input" name="prompt" rows="2" maxlength="3000" placeholder="Ask OCode.js CLI Hub to build..." autocomplete="off"></textarea>
+    <div class="home-prompt-toolbar">
+      <div class="home-prompt-tools">
+        <select id="home-prompt-mode" aria-label="Prompt mode">
+          <option value="build">⌘ Build</option>
+          <option value="debug">⌁ Debug</option>
+          <option value="explain">文 Explain</option>
+          <option value="design">▧ Design</option>
+        </select>
+        <span class="home-prompt-hint">Describe what you want to create</span>
+      </div>
+      <button class="home-prompt-send" type="submit" aria-label="Save prompt" title="Save prompt"><i data-lucide="arrow-up"></i></button>
+    </div>
+  </form>
+  <div class="home-prompt-suggestions" aria-label="Prompt examples">
+    <button type="button" data-prompt-preset="Build a responsive contact form with validation, accessible fields, and a clean success state."><i data-lucide="mail"></i><span>Contact Form</span></button>
+    <button type="button" data-prompt-preset="Build an image editor workspace with upload, crop, rotate, filters, and export controls."><i data-lucide="image"></i><span>Image Editor</span></button>
+    <button type="button" data-prompt-preset="Create a polished mini game with keyboard and touch controls, score tracking, and restart."><i data-lucide="gamepad-2"></i><span>Mini Game</span></button>
+    <button type="button" data-prompt-preset="Create a finance calculator with editable inputs, clear breakdowns, and responsive results."><i data-lucide="activity"></i><span>Finance Calculator</span></button>
+    <button class="home-prompt-clear" type="button" id="home-prompt-clear" aria-label="Clear prompt" title="Clear prompt"><i data-lucide="rotate-ccw"></i></button>
+  </div>
+  <p class="home-prompt-status" id="home-prompt-status" role="status" aria-live="polite">Choose an example or describe your own idea.</p>
+</section><div class="home-intro-grid"><div class="page-panel"><div class="page-kicker">ABOUT THE LIBRARY</div><h2>Thư viện dành cho builder</h2><p>Khám phá các thư viện và framework được cộng đồng sử dụng, xem tài liệu chính thức, mã nguồn, hệ sinh thái npm và công cụ CLI trong một nơi.</p></div><div class="page-panel"><div class="page-kicker">CURATED DIRECTORY</div><h2>Chọn đúng công nghệ</h2><p>Thông tin từng thư viện dẫn về website và repository upstream. Bảng xếp hạng được sắp xếp bằng lượt tải npm 30 ngày gần nhất trong nhóm thư viện được tuyển chọn.</p></div></div><section class="community-section"><div class="section-head"><div><div class="page-kicker">COMMUNITY / TRENDING</div><h2>Top thư viện được sử dụng nhiều</h2></div><span class="result-count" id="community-status">Loading npm download statistics…</span></div><p class="community-note">Xếp hạng tương đối trong danh sách tuyển chọn OCode.js, dựa trên lượt tải npm 30 ngày gần nhất — không phải bảng xếp hạng toàn bộ npm.</p><div class="library-grid" id="community-library-grid">'+renderLibraryCards(communityLibraries)+'</div><div class="library-source">Statistics: <a href="https://github.com/npm/registry/blob/main/docs/download-counts.md" target="_blank" rel="noopener noreferrer">npm download counts API ↗</a> · Brand marks: <a href="https://simpleicons.org" target="_blank" rel="noopener noreferrer">Simple Icons ↗</a></div></section><section class="home-tools-section"><div class="section-head"><h2>OCode.js workspace</h2><span class="result-count">25 pages · '+tools.length+' CLI tools</span></div><div class="page-panel"><h2>Developer workspace</h2><p>Quản lý project local, tìm công cụ terminal và mở các khu vực phát triển trong giao diện OCode.js.</p><div class="page-actions"><button class="btn primary" data-go-page="dashboard">Open dashboard →</button><button class="btn" data-go-page="projects">Manage projects →</button><button class="btn" data-go-page="tools">Browse CLI catalog →</button></div></div><div class="section-head"><h2>Quick access</h2></div><div class="page-grid">'+picks.map(p=>'<button class="page-tile" data-go-page="'+p.id+'"><strong>'+esc(p.title)+' →</strong><span>'+esc(p.description)+'</span><small class="page-status">'+(p.status==="ready"?"READY":"UI FOUNDATION")+'</small></button>').join("")+'</div></section>';loadCommunityRankings();refreshIcons()}
 
 function renderDashboard(){
  const recent=workspaceEvents.slice(0,4);
@@ -1060,6 +1464,14 @@ function renderEnvironments(){
 function renderActivity(){
  $("#app").innerHTML='<section class="page-intro"><div class="page-kicker">SYSTEM / ACTIVITY</div><h1>Activity & Logs</h1><p class="subtitle">Recent actions recorded by this browser workspace.</p></section><div class="page-panel">'+(workspaceEvents.length?workspaceEvents.map(event=>'<div class="workspace-row"><div><strong>'+esc(event.action)+'</strong><p>'+esc(event.detail)+'</p></div><span class="workspace-meta">'+esc(new Date(event.at).toLocaleString())+'</span></div>').join(""):'<p>No local activity yet.</p>')+'</div><p class="workspace-note">Logs are local to this browser and are not server audit logs.</p>';
 }
+
+function loadPromptQueue(){try{const value=JSON.parse(localStorage.getItem("ocodejs-cli-prompt-queue")||"[]");return Array.isArray(value)?value:[]}catch{return[]}}
+function savePromptQueue(queue){try{localStorage.setItem("ocodejs-cli-prompt-queue",JSON.stringify(queue.slice(0,50)))}catch{}}
+function renderAgentQueue(){
+ const queue=loadPromptQueue();
+ const rows=queue.length?queue.map(item=>'<article class="agent-task-card"><div class="agent-task-top"><span class="agent-task-mode">'+esc(String(item.mode||"build").toUpperCase())+'</span><span class="agent-task-state">'+esc(item.status||"QUEUED")+'</span></div><p>'+esc(item.prompt)+'</p><div class="agent-task-footer"><span>'+esc(formatDate(item.createdAt))+'</span><div class="page-actions"><button class="btn" type="button" data-agent-status="'+esc(item.id)+'" data-next-status="'+(item.status==="READY"?"QUEUED":"READY")+'">'+(item.status==="READY"?"Move to queue":"Mark ready")+'</button><button class="btn" type="button" data-agent-copy="'+esc(item.id)+'">Copy prompt</button><button class="btn" type="button" data-agent-download="'+esc(item.id)+'">Export .md</button><button class="btn" type="button" data-agent-remove="'+esc(item.id)+'">Remove</button></div></div></article>').join(""):'<div class="page-panel agent-empty"><h2>No prompts yet</h2><p>Submit a build request from Home. It will appear here as a locally saved task.</p><button class="btn primary" data-go-page="home">Create a prompt</button></div>';
+ $("#app").innerHTML='<section class="page-intro"><div class="page-kicker">AI AGENTS / TASK QUEUE</div><h1>Agents</h1><p class="subtitle">Prompt inbox for organizing build requests before an AI execution service is connected.</p><span class="page-status">LOCAL QUEUE · '+queue.length+' TASKS</span></section><div class="agent-queue-toolbar"><div><strong>Prompt queue</strong><p>Tasks are saved in this browser only.</p></div><div class="page-actions"><button class="btn" type="button" data-agent-export>Export JSON</button><button class="btn" type="button" data-agent-clear>Clear queue</button></div></div><div class="agent-task-list">'+rows+'</div><div class="page-panel agent-connection-note"><h2>Execution status</h2><p>Agent runtime, model provider, project file access and build execution are not connected. Queue status is a local planning aid; no code is generated or run yet.</p></div>';
+}
 function renderWorkspace(){
  if(view==="home"){renderHome();return}
  if(view==="tools"||view==="favorites"){renderCatalog();return}
@@ -1067,7 +1479,7 @@ function renderWorkspace(){
  if(view==="projects"){renderProjects();return}
  if(view==="new-project"){renderNewProject();return}
  if(view==="environments"){renderEnvironments();return}
- if(view==="activity"){renderActivity();return}
+ if(view==="activity"){renderActivity();return}\n if(view==="agents"){renderAgentQueue();return}
  const p=pageDefinitions.find(x=>x.id===view)||pageDefinitions[0];
  const related=pageDefinitions.filter(x=>x.group===p.group&&x.id!==p.id);
  let panel='<div class="page-panel"><h2>Implementation status</h2><p>This page is part of the 25-page interface foundation. Navigation and page structure are available. Real execution, project persistence, provider credentials and remote integrations are not configured in this static frontend yet.</p><p>Next layer: connect a backend, define permissions, then wire actions to verified APIs. No fake terminal or agent execution is presented as live.</p></div>';
@@ -1091,6 +1503,37 @@ const routeLucideIcons={home:"house",dashboard:"layout-dashboard",projects:"fold
 function render(){if(view!=="tools"&&view!=="favorites"){renderWorkspace();refreshIcons();return}renderCatalog();refreshIcons()}
 function renderKeepFocus(){const pos=$("#search")?.selectionStart;render();const input=$("#search");input?.focus({preventScroll:true});if(pos!==undefined)input?.setSelectionRange(pos,pos)}
 function detail(id){const t=tools.find(x=>x.id===id);if(!t)return;$("#app").innerHTML=`<div class="detail"><button class="back" id="back" type="button">← Back to tools</button><h2>${esc(t.name)}</h2><p>${esc(t.description)}</p><p class="meta">${esc(t.language)} · ${esc(t.category)}</p><div class="detail-panel"><strong>INSTALL COMMAND</strong><div class="code-canvas"><button class="copy-code" data-copy="${esc(t.install)}" type="button">Copy code</button><pre class="command">${esc(t.install)}</pre></div></div><div class="detail-panel"><strong>UPSTREAM REPOSITORY</strong><p><a href="${esc(t.repo)}" target="_blank" rel="noopener noreferrer">${esc(t.repo)} ↗</a></p></div></div>`;$("#back").addEventListener("click",render);window.scrollTo(0,0)}
+
+document.addEventListener("click",e=>{
+
+ const statusTask=e.target.closest("[data-agent-status]");
+ if(statusTask){const queue=loadPromptQueue().map(x=>x.id===statusTask.dataset.agentStatus?{...x,status:statusTask.dataset.nextStatus}:x);savePromptQueue(queue);renderAgentQueue();return}
+ const copyTask=e.target.closest("[data-agent-copy]");
+ if(copyTask){const item=loadPromptQueue().find(x=>x.id===copyTask.dataset.agentCopy);if(item)navigator.clipboard?.writeText(item.prompt).catch(()=>{});return}
+ const downloadTask=e.target.closest("[data-agent-download]");
+ if(downloadTask){const item=loadPromptQueue().find(x=>x.id===downloadTask.dataset.agentDownload);if(item){const body="# OCode.js Agent Task\n\n- Mode: "+String(item.mode||"build")+"\n- Status: "+String(item.status||"QUEUED")+"\n- Created: "+String(item.createdAt||"")+"\n\n## Prompt\n\n"+item.prompt+"\n";const url=URL.createObjectURL(new Blob([body],{type:"text/markdown;charset=utf-8"}));const a=document.createElement("a");a.href=url;a.download="ocodejs-task-"+item.id+".md";a.click();URL.revokeObjectURL(url)}return}
+ if(e.target.closest("[data-agent-export]")){const body=JSON.stringify(loadPromptQueue(),null,2);const url=URL.createObjectURL(new Blob([body],{type:"application/json"}));const a=document.createElement("a");a.href=url;a.download="ocodejs-agent-queue.json";a.click();URL.revokeObjectURL(url);return}
+ const removeTask=e.target.closest("[data-agent-remove]");
+ if(removeTask){savePromptQueue(loadPromptQueue().filter(x=>x.id!==removeTask.dataset.agentRemove));renderAgentQueue();return}
+ if(e.target.closest("[data-agent-clear]")){savePromptQueue([]);renderAgentQueue();return}
+ const preset=e.target.closest("[data-prompt-preset]");
+ if(preset){const input=$("#home-prompt-input");if(input){input.value=preset.dataset.promptPreset;input.focus();$("#home-prompt-status").textContent="Example loaded. Edit it or save your prompt."}return}
+ if(e.target.closest("#home-prompt-clear")){const input=$("#home-prompt-input");if(input){input.value="";input.focus()}const status=$("#home-prompt-status");if(status)status.textContent="Prompt cleared.";return}
+});
+document.addEventListener("submit",e=>{
+ if(e.target.id!=="home-prompt-form")return;
+ e.preventDefault();
+ const input=$("#home-prompt-input"),status=$("#home-prompt-status");
+ const prompt=String(input?.value||"").trim();
+ if(!prompt){if(status)status.textContent="Enter a prompt or choose an example first.";input?.focus();return}
+ const mode=$("#home-prompt-mode")?.value||"build";
+ const task={id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),prompt,mode,status:"QUEUED",createdAt:new Date().toISOString()};
+ const queue=loadPromptQueue();queue.unshift(task);savePromptQueue(queue);
+ try{localStorage.setItem("ocodejs-cli-last-prompt",JSON.stringify({prompt,mode,savedAt:task.createdAt}))}catch{}
+ recordWorkspaceEvent("Prompt queued",mode.toUpperCase()+" · "+prompt.slice(0,110));
+ setPage("agents");
+});
+
 document.addEventListener("submit",e=>{if(e.target.id!=="project-form")return;e.preventDefault();const form=new FormData(e.target);const name=String(form.get("name")||"").trim();if(!name)return;const project={id:Date.now().toString(36),name,description:String(form.get("description")||"").trim(),template:String(form.get("template")||"Blank workspace"),createdAt:new Date().toISOString()};projects.unshift(project);persistWorkspace();recordWorkspaceEvent("Project created",project.name);setPage("projects");});
 document.addEventListener("input",e=>{if(e.target.id==="library-file-search"){const q=e.target.value.trim().toLowerCase();document.querySelectorAll("[data-library-file]").forEach(row=>{row.hidden=!row.dataset.libraryFile.toLowerCase().includes(q)})}});document.addEventListener("change",e=>{if(e.target.id==="library-branch-select"){libraryState.branch=e.target.value;const label=$("#library-current-branch");if(label)label.textContent=libraryState.branch;openLibraryPath("")}});
 document.addEventListener("input",e=>{if(e.target.id==="library-file-search"){const q=e.target.value.toLowerCase();document.querySelectorAll("#library-file-rows tr").forEach(row=>row.hidden=!row.dataset.libraryFile.split("/").pop().toLowerCase().includes(q))}if(e.target.id==="library-source-search"){const q=e.target.value.toLowerCase();const lines=(libraryState.currentSource||"").split("\n");const matched=lines.map((line,i)=>({line,i})).filter(x=>!q||x.line.toLowerCase().includes(q));const code=$("#library-source-code");const nums=document.querySelector(".library-line-numbers");if(code)code.textContent=matched.map(x=>x.line).join("\n");if(nums)nums.textContent=matched.map(x=>String(x.i+1)).join("\n")}});document.addEventListener("click",e=>{if(e.target.closest("[data-copy-source]")){navigator.clipboard?.writeText(libraryState.currentSource||"").catch(()=>{});return}const downloadLib=e.target.closest("[data-download-library]");if(downloadLib){downloadLibrary(downloadLib.dataset.downloadLibrary);return}const openLib=e.target.closest("[data-open-library]");if(openLib){renderLibraryDetail(openLib.dataset.openLibrary);return}const libTab=e.target.closest("[data-library-tab]");if(libTab){showLibraryTab(libTab.dataset.libraryTab);return}const libPath=e.target.closest("[data-library-path]");if(libPath){openLibraryPath(libPath.dataset.libraryPath);return}const libFile=e.target.closest("[data-library-file]");if(libFile){const file={path:libFile.dataset.libraryFile};if(libFile.dataset.libraryType==="dir"){openLibraryPath(file.path)}else{const api="https://api.github.com/repos/"+libraryState.owner+"/"+libraryState.repo+"/contents/"+file.path.split("/").map(encodeURIComponent).join("/")+"?ref="+encodeURIComponent(libraryState.branch||"main");githubJson(api).then(openLibraryFile).catch(err=>{const h=$("#library-content");if(h)h.innerHTML='<div class="library-empty">'+esc(err.message)+'</div>'})}return}if(e.target.closest("[data-library-readme]")){showLibraryTab("readme");return}const go=e.target.closest("[data-go-page]");if(go){setPage(go.dataset.goPage);return}const pg=e.target.closest("[data-page]");if(pg){e.preventDefault();setPage(pg.dataset.page);return}
@@ -1102,6 +1545,9 @@ document.addEventListener("input",e=>{if(e.target.id==="library-file-search"){co
  const f=e.target.closest("[data-fav]");if(f){const id=f.dataset.fav;favorites.has(id)?favorites.delete(id):favorites.add(id);try{localStorage.setItem("ocodejs-cli-favorites",JSON.stringify([...favorites]))}catch{}const y=window.scrollY;render();window.scrollTo(0,y);return}
  const c=e.target.closest("[data-copy]");if(c){const old=c.textContent;const done=t=>{c.textContent=t;setTimeout(()=>{c.textContent=old},1500)};navigator.clipboard?.writeText(c.dataset.copy).then(()=>done("Copied ✓")).catch(()=>done("Copy failed"));return}
 });
+
+document.addEventListener("change",e=>{if(e.target.matches("#library-branch-select")){const next=e.target.value;if(!next||next===libraryState.branch)return;libraryState.branch=next;libraryState.path="";const label=$("#library-current-branch");if(label)label.textContent=next;openLibraryPath("")}});
+document.addEventListener("input",e=>{if(e.target.matches("#library-file-search"))renderLibraryFileFilter(e.target.value);if(e.target.matches("#library-source-search"))renderLibrarySourceSearch(e.target.value)});
 function closeDrawer(){document.body.classList.remove("drawer-open");$("#menu-toggle")?.setAttribute("aria-expanded","false")}
 $("#menu-toggle").addEventListener("click",()=>{const open=document.body.classList.toggle("drawer-open");$("#menu-toggle").setAttribute("aria-expanded",String(open))});
 $("#open-profile").addEventListener("click",()=>{closeDrawer();setPage("settings")});
