@@ -733,6 +733,43 @@ button,a,input,select,[role="button"],.btn,.icon-button,.submit-tool,.back{touch
 @media(max-width:600px){.marketplace-grid{grid-template-columns:1fr;gap:10px}.marketplace-card{padding:18px}.marketplace-actions{display:grid;grid-template-columns:1fr}.marketplace-actions .btn{text-align:center}}
 
 .tool-card{border-top:2px solid var(--tool-accent)!important;background:linear-gradient(145deg,var(--tool-tint),#0d0f11 46%)!important}.tool-card .tool-icon{width:44px;height:44px;background:var(--tool-tint)!important;border:1px solid var(--tool-accent)!important;color:var(--tool-accent)!important}.tool-card .tool-icon svg{width:23px;height:23px;stroke-width:2}.tool-card .tool-language{color:var(--tool-accent);font-weight:650}.page-tile{border-top:2px solid var(--page-accent)!important;background:linear-gradient(145deg,var(--page-tint),#0d0f11 65%)!important}.page-tile-icon{display:grid;place-items:center;width:38px;height:38px;margin-bottom:10px;color:var(--page-accent);background:var(--page-tint);border:1px solid var(--page-accent)}.page-tile-icon svg{width:20px;height:20px}
+
+/* Brand-aware minimal UI: preserve each product's native accent without visual clutter. */
+:root{--ui-accent:#8b9bb4;--ui-surface:#0a0d12;--ui-border:#252b34}
+button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,.filter-chip,.filter-toggle,.page-tile{
+  border-radius:0!important;box-shadow:none!important;transition:background-color .14s,border-color .14s,color .14s;
+}
+.btn,.icon-button,.shortcut,.back,.filter-chip,.filter-toggle,.page-tile{
+  background:transparent;border:1px solid var(--ui-border);color:var(--fg);
+}
+.btn:hover,.icon-button:hover,.shortcut:hover,.back:hover,.filter-chip:hover,.filter-toggle:hover,.page-tile:hover{
+  background:#111821;border-color:var(--ui-accent);color:#fff;
+}
+.btn.primary,.submit-tool,.search-submit{
+  background:#151a22;border:1px solid #596579;color:#f4f6fa;font-weight:650;
+}
+.btn.primary:hover,.submit-tool:hover,.search-submit:hover{
+  background:#202833;border-color:#a8b5c8;color:#fff;
+}
+.nav a{border-left:2px solid transparent;background:transparent}
+.nav a:hover,.nav a.active{background:#101722;border-color:#344154;border-left-color:#8b9bb4;color:#fff}
+.nav-icon{color:#aab6c7}
+.nav-group:nth-of-type(1) .nav-icon{color:#8b9bb4}
+.nav-group:nth-of-type(2) .nav-icon{color:#60a5fa}
+.nav-group:nth-of-type(3) .nav-icon{color:#a78bfa}
+.nav-group:nth-of-type(4) .nav-icon{color:#34d399}
+.nav-group:nth-of-type(5) .nav-icon{color:#f59e0b}
+.nav-group:nth-of-type(6) .nav-icon{color:#f472b6}
+.tool-icon{color:var(--tool-accent)!important;border-color:color-mix(in srgb,var(--tool-accent) 48%,#252b34)!important;background:color-mix(in srgb,var(--tool-tint) 45%,transparent)!important}
+.tool-card{border:1px solid #252b34!important;border-top:1px solid color-mix(in srgb,var(--tool-accent) 55%,#252b34)!important;background:#090c11!important}
+.tool-card:hover{border-color:color-mix(in srgb,var(--tool-accent) 65%,#252b34)!important}
+.tool-language{color:var(--tool-accent)!important}
+.stat{background:transparent!important}
+.card,.page-tile,.detail-panel,.marketplace-card,.workspace-card{box-shadow:none!important}
+.mobile-profile{color:#e8edf5}
+.mobile-profile span:first-child{color:#c4cfdd}
+.light-preview .btn,.light-preview .icon-button,.light-preview .shortcut,.light-preview .back,.light-preview .filter-chip,.light-preview .filter-toggle,.light-preview .page-tile{background:#fff;color:#17243a;border-color:#cbd5e1}
+.light-preview .nav a:hover,.light-preview .nav a.active{background:#e8eef8;color:#17243a;border-left-color:#526b91}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js" defer></script>
 </head>
