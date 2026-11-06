@@ -1260,6 +1260,38 @@ footer a{color:#b5c7dd}
   }
 </style>
 
+
+<style id="ocode-home-prompt-composer">
+  .home-prompt-section{max-width:1040px;margin:34px auto 42px;padding:0 4px}
+  .home-prompt-composer{border:1px solid #454545;background:#050505;padding:20px 22px 14px;display:grid;gap:16px}
+  .home-prompt-composer:focus-within{border-color:#fff}
+  .home-prompt-composer textarea{width:100%;min-height:86px;max-height:240px;resize:vertical;border:0!important;outline:0!important;background:transparent!important;color:#fff!important;padding:8px 4px;font:600 clamp(18px,2.2vw,25px)/1.45 var(--mono)!important}
+  .home-prompt-composer textarea::placeholder{color:#777}
+  .home-prompt-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .home-prompt-tools{display:flex;align-items:center;gap:12px;min-width:0}
+  .home-prompt-tools select{min-height:42px;padding:0 12px;background:#000!important;color:#fff!important;border:1px solid #555!important;font:12px var(--mono)}
+  .home-prompt-hint{font-size:11px;color:#888}
+  .home-prompt-send{width:52px;height:52px;display:grid;place-items:center;background:#fff!important;color:#000!important;border:1px solid #fff!important}
+  .home-prompt-send svg{width:25px;height:25px;stroke-width:2.5}
+  .home-prompt-send:hover{background:#000!important;color:#fff!important}
+  .home-prompt-suggestions{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .home-prompt-suggestions button{min-height:54px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 18px;background:#000!important;color:#eee!important;border:1px solid #303030!important;font:500 15px var(--mono)}
+  .home-prompt-suggestions button:hover{background:#fff!important;color:#000!important;border-color:#fff!important}
+  .home-prompt-suggestions svg{width:22px;height:22px;flex:0 0 auto}
+  .home-prompt-suggestions .home-prompt-clear{width:54px;padding:0}
+  .home-prompt-status{text-align:center;min-height:18px;margin:10px 0 0;color:#777;font-size:11px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  @media(max-width:680px){
+    .home-prompt-section{margin:24px 0 32px;padding:0}
+    .home-prompt-composer{padding:14px;gap:12px}
+    .home-prompt-composer textarea{min-height:100px;font-size:17px!important}
+    .home-prompt-hint{display:none}
+    .home-prompt-suggestions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .home-prompt-suggestions button{min-height:48px;padding:0 8px;font-size:11px;gap:7px}
+    .home-prompt-suggestions .home-prompt-clear{width:auto;grid-column:1/-1}
+  }
+</style>
+
 </head>
 <body>
 <div class="layout">
@@ -1363,7 +1395,32 @@ async function loadCommunityRankings(){
  host.innerHTML=renderLibraryCards([...available,...unavailable]);
  const status=$("#community-status");if(status)status.textContent=available.length===communityLibraries.length?"Live npm registry · last 30 days · refreshed on page load":"npm registry partially unavailable · showing available figures";
 }
-function renderHome(){const picks=pageDefinitions.filter(p=>["dashboard","projects","new-project","environments","tools","agents","github","docs","marketplace"].includes(p.id));$("#app").innerHTML='<section class="home-hero"><div class="home-hero-copy"><div class="page-kicker">OPEN-SOURCE DEVELOPER ECOSYSTEM</div><h1>Discover. Build. <span>Ship.</span></h1><p class="subtitle">OCode.js CLI Hub — khám phá thư viện, công cụ và nền tảng mã nguồn mở để xây dựng sản phẩm.</p><div class="page-actions"><button class="btn primary" data-go-page="tools">Explore CLI tools →</button><a class="btn" href="https://github.com/zskbot/ocodejs-cli" target="_blank" rel="noopener noreferrer">View source ↗</a></div></div><div class="home-hero-media"><img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" alt="Animated developer coding workspace" fetchpriority="high"><span>OPEN SOURCE / BUILD IN PUBLIC</span></div></section><div class="home-intro-grid"><div class="page-panel"><div class="page-kicker">ABOUT THE LIBRARY</div><h2>Thư viện dành cho builder</h2><p>Khám phá các thư viện và framework được cộng đồng sử dụng, xem tài liệu chính thức, mã nguồn, hệ sinh thái npm và công cụ CLI trong một nơi.</p></div><div class="page-panel"><div class="page-kicker">CURATED DIRECTORY</div><h2>Chọn đúng công nghệ</h2><p>Thông tin từng thư viện dẫn về website và repository upstream. Bảng xếp hạng được sắp xếp bằng lượt tải npm 30 ngày gần nhất trong nhóm thư viện được tuyển chọn.</p></div></div><section class="community-section"><div class="section-head"><div><div class="page-kicker">COMMUNITY / TRENDING</div><h2>Top thư viện được sử dụng nhiều</h2></div><span class="result-count" id="community-status">Loading npm download statistics…</span></div><p class="community-note">Xếp hạng tương đối trong danh sách tuyển chọn OCode.js, dựa trên lượt tải npm 30 ngày gần nhất — không phải bảng xếp hạng toàn bộ npm.</p><div class="library-grid" id="community-library-grid">'+renderLibraryCards(communityLibraries)+'</div><div class="library-source">Statistics: <a href="https://github.com/npm/registry/blob/main/docs/download-counts.md" target="_blank" rel="noopener noreferrer">npm download counts API ↗</a> · Brand marks: <a href="https://simpleicons.org" target="_blank" rel="noopener noreferrer">Simple Icons ↗</a></div></section><section class="home-tools-section"><div class="section-head"><h2>OCode.js workspace</h2><span class="result-count">25 pages · '+tools.length+' CLI tools</span></div><div class="page-panel"><h2>Developer workspace</h2><p>Quản lý project local, tìm công cụ terminal và mở các khu vực phát triển trong giao diện OCode.js.</p><div class="page-actions"><button class="btn primary" data-go-page="dashboard">Open dashboard →</button><button class="btn" data-go-page="projects">Manage projects →</button><button class="btn" data-go-page="tools">Browse CLI catalog →</button></div></div><div class="section-head"><h2>Quick access</h2></div><div class="page-grid">'+picks.map(p=>'<button class="page-tile" data-go-page="'+p.id+'"><strong>'+esc(p.title)+' →</strong><span>'+esc(p.description)+'</span><small class="page-status">'+(p.status==="ready"?"READY":"UI FOUNDATION")+'</small></button>').join("")+'</div></section>';loadCommunityRankings();refreshIcons()}
+function renderHome(){const picks=pageDefinitions.filter(p=>["dashboard","projects","new-project","environments","tools","agents","github","docs","marketplace"].includes(p.id));$("#app").innerHTML='<section class="home-hero"><div class="home-hero-copy"><div class="page-kicker">OPEN-SOURCE DEVELOPER ECOSYSTEM</div><h1>Discover. Build. <span>Ship.</span></h1><p class="subtitle">OCode.js CLI Hub — khám phá thư viện, công cụ và nền tảng mã nguồn mở để xây dựng sản phẩm.</p><div class="page-actions"><button class="btn primary" data-go-page="tools">Explore CLI tools →</button><a class="btn" href="https://github.com/zskbot/ocodejs-cli" target="_blank" rel="noopener noreferrer">View source ↗</a></div></div><div class="home-hero-media"><img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" alt="Animated developer coding workspace" fetchpriority="high"><span>OPEN SOURCE / BUILD IN PUBLIC</span></div></section><section class="home-prompt-section" aria-labelledby="home-prompt-title">
+  <form class="home-prompt-composer" id="home-prompt-form">
+    <label class="sr-only" id="home-prompt-title" for="home-prompt-input">Ask OCode.js CLI Hub to build</label>
+    <textarea id="home-prompt-input" name="prompt" rows="2" maxlength="3000" placeholder="Ask OCode.js CLI Hub to build..." autocomplete="off"></textarea>
+    <div class="home-prompt-toolbar">
+      <div class="home-prompt-tools">
+        <select id="home-prompt-mode" aria-label="Prompt mode">
+          <option value="build">⌘ Build</option>
+          <option value="debug">⌁ Debug</option>
+          <option value="explain">文 Explain</option>
+          <option value="design">▧ Design</option>
+        </select>
+        <span class="home-prompt-hint">Describe what you want to create</span>
+      </div>
+      <button class="home-prompt-send" type="submit" aria-label="Save prompt" title="Save prompt"><i data-lucide="arrow-up"></i></button>
+    </div>
+  </form>
+  <div class="home-prompt-suggestions" aria-label="Prompt examples">
+    <button type="button" data-prompt-preset="Build a responsive contact form with validation, accessible fields, and a clean success state."><i data-lucide="mail"></i><span>Contact Form</span></button>
+    <button type="button" data-prompt-preset="Build an image editor workspace with upload, crop, rotate, filters, and export controls."><i data-lucide="image"></i><span>Image Editor</span></button>
+    <button type="button" data-prompt-preset="Create a polished mini game with keyboard and touch controls, score tracking, and restart."><i data-lucide="gamepad-2"></i><span>Mini Game</span></button>
+    <button type="button" data-prompt-preset="Create a finance calculator with editable inputs, clear breakdowns, and responsive results."><i data-lucide="activity"></i><span>Finance Calculator</span></button>
+    <button class="home-prompt-clear" type="button" id="home-prompt-clear" aria-label="Clear prompt" title="Clear prompt"><i data-lucide="rotate-ccw"></i></button>
+  </div>
+  <p class="home-prompt-status" id="home-prompt-status" role="status" aria-live="polite">Choose an example or describe your own idea.</p>
+</section><div class="home-intro-grid"><div class="page-panel"><div class="page-kicker">ABOUT THE LIBRARY</div><h2>Thư viện dành cho builder</h2><p>Khám phá các thư viện và framework được cộng đồng sử dụng, xem tài liệu chính thức, mã nguồn, hệ sinh thái npm và công cụ CLI trong một nơi.</p></div><div class="page-panel"><div class="page-kicker">CURATED DIRECTORY</div><h2>Chọn đúng công nghệ</h2><p>Thông tin từng thư viện dẫn về website và repository upstream. Bảng xếp hạng được sắp xếp bằng lượt tải npm 30 ngày gần nhất trong nhóm thư viện được tuyển chọn.</p></div></div><section class="community-section"><div class="section-head"><div><div class="page-kicker">COMMUNITY / TRENDING</div><h2>Top thư viện được sử dụng nhiều</h2></div><span class="result-count" id="community-status">Loading npm download statistics…</span></div><p class="community-note">Xếp hạng tương đối trong danh sách tuyển chọn OCode.js, dựa trên lượt tải npm 30 ngày gần nhất — không phải bảng xếp hạng toàn bộ npm.</p><div class="library-grid" id="community-library-grid">'+renderLibraryCards(communityLibraries)+'</div><div class="library-source">Statistics: <a href="https://github.com/npm/registry/blob/main/docs/download-counts.md" target="_blank" rel="noopener noreferrer">npm download counts API ↗</a> · Brand marks: <a href="https://simpleicons.org" target="_blank" rel="noopener noreferrer">Simple Icons ↗</a></div></section><section class="home-tools-section"><div class="section-head"><h2>OCode.js workspace</h2><span class="result-count">25 pages · '+tools.length+' CLI tools</span></div><div class="page-panel"><h2>Developer workspace</h2><p>Quản lý project local, tìm công cụ terminal và mở các khu vực phát triển trong giao diện OCode.js.</p><div class="page-actions"><button class="btn primary" data-go-page="dashboard">Open dashboard →</button><button class="btn" data-go-page="projects">Manage projects →</button><button class="btn" data-go-page="tools">Browse CLI catalog →</button></div></div><div class="section-head"><h2>Quick access</h2></div><div class="page-grid">'+picks.map(p=>'<button class="page-tile" data-go-page="'+p.id+'"><strong>'+esc(p.title)+' →</strong><span>'+esc(p.description)+'</span><small class="page-status">'+(p.status==="ready"?"READY":"UI FOUNDATION")+'</small></button>').join("")+'</div></section>';loadCommunityRankings();refreshIcons()}
 
 function renderDashboard(){
  const recent=workspaceEvents.slice(0,4);
@@ -1413,6 +1470,24 @@ const routeLucideIcons={home:"house",dashboard:"layout-dashboard",projects:"fold
 function render(){if(view!=="tools"&&view!=="favorites"){renderWorkspace();refreshIcons();return}renderCatalog();refreshIcons()}
 function renderKeepFocus(){const pos=$("#search")?.selectionStart;render();const input=$("#search");input?.focus({preventScroll:true});if(pos!==undefined)input?.setSelectionRange(pos,pos)}
 function detail(id){const t=tools.find(x=>x.id===id);if(!t)return;$("#app").innerHTML=`<div class="detail"><button class="back" id="back" type="button">← Back to tools</button><h2>${esc(t.name)}</h2><p>${esc(t.description)}</p><p class="meta">${esc(t.language)} · ${esc(t.category)}</p><div class="detail-panel"><strong>INSTALL COMMAND</strong><div class="code-canvas"><button class="copy-code" data-copy="${esc(t.install)}" type="button">Copy code</button><pre class="command">${esc(t.install)}</pre></div></div><div class="detail-panel"><strong>UPSTREAM REPOSITORY</strong><p><a href="${esc(t.repo)}" target="_blank" rel="noopener noreferrer">${esc(t.repo)} ↗</a></p></div></div>`;$("#back").addEventListener("click",render);window.scrollTo(0,0)}
+
+document.addEventListener("click",e=>{
+ const preset=e.target.closest("[data-prompt-preset]");
+ if(preset){const input=$("#home-prompt-input");if(input){input.value=preset.dataset.promptPreset;input.focus();$("#home-prompt-status").textContent="Example loaded. Edit it or save your prompt."}return}
+ if(e.target.closest("#home-prompt-clear")){const input=$("#home-prompt-input");if(input){input.value="";input.focus()}const status=$("#home-prompt-status");if(status)status.textContent="Prompt cleared.";return}
+});
+document.addEventListener("submit",e=>{
+ if(e.target.id!=="home-prompt-form")return;
+ e.preventDefault();
+ const input=$("#home-prompt-input"),status=$("#home-prompt-status");
+ const prompt=String(input?.value||"").trim();
+ if(!prompt){if(status)status.textContent="Enter a prompt or choose an example first.";input?.focus();return}
+ const mode=$("#home-prompt-mode")?.value||"build";
+ try{localStorage.setItem("ocodejs-cli-last-prompt",JSON.stringify({prompt,mode,savedAt:new Date().toISOString()}))}catch{}
+ recordWorkspaceEvent("Prompt saved",mode.toUpperCase()+" · "+prompt.slice(0,110));
+ if(status)status.textContent="Prompt saved to this browser. Agent execution is not connected yet.";
+});
+
 document.addEventListener("submit",e=>{if(e.target.id!=="project-form")return;e.preventDefault();const form=new FormData(e.target);const name=String(form.get("name")||"").trim();if(!name)return;const project={id:Date.now().toString(36),name,description:String(form.get("description")||"").trim(),template:String(form.get("template")||"Blank workspace"),createdAt:new Date().toISOString()};projects.unshift(project);persistWorkspace();recordWorkspaceEvent("Project created",project.name);setPage("projects");});
 document.addEventListener("input",e=>{if(e.target.id==="library-file-search"){const q=e.target.value.trim().toLowerCase();document.querySelectorAll("[data-library-file]").forEach(row=>{row.hidden=!row.dataset.libraryFile.toLowerCase().includes(q)})}});document.addEventListener("change",e=>{if(e.target.id==="library-branch-select"){libraryState.branch=e.target.value;const label=$("#library-current-branch");if(label)label.textContent=libraryState.branch;openLibraryPath("")}});
 document.addEventListener("input",e=>{if(e.target.id==="library-file-search"){const q=e.target.value.toLowerCase();document.querySelectorAll("#library-file-rows tr").forEach(row=>row.hidden=!row.dataset.libraryFile.split("/").pop().toLowerCase().includes(q))}if(e.target.id==="library-source-search"){const q=e.target.value.toLowerCase();const lines=(libraryState.currentSource||"").split("\n");const matched=lines.map((line,i)=>({line,i})).filter(x=>!q||x.line.toLowerCase().includes(q));const code=$("#library-source-code");const nums=document.querySelector(".library-line-numbers");if(code)code.textContent=matched.map(x=>x.line).join("\n");if(nums)nums.textContent=matched.map(x=>String(x.i+1)).join("\n")}});document.addEventListener("click",e=>{if(e.target.closest("[data-copy-source]")){navigator.clipboard?.writeText(libraryState.currentSource||"").catch(()=>{});return}const downloadLib=e.target.closest("[data-download-library]");if(downloadLib){downloadLibrary(downloadLib.dataset.downloadLibrary);return}const openLib=e.target.closest("[data-open-library]");if(openLib){renderLibraryDetail(openLib.dataset.openLibrary);return}const libTab=e.target.closest("[data-library-tab]");if(libTab){showLibraryTab(libTab.dataset.libraryTab);return}const libPath=e.target.closest("[data-library-path]");if(libPath){openLibraryPath(libPath.dataset.libraryPath);return}const libFile=e.target.closest("[data-library-file]");if(libFile){const file={path:libFile.dataset.libraryFile};if(libFile.dataset.libraryType==="dir"){openLibraryPath(file.path)}else{const api="https://api.github.com/repos/"+libraryState.owner+"/"+libraryState.repo+"/contents/"+file.path.split("/").map(encodeURIComponent).join("/")+"?ref="+encodeURIComponent(libraryState.branch||"main");githubJson(api).then(openLibraryFile).catch(err=>{const h=$("#library-content");if(h)h.innerHTML='<div class="library-empty">'+esc(err.message)+'</div>'})}return}if(e.target.closest("[data-library-readme]")){showLibraryTab("readme");return}const go=e.target.closest("[data-go-page]");if(go){setPage(go.dataset.goPage);return}const pg=e.target.closest("[data-page]");if(pg){e.preventDefault();setPage(pg.dataset.page);return}
