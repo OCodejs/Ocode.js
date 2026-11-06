@@ -120,6 +120,9 @@ footer a{padding:0 8px}
   .mbrand small{color:var(--blue);font-size:10px;letter-spacing:1px;margin-left:2px}
   .shortcut{display:none}
   .submit-tool,.icon-button{height:38px;min-height:38px;padding:0 11px;font-size:12px}
+  .mobile-profile{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:64px;border-color:var(--line-strong);background:#0b1424;color:var(--fg);font-weight:700}
+  .mobile-profile span:first-child{font-size:16px;line-height:1}
+  .profile-label{font-size:12px;letter-spacing:.2px}
   .icon-button{min-width:38px}
 
   /* Sidebar -> bottom tab bar */
@@ -741,7 +744,7 @@ button,a,input,select,[role="button"],.btn,.icon-button,.submit-tool,.back{touch
 <div class="side-card"><strong>OCode.js</strong><p>Open-source CLI hub for developers and AI agents.</p><span class="version">v1.0.0</span></div>
 </aside>
 <div class="drawer-scrim" id="drawer-scrim"></div>
-<header class="topbar"><button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false">☰</button><span class="mbrand"><b>&gt;_</b>OCode.js<small>CLI HUB</small></span><button class="icon-button mobile-search" id="focus-search" type="button" aria-label="Tìm kiếm">⌕</button><a class="submit-tool" href="https://github.com/zskbot/ocodejs-cli/issues/new?template=tool-submission.md" target="_blank" rel="noopener noreferrer">+ Gửi công cụ</a><button class="icon-button" id="theme-toggle" type="button" aria-label="Đổi giao diện sáng/tối">☾</button><button class="shortcut desktop-search" id="desktop-search" type="button">⌕ <span>Ctrl + K</span></button></header>
+<header class="topbar"><button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false">☰</button><span class="mbrand"><b>&gt;_</b>OCode.js<small>CLI HUB</small></span><button class="icon-button mobile-profile" id="open-profile" type="button" aria-label="Tôi" title="Tôi"><span aria-hidden="true">👤</span><span class="profile-label">Tôi</span></button><a class="submit-tool" href="https://github.com/zskbot/ocodejs-cli/issues/new?template=tool-submission.md" target="_blank" rel="noopener noreferrer">+ Gửi công cụ</a><button class="icon-button" id="theme-toggle" type="button" aria-label="Đổi giao diện sáng/tối">☾</button><button class="shortcut desktop-search" id="desktop-search" type="button">⌕ <span>Ctrl + K</span></button></header>
 <main class="content" id="app" aria-live="polite"><p>Loading catalog…</p></main>
 <footer><span>© 2026 OCode.js. Open-source developer tools.</span><span><a href="https://github.com/zskbot/ocodejs-cli">GitHub</a> | <a href="https://github.com/zskbot/ocodejs-cli#readme">Docs</a> | <a href="https://github.com/zskbot/ocodejs-cli/issues/new">Contribute</a> | <a href="https://github.com/zskbot/ocodejs-cli/blob/main/LICENSE">License</a></span></footer>
 </div>
@@ -872,7 +875,7 @@ document.addEventListener("click",e=>{const go=e.target.closest("[data-go-page]"
 });
 function closeDrawer(){document.body.classList.remove("drawer-open");$("#menu-toggle")?.setAttribute("aria-expanded","false")}
 $("#menu-toggle").addEventListener("click",()=>{const open=document.body.classList.toggle("drawer-open");$("#menu-toggle").setAttribute("aria-expanded",String(open))});
-$("#focus-search").addEventListener("click",()=>{closeDrawer();$("#search")?.focus()});
+$("#open-profile").addEventListener("click",()=>{closeDrawer();setPage("settings")});
 $("#desktop-search").addEventListener("click",()=>$("#search")?.focus());
 document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#search")?.focus()}if(e.key==="/"&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement?.tagName||"")){e.preventDefault();$("#search")?.focus()}});
 $("#theme-toggle").addEventListener("click",()=>{document.body.classList.toggle("light-preview");const l=document.body.classList.contains("light-preview");document.documentElement.style.colorScheme=l?"light":"dark";$("#theme-toggle").textContent=l?"☀":"☾";document.querySelector('meta[name=theme-color]').content=l?"#f7f9fd":"#05070d"});
