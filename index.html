@@ -1292,6 +1292,21 @@ footer a{color:#b5c7dd}
   }
 </style>
 
+
+<style id="ocode-agent-prompt-queue">
+ .agent-queue-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 0;border-bottom:1px solid #303030}
+ .agent-queue-toolbar p,.agent-task-footer{font-size:11px;color:#888;margin:5px 0 0}
+ .agent-task-list{display:grid;gap:10px;margin:16px 0}
+ .agent-task-card{background:#080808;border:1px solid #303030;padding:18px}
+ .agent-task-top,.agent-task-footer{display:flex;justify-content:space-between;align-items:center;gap:12px}
+ .agent-task-mode,.agent-task-state{font:11px var(--mono);color:#aaa;letter-spacing:.06em}
+ .agent-task-card>p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;margin:16px 0}
+ .agent-task-footer .page-actions{margin:0;gap:8px}
+ .agent-connection-note{margin-top:20px}
+ .agent-empty{margin-top:16px}
+ @media(max-width:600px){.agent-task-footer{align-items:flex-start;flex-direction:column}.agent-task-footer .page-actions{width:100%}.agent-task-footer .btn{flex:1}}
+</style>
+
 </head>
 <body>
 <div class="layout">
@@ -1439,6 +1454,14 @@ function renderEnvironments(){
 function renderActivity(){
  $("#app").innerHTML='<section class="page-intro"><div class="page-kicker">SYSTEM / ACTIVITY</div><h1>Activity & Logs</h1><p class="subtitle">Recent actions recorded by this browser workspace.</p></section><div class="page-panel">'+(workspaceEvents.length?workspaceEvents.map(event=>'<div class="workspace-row"><div><strong>'+esc(event.action)+'</strong><p>'+esc(event.detail)+'</p></div><span class="workspace-meta">'+esc(new Date(event.at).toLocaleString())+'</span></div>').join(""):'<p>No local activity yet.</p>')+'</div><p class="workspace-note">Logs are local to this browser and are not server audit logs.</p>';
 }
+
+function loadPromptQueue(){try{const value=JSON.parse(localStorage.getItem("ocodejs-cli-prompt-queue")||"[]");return Array.isArray(value)?value:[]}catch{return[]}}
+function savePromptQueue(queue){try{localStorage.setItem("ocodejs-cli-prompt-queue",JSON.stringify(queue.slice(0,50)))}catch{}}
+function renderAgentQueue(){
+ const queue=loadPromptQueue();
+ const rows=queue.length?queue.map(item=>'<article class="agent-task-card"><div class="agent-task-top"><span class="agent-task-mode">'+esc(String(item.mode||"build").toUpperCase())+'</span><span class="agent-task-state">'+esc(item.status||"QUEUED")+'</span></div><p>'+esc(item.prompt)+'</p><div class="agent-task-footer"><span>'+esc(formatDate(item.createdAt))+'</span><div class="page-actions"><button class="btn" type="button" data-agent-copy="'+esc(item.id)+'">Copy prompt</button><button class="btn" type="button" data-agent-remove="'+esc(item.id)+'">Remove</button></div></div></article>').join(""):'<div class="page-panel agent-empty"><h2>No prompts yet</h2><p>Submit a build request from Home. It will appear here as a locally saved task.</p><button class="btn primary" data-go-page="home">Create a prompt</button></div>';
+ $("#app").innerHTML='<section class="page-intro"><div class="page-kicker">AI AGENTS / TASK QUEUE</div><h1>Agents</h1><p class="subtitle">Prompt inbox for organizing build requests before an AI execution service is connected.</p><span class="page-status">LOCAL QUEUE · '+queue.length+' TASKS</span></section><div class="agent-queue-toolbar"><div><strong>Prompt queue</strong><p>Tasks are saved in this browser only.</p></div><button class="btn" type="button" data-agent-clear>Clear queue</button></div><div class="agent-task-list">'+rows+'</div><div class="page-panel agent-connection-note"><h2>Execution status</h2><p>Agent runtime, model provider, project file access and build execution are not connected. These tasks are queued for review only; no code is generated or run yet.</p></div>';
+}
 function renderWorkspace(){
  if(view==="home"){renderHome();return}
  if(view==="tools"||view==="favorites"){renderCatalog();return}
@@ -1446,7 +1469,7 @@ function renderWorkspace(){
  if(view==="projects"){renderProjects();return}
  if(view==="new-project"){renderNewProject();return}
  if(view==="environments"){renderEnvironments();return}
- if(view==="activity"){renderActivity();return}
+ if(view==="activity"){renderActivity();return}\n if(view==="agents"){renderAgentQueue();return}
  const p=pageDefinitions.find(x=>x.id===view)||pageDefinitions[0];
  const related=pageDefinitions.filter(x=>x.group===p.group&&x.id!==p.id);
  let panel='<div class="page-panel"><h2>Implementation status</h2><p>This page is part of the 25-page interface foundation. Navigation and page structure are available. Real execution, project persistence, provider credentials and remote integrations are not configured in this static frontend yet.</p><p>Next layer: connect a backend, define permissions, then wire actions to verified APIs. No fake terminal or agent execution is presented as live.</p></div>';
@@ -1472,6 +1495,12 @@ function renderKeepFocus(){const pos=$("#search")?.selectionStart;render();const
 function detail(id){const t=tools.find(x=>x.id===id);if(!t)return;$("#app").innerHTML=`<div class="detail"><button class="back" id="back" type="button">← Back to tools</button><h2>${esc(t.name)}</h2><p>${esc(t.description)}</p><p class="meta">${esc(t.language)} · ${esc(t.category)}</p><div class="detail-panel"><strong>INSTALL COMMAND</strong><div class="code-canvas"><button class="copy-code" data-copy="${esc(t.install)}" type="button">Copy code</button><pre class="command">${esc(t.install)}</pre></div></div><div class="detail-panel"><strong>UPSTREAM REPOSITORY</strong><p><a href="${esc(t.repo)}" target="_blank" rel="noopener noreferrer">${esc(t.repo)} ↗</a></p></div></div>`;$("#back").addEventListener("click",render);window.scrollTo(0,0)}
 
 document.addEventListener("click",e=>{
+
+ const copyTask=e.target.closest("[data-agent-copy]");
+ if(copyTask){const item=loadPromptQueue().find(x=>x.id===copyTask.dataset.agentCopy);if(item)navigator.clipboard?.writeText(item.prompt).catch(()=>{});return}
+ const removeTask=e.target.closest("[data-agent-remove]");
+ if(removeTask){savePromptQueue(loadPromptQueue().filter(x=>x.id!==removeTask.dataset.agentRemove));renderAgentQueue();return}
+ if(e.target.closest("[data-agent-clear]")){savePromptQueue([]);renderAgentQueue();return}
  const preset=e.target.closest("[data-prompt-preset]");
  if(preset){const input=$("#home-prompt-input");if(input){input.value=preset.dataset.promptPreset;input.focus();$("#home-prompt-status").textContent="Example loaded. Edit it or save your prompt."}return}
  if(e.target.closest("#home-prompt-clear")){const input=$("#home-prompt-input");if(input){input.value="";input.focus()}const status=$("#home-prompt-status");if(status)status.textContent="Prompt cleared.";return}
@@ -1483,9 +1512,11 @@ document.addEventListener("submit",e=>{
  const prompt=String(input?.value||"").trim();
  if(!prompt){if(status)status.textContent="Enter a prompt or choose an example first.";input?.focus();return}
  const mode=$("#home-prompt-mode")?.value||"build";
- try{localStorage.setItem("ocodejs-cli-last-prompt",JSON.stringify({prompt,mode,savedAt:new Date().toISOString()}))}catch{}
- recordWorkspaceEvent("Prompt saved",mode.toUpperCase()+" · "+prompt.slice(0,110));
- if(status)status.textContent="Prompt saved to this browser. Agent execution is not connected yet.";
+ const task={id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),prompt,mode,status:"QUEUED",createdAt:new Date().toISOString()};
+ const queue=loadPromptQueue();queue.unshift(task);savePromptQueue(queue);
+ try{localStorage.setItem("ocodejs-cli-last-prompt",JSON.stringify({prompt,mode,savedAt:task.createdAt}))}catch{}
+ recordWorkspaceEvent("Prompt queued",mode.toUpperCase()+" · "+prompt.slice(0,110));
+ setPage("agents");
 });
 
 document.addEventListener("submit",e=>{if(e.target.id!=="project-form")return;e.preventDefault();const form=new FormData(e.target);const name=String(form.get("name")||"").trim();if(!name)return;const project={id:Date.now().toString(36),name,description:String(form.get("description")||"").trim(),template:String(form.get("template")||"Blank workspace"),createdAt:new Date().toISOString()};projects.unshift(project);persistWorkspace();recordWorkspaceEvent("Project created",project.name);setPage("projects");});
