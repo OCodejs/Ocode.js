@@ -79,3 +79,8 @@ Khu vực **Community / Popular Libraries** gọi npm Downloads API cho từng p
 
 - npm downloads API: https://github.com/npm/registry/blob/main/docs/download-counts.md
 - Simple Icons CDN: https://github.com/simple-icons/simple-icons#cdn-usage
+
+
+## Expanded navigation
+
+The CLI Hub navigation contains 50 unique page routes across 11 groups: Workspace, Development, AI Agents, Tools, Developer Hub, System, Project Management, Code Quality, Testing & QA, Deploy & Infrastructure, and Community & Resources. The mobile hamburger drawer includes a searchable navigation field and a vertically scrollable page list. Newly added routes are UI foundations; external integrations, real builds, terminal execution, deployment and monitoring require their respective backends and are not represented as active services.
