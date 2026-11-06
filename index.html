@@ -1307,6 +1307,16 @@ footer a{color:#b5c7dd}
  @media(max-width:600px){.agent-task-footer{align-items:flex-start;flex-direction:column}.agent-task-footer .page-actions{width:100%}.agent-task-footer .btn{flex:1}}
 </style>
 
+
+<style id="ocode-agent-queue-lifecycle">
+ .agent-queue-toolbar .page-actions{margin:0;gap:8px}
+ .agent-task-state{padding:5px 8px;border:1px solid #555;color:#fff!important}
+ .agent-task-card[data-status="READY"]{border-color:#666}
+ .agent-task-footer .page-actions{flex-wrap:wrap}
+ .agent-task-footer .btn{min-height:38px;padding:0 10px;font-size:11px}
+ @media(max-width:600px){.agent-queue-toolbar{align-items:flex-start;flex-direction:column}.agent-queue-toolbar .page-actions{width:100%}.agent-queue-toolbar .btn{flex:1}.agent-task-footer .page-actions{width:100%}}
+</style>
+
 </head>
 <body>
 <div class="layout">
@@ -1459,8 +1469,8 @@ function loadPromptQueue(){try{const value=JSON.parse(localStorage.getItem("ocod
 function savePromptQueue(queue){try{localStorage.setItem("ocodejs-cli-prompt-queue",JSON.stringify(queue.slice(0,50)))}catch{}}
 function renderAgentQueue(){
  const queue=loadPromptQueue();
- const rows=queue.length?queue.map(item=>'<article class="agent-task-card"><div class="agent-task-top"><span class="agent-task-mode">'+esc(String(item.mode||"build").toUpperCase())+'</span><span class="agent-task-state">'+esc(item.status||"QUEUED")+'</span></div><p>'+esc(item.prompt)+'</p><div class="agent-task-footer"><span>'+esc(formatDate(item.createdAt))+'</span><div class="page-actions"><button class="btn" type="button" data-agent-copy="'+esc(item.id)+'">Copy prompt</button><button class="btn" type="button" data-agent-remove="'+esc(item.id)+'">Remove</button></div></div></article>').join(""):'<div class="page-panel agent-empty"><h2>No prompts yet</h2><p>Submit a build request from Home. It will appear here as a locally saved task.</p><button class="btn primary" data-go-page="home">Create a prompt</button></div>';
- $("#app").innerHTML='<section class="page-intro"><div class="page-kicker">AI AGENTS / TASK QUEUE</div><h1>Agents</h1><p class="subtitle">Prompt inbox for organizing build requests before an AI execution service is connected.</p><span class="page-status">LOCAL QUEUE · '+queue.length+' TASKS</span></section><div class="agent-queue-toolbar"><div><strong>Prompt queue</strong><p>Tasks are saved in this browser only.</p></div><button class="btn" type="button" data-agent-clear>Clear queue</button></div><div class="agent-task-list">'+rows+'</div><div class="page-panel agent-connection-note"><h2>Execution status</h2><p>Agent runtime, model provider, project file access and build execution are not connected. These tasks are queued for review only; no code is generated or run yet.</p></div>';
+ const rows=queue.length?queue.map(item=>'<article class="agent-task-card"><div class="agent-task-top"><span class="agent-task-mode">'+esc(String(item.mode||"build").toUpperCase())+'</span><span class="agent-task-state">'+esc(item.status||"QUEUED")+'</span></div><p>'+esc(item.prompt)+'</p><div class="agent-task-footer"><span>'+esc(formatDate(item.createdAt))+'</span><div class="page-actions"><button class="btn" type="button" data-agent-status="'+esc(item.id)+'" data-next-status="'+(item.status==="READY"?"QUEUED":"READY")+'">'+(item.status==="READY"?"Move to queue":"Mark ready")+'</button><button class="btn" type="button" data-agent-copy="'+esc(item.id)+'">Copy prompt</button><button class="btn" type="button" data-agent-download="'+esc(item.id)+'">Export .md</button><button class="btn" type="button" data-agent-remove="'+esc(item.id)+'">Remove</button></div></div></article>').join(""):'<div class="page-panel agent-empty"><h2>No prompts yet</h2><p>Submit a build request from Home. It will appear here as a locally saved task.</p><button class="btn primary" data-go-page="home">Create a prompt</button></div>';
+ $("#app").innerHTML='<section class="page-intro"><div class="page-kicker">AI AGENTS / TASK QUEUE</div><h1>Agents</h1><p class="subtitle">Prompt inbox for organizing build requests before an AI execution service is connected.</p><span class="page-status">LOCAL QUEUE · '+queue.length+' TASKS</span></section><div class="agent-queue-toolbar"><div><strong>Prompt queue</strong><p>Tasks are saved in this browser only.</p></div><div class="page-actions"><button class="btn" type="button" data-agent-export>Export JSON</button><button class="btn" type="button" data-agent-clear>Clear queue</button></div></div><div class="agent-task-list">'+rows+'</div><div class="page-panel agent-connection-note"><h2>Execution status</h2><p>Agent runtime, model provider, project file access and build execution are not connected. Queue status is a local planning aid; no code is generated or run yet.</p></div>';
 }
 function renderWorkspace(){
  if(view==="home"){renderHome();return}
@@ -1496,8 +1506,13 @@ function detail(id){const t=tools.find(x=>x.id===id);if(!t)return;$("#app").inne
 
 document.addEventListener("click",e=>{
 
+ const statusTask=e.target.closest("[data-agent-status]");
+ if(statusTask){const queue=loadPromptQueue().map(x=>x.id===statusTask.dataset.agentStatus?{...x,status:statusTask.dataset.nextStatus}:x);savePromptQueue(queue);renderAgentQueue();return}
  const copyTask=e.target.closest("[data-agent-copy]");
  if(copyTask){const item=loadPromptQueue().find(x=>x.id===copyTask.dataset.agentCopy);if(item)navigator.clipboard?.writeText(item.prompt).catch(()=>{});return}
+ const downloadTask=e.target.closest("[data-agent-download]");
+ if(downloadTask){const item=loadPromptQueue().find(x=>x.id===downloadTask.dataset.agentDownload);if(item){const body="# OCode.js Agent Task\n\n- Mode: "+String(item.mode||"build")+"\n- Status: "+String(item.status||"QUEUED")+"\n- Created: "+String(item.createdAt||"")+"\n\n## Prompt\n\n"+item.prompt+"\n";const url=URL.createObjectURL(new Blob([body],{type:"text/markdown;charset=utf-8"}));const a=document.createElement("a");a.href=url;a.download="ocodejs-task-"+item.id+".md";a.click();URL.revokeObjectURL(url)}return}
+ if(e.target.closest("[data-agent-export]")){const body=JSON.stringify(loadPromptQueue(),null,2);const url=URL.createObjectURL(new Blob([body],{type:"application/json"}));const a=document.createElement("a");a.href=url;a.download="ocodejs-agent-queue.json";a.click();URL.revokeObjectURL(url);return}
  const removeTask=e.target.closest("[data-agent-remove]");
  if(removeTask){savePromptQueue(loadPromptQueue().filter(x=>x.id!==removeTask.dataset.agentRemove));renderAgentQueue();return}
  if(e.target.closest("[data-agent-clear]")){savePromptQueue([]);renderAgentQueue();return}
