@@ -954,6 +954,49 @@ button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,.filter-chi
 .mobile-profile span:first-child{color:#c4cfdd}
 .light-preview .btn,.light-preview .icon-button,.light-preview .shortcut,.light-preview .back,.light-preview .filter-chip,.light-preview .filter-toggle,.light-preview .page-tile{background:#fff;color:#17243a;border-color:#cbd5e1}
 .light-preview .nav a:hover,.light-preview .nav a.active{background:#e8eef8;color:#17243a;border-left-color:#526b91}
+
+/* OCode.js visual polish: community actions, profile icon and repository surfaces */
+.library-links .library-open{
+  background:#fff!important;color:#101827!important;border:1px solid #fff!important;
+  font-weight:700;letter-spacing:.01em;transition:background .16s ease,border-color .16s ease,transform .16s ease
+}
+.library-links .library-open:hover{background:#e8edf5!important;border-color:#e8edf5!important;transform:translateY(-1px)}
+.library-links .library-download{background:#101722!important;color:#e7edf7!important;border:1px solid #3b4a60!important}
+.library-links .library-download:hover{background:#172235!important;border-color:#7d91ad!important;color:#fff!important}
+.mobile-profile{display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.mobile-profile [data-lucide]{width:17px;height:17px;stroke-width:1.9}
+.mobile-profile .profile-label{font-size:11px;font-weight:650}
+.library-repo-shell{gap:16px}
+.library-ocode-brand,.library-repo-overview{
+  border:1px solid #34445b!important;background:linear-gradient(120deg,#0d1420,#090e17)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035)
+}
+.library-repo-title{display:flex;align-items:center;gap:12px}
+.library-repo-title img{width:42px;height:42px;object-fit:contain;padding:7px;background:#111a28;border:1px solid var(--library-accent,#53657d)!important}
+.library-repo-title h1{font-weight:750;letter-spacing:-.035em}
+.library-repo-actions .btn,.library-tabs button{border:1px solid #34445b!important;background:#111a27!important;color:#dbe5f3!important}
+.library-repo-actions .btn:hover,.library-tabs button:hover{border-color:var(--library-accent,#7b91ae)!important;color:#fff!important;background:#172337!important}
+.library-tabs button[aria-selected="true"],.library-tabs button.active{background:#eaf0f8!important;color:#111827!important;border-color:#eaf0f8!important}
+.library-repo-toolbar,.library-file-list,.library-repo-side,.library-install,.library-readme,.library-source-panel{
+  border:1px solid #2b3a50!important;background:#0a111c!important
+}
+.library-repo-toolbar input,.library-repo-toolbar select{border:1px solid #3a4b63!important;background:#080e17!important;color:#e7edf7!important}
+.library-file-list{border-collapse:collapse;width:100%}
+.library-file-list th{background:#111b2a;color:#aebed3;font-size:10px;text-transform:uppercase;letter-spacing:.07em}
+.library-file-list td,.library-file-list th{border-bottom:1px solid #26364a!important;padding:10px 12px}
+.library-file-list tr:hover td{background:#111c2b!important}
+.library-file-list td:first-child{color:#e7edf7}
+.library-source{background:#080e17!important;border:1px solid #26364a!important;color:#dce6f5!important;line-height:1.7}
+.library-readme{padding:18px!important;color:#d5dfed!important}
+.library-readme h1,.library-readme h2,.library-readme h3{color:#f4f7fb;border-bottom:1px solid #2b3a50;padding-bottom:8px}
+.library-repo-side .library-install code{background:#111c2b;border:1px solid #2b3a50;color:#e9f0fa;padding:8px 10px;display:block;overflow-x:auto}
+.library-repo-overview .overview-stat{padding:5px 8px;border:1px solid #2b3a50;background:#0a111c}
+.library-repo-shell button,.library-repo-shell a,.library-card button{border-radius:0!important}
+@media(max-width:560px){
+ .library-repo-overview{gap:8px;padding:10px}
+ .library-repo-title img{width:36px;height:36px}
+ .library-file-list td,.library-file-list th{padding:8px 7px}
+}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js" defer></script>
 </head>
@@ -965,7 +1008,7 @@ button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,.filter-chi
 <div class="side-card"><strong>OCode.js</strong><p>Open-source CLI hub for developers and AI agents.</p><span class="version">v1.0.0</span></div>
 </aside>
 <div class="drawer-scrim" id="drawer-scrim"></div>
-<header class="topbar"><button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false">☰</button><span class="mbrand"><b>&gt;_</b>OCode.js<small>CLI HUB</small></span><button class="icon-button mobile-profile" id="open-profile" type="button" aria-label="Tôi" title="Tôi"><span aria-hidden="true">👤</span><span class="profile-label">Tôi</span></button><a class="submit-tool" href="https://github.com/zskbot/ocodejs-cli/issues/new?template=tool-submission.md" target="_blank" rel="noopener noreferrer">+ Gửi công cụ</a><button class="icon-button" id="theme-toggle" type="button" aria-label="Đổi giao diện sáng/tối">☾</button><button class="shortcut desktop-search" id="desktop-search" type="button">⌕ <span>Ctrl + K</span></button></header>
+<header class="topbar"><button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false">☰</button><span class="mbrand"><b>&gt;_</b>OCode.js<small>CLI HUB</small></span><button class="icon-button mobile-profile" id="open-profile" type="button" aria-label="Tôi" title="Tôi"><i data-lucide="user-round" aria-hidden="true"></i><span class="profile-label">Tôi</span></button><a class="submit-tool" href="https://github.com/zskbot/ocodejs-cli/issues/new?template=tool-submission.md" target="_blank" rel="noopener noreferrer">+ Gửi công cụ</a><button class="icon-button" id="theme-toggle" type="button" aria-label="Đổi giao diện sáng/tối">☾</button><button class="shortcut desktop-search" id="desktop-search" type="button">⌕ <span>Ctrl + K</span></button></header>
 <main class="content" id="app" aria-live="polite"><p>Loading catalog…</p></main>
 <footer><span>© 2026 OCode.js. Open-source developer tools.</span><span><a href="https://github.com/zskbot/ocodejs-cli">GitHub</a> | <a href="https://github.com/zskbot/ocodejs-cli#readme">Docs</a> | <a href="https://github.com/zskbot/ocodejs-cli/issues/new">Contribute</a> | <a href="https://github.com/zskbot/ocodejs-cli/blob/main/LICENSE">License</a></span></footer>
 </div>
