@@ -69,3 +69,13 @@ Các trường `id`, `name`, `description`, `language`, `category` và `install`
 ## GitHub Pages
 
 Repository đã bật Pages. Kiểm tra **Settings → Pages → Build and deployment** để xác nhận nguồn là **GitHub Actions**. Pull Request chỉ chạy CI; deploy workflow chỉ chạy trên push vào `main` hoặc thao tác thủ công.
+
+
+## Community library discovery
+
+Home giới thiệu các thư viện frontend/backend tiêu biểu với logo thương hiệu lấy từ [Simple Icons](https://simpleicons.org) CDN, website chính thức, GitHub upstream và npm package page. Banner GIF là nội dung minh họa từ Giphy.
+
+Khu vực **Community / Popular Libraries** gọi npm Downloads API cho từng package và sắp xếp các package đã nhận được dữ liệu theo lượt tải của 30 ngày gần nhất. Đây là bảng xếp hạng tương đối trong danh sách thư viện tuyển chọn của OCode.js, không đại diện cho toàn bộ hệ sinh thái npm. Khi npm API không phản hồi, giao diện đánh dấu dữ liệu không khả dụng thay vì tự tạo số liệu.
+
+- npm downloads API: https://github.com/npm/registry/blob/main/docs/download-counts.md
+- Simple Icons CDN: https://github.com/simple-icons/simple-icons#cdn-usage
