@@ -670,13 +670,28 @@ footer{background:#08090b;border-color:#303438;color:#969ca2}
  .section-head h2{font-size:12px}
  .workspace-field input,.workspace-field textarea,.workspace-field select{font-size:16px}
 }
+
+/* Prevent double-tap zoom while retaining native scrolling and pinch zoom */
+html,body{touch-action:pan-x pan-y pinch-zoom;-ms-touch-action:pan-x pan-y pinch-zoom}
+button,a,input,select,[role="button"],.btn,.icon-button,.submit-tool,.back{touch-action:manipulation;-ms-touch-action:manipulation}
+
+/* Expanded 50-page navigation and mobile drawer usability */
+.nav-search-wrap{display:flex;align-items:center;gap:8px;margin:18px 0 8px;padding:0 10px;height:40px;border:1px solid #454b50;background:#0d0f11;color:#aeb4ba}
+.nav-search-wrap input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#f1f2f3;font:12px var(--mono)}
+.nav-search-wrap input::placeholder{color:#777e84}
+.nav-group-label{display:flex;justify-content:space-between;align-items:center}
+.nav-group-label span{font:10px var(--mono);color:#777e84}
+.nav-empty{padding:12px;color:#92989e;font-size:12px}
+.sidebar .nav{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;min-height:0;flex:1}
+.sidebar .nav a{min-height:34px}
+@media(max-width:768px){.nav-search-wrap{margin:8px 0 12px;flex:0 0 40px}.sidebar .nav{padding-bottom:12px}.sidebar .side-card{flex:0 0 auto}}
 </style>
 </head>
 <body>
 <div class="layout">
 <aside class="sidebar">
 <a class="brand" href="#" aria-label="OCode.js CLI Hub"><span class="brand-mark">&gt;_</span><span>OCode.js<small>CLI HUB</small></span></a>
-<nav class="nav" aria-label="Main navigation" id="main-nav"></nav>
+<label class="nav-search-wrap"><span>⌕</span><input id="nav-search" type="search" placeholder="Tìm trang điều hướng…" aria-label="Tìm trang điều hướng"></label><nav class="nav" aria-label="Main navigation" id="main-nav"></nav>
 <div class="side-card"><strong>OCode.js</strong><p>Open-source CLI hub for developers and AI agents.</p><span class="version">v1.0.0</span></div>
 </aside>
 <div class="drawer-scrim" id="drawer-scrim"></div>
@@ -698,8 +713,33 @@ function recordWorkspaceEvent(action,detail){workspaceEvents.unshift({action,det
 function formatDate(value){const date=new Date(value);return Number.isNaN(date.getTime())?"Unknown date":date.toLocaleDateString()}
 
 const icons={"ripgrep":"rg","fd":"fd","fzf":"fzf","lazygit":"lg","k9s":"k9s","jq":"jq","yq":"yq","dnspyre":"dns","cli-anything-hub":"AI","clihub":"CH"};
-const pageDefinitions=[["home","Home","Workspace","Workspace overview","ready"],["dashboard","Dashboard","Workspace","Workspace activity and shortcuts","ready"],["projects","Projects","Workspace","Organize project workspaces","ready"],["new-project","New Project","Workspace","Start a project from a template or blank workspace","ready"],["environments","Environments","Workspace","Development environment profiles","ready"],["editor","Code Editor","Development","Code editing workspace entry point","foundation"],["files","File Explorer","Development","Project file tree and file operations","foundation"],["terminal","Terminal","Development","Terminal entry point; secure execution backend required","foundation"],["preview","Preview","Development","Application preview and responsive testing","foundation"],["build","Build & Run","Development","Build configurations and output","foundation"],["agents","Agents","AI Agents","AI agent workspace and capabilities","foundation"],["agent-tasks","Agent Tasks","AI Agents","Tasks assigned to AI agents","foundation"],["chat","Chat","AI Agents","AI conversation workspace","foundation"],["prompts","Prompts","AI Agents","Reusable prompt library","foundation"],["models","Models","AI Agents","Model provider configuration","foundation"],["tools","Available Tools","Tools","Search and browse the CLI tools catalog","ready"],["tool-details","Tool Details","Tools","Inspect a selected CLI tool","ready"],["favorites","Favorites","Tools","Saved CLI tools","ready"],["integrations","Integrations","Tools","External developer service connections","foundation"],["github","GitHub","Developer Hub","Repository and source control entry point","foundation"],["api","API Reference","Developer Hub","API endpoint reference","foundation"],["docs","Documentation","Developer Hub","Guides and project documentation","ready"],["activity","Activity & Logs","System","Workspace activity and diagnostics","ready"],["settings","Settings","System","Application preferences","ready"],["about","About","System","Project information and open-source links","ready"]].map(([id,title,group,description,status])=>({id,title,group,description,status}));
-function buildNavigation(){const nav=$("#main-nav");if(!nav)return;const groups=[...new Set(pageDefinitions.map(p=>p.group))];nav.innerHTML=groups.map(g=>'<section class="nav-group"><div class="nav-group-label">'+esc(g)+'</div>'+pageDefinitions.filter(p=>p.group===g).map(p=>'<a href="#page='+p.id+'" data-page="'+p.id+'"><span class="nav-icon">›</span>'+esc(p.title)+'</a>').join("")+'</section>').join("")}
+const pageDefinitions=[["home","Home","Workspace","Workspace overview","ready"],["dashboard","Dashboard","Workspace","Workspace activity and shortcuts","ready"],["projects","Projects","Workspace","Organize project workspaces","ready"],["new-project","New Project","Workspace","Start a project from a template or blank workspace","ready"],["environments","Environments","Workspace","Development environment profiles","ready"],["editor","Code Editor","Development","Code editing workspace entry point","foundation"],["files","File Explorer","Development","Project file tree and file operations","foundation"],["terminal","Terminal","Development","Terminal entry point; secure execution backend required","foundation"],["preview","Preview","Development","Application preview and responsive testing","foundation"],["build","Build & Run","Development","Build configurations and output","foundation"],["agents","Agents","AI Agents","AI agent workspace and capabilities","foundation"],["agent-tasks","Agent Tasks","AI Agents","Tasks assigned to AI agents","foundation"],["chat","Chat","AI Agents","AI conversation workspace","foundation"],["prompts","Prompts","AI Agents","Reusable prompt library","foundation"],["models","Models","AI Agents","Model provider configuration","foundation"],["tools","Available Tools","Tools","Search and browse the CLI tools catalog","ready"],["tool-details","Tool Details","Tools","Inspect a selected CLI tool","ready"],["favorites","Favorites","Tools","Saved CLI tools","ready"],["integrations","Integrations","Tools","External developer service connections","foundation"],["github","GitHub","Developer Hub","Repository and source control entry point","foundation"],["api","API Reference","Developer Hub","API endpoint reference","foundation"],["docs","Documentation","Developer Hub","Guides and project documentation","ready"],["activity","Activity & Logs","System","Workspace activity and diagnostics","ready"],["settings","Settings","System","Application preferences","ready"],["about","About","System","Project information and open-source links","ready"]
+,["project-settings","Project Settings","Project Management","Configure project metadata and workspace preferences","foundation"]
+,["project-templates","Project Templates","Project Management","Browse starter templates and project presets","foundation"]
+,["dependencies","Dependencies","Project Management","Review package dependencies and version ranges","foundation"]
+,["scripts","Scripts","Project Management","Inspect project scripts and task shortcuts","foundation"]
+,["workspace-import","Import Project","Project Management","Import an existing project into the local workspace","foundation"]
+,["code-review","Code Review","Code Quality","Review changes and inspect code quality signals","foundation"]
+,["lint","Lint & Format","Code Quality","Configure linting and formatting workflows","foundation"]
+,["type-check","Type Checking","Code Quality","Review static type checking configuration","foundation"]
+,["security","Security Scan","Code Quality","Inspect dependency and source security checks","foundation"]
+,["accessibility","Accessibility","Code Quality","Review accessibility checks and interface standards","foundation"]
+,["unit-tests","Unit Tests","Testing & QA","Organize unit test suites and test cases","foundation"]
+,["integration-tests","Integration Tests","Testing & QA","Plan integration tests across application modules","foundation"]
+,["e2e-tests","E2E Testing","Testing & QA","Manage browser end-to-end test workflows","foundation"]
+,["test-reports","Test Reports","Testing & QA","Review test results and coverage reports","foundation"]
+,["performance","Performance","Testing & QA","Inspect performance budgets and optimization tasks","foundation"]
+,["deployments","Deployments","Deploy & Infrastructure","Review deployment targets and release history","foundation"]
+,["hosting","Hosting","Deploy & Infrastructure","Configure static and application hosting targets","foundation"]
+,["domains","Domains & DNS","Deploy & Infrastructure","Manage domain and DNS configuration references","foundation"]
+,["environment-vars","Environment Variables","Deploy & Infrastructure","Document environment variable requirements securely","foundation"]
+,["monitoring","Monitoring","Deploy & Infrastructure","Observe application health and runtime signals","foundation"]
+,["releases","Releases","Community & Resources","Prepare release notes and version milestones","foundation"]
+,["changelog","Changelog","Community & Resources","Browse project and dependency change history","foundation"]
+,["roadmap","Roadmap","Community & Resources","Track planned features and development milestones","foundation"]
+,["community","Community","Community & Resources","Find community channels and contribution paths","foundation"]
+,["examples","Examples","Community & Resources","Explore example projects and implementation patterns","foundation"]].map(([id,title,group,description,status])=>({id,title,group,description,status}));
+function buildNavigation(){const nav=$("#main-nav");if(!nav)return;const q=($("#nav-search")?.value||"").trim().toLocaleLowerCase("vi");const visible=pageDefinitions.filter(p=>!q||[p.title,p.group,p.description].join(" ").toLocaleLowerCase("vi").includes(q));const groups=[...new Set(visible.map(p=>p.group))];nav.innerHTML=groups.map(g=>'<section class="nav-group"><div class="nav-group-label">'+esc(g)+' <span>'+visible.filter(p=>p.group===g).length+'</span></div>'+visible.filter(p=>p.group===g).map(p=>'<a href="#page='+p.id+'" data-page="'+p.id+'" aria-current="'+(view===p.id?"page":"false")+'"><span class="nav-icon">›</span>'+esc(p.title)+'</a>').join("")+'</section>').join("")||'<p class="nav-empty">Không tìm thấy trang phù hợp.</p>'}
 function setPage(id,hash=true){const p=pageDefinitions.find(x=>x.id===id)||pageDefinitions[0];view=p.id;document.querySelectorAll("[data-page]").forEach(a=>a.classList.toggle("active",a.dataset.page===p.id));if(hash&&location.hash!=="#page="+p.id)history.pushState({page:p.id},"","#page="+p.id);closeDrawer();render();window.scrollTo(0,0)}
 const communityLibraries=[
  {name:"React",pkg:"react",icon:"react",description:"Thư viện UI component phổ biến để xây dựng giao diện web.",url:"https://react.dev",repo:"https://github.com/facebook/react",category:"UI"},
@@ -784,7 +824,7 @@ $("#focus-search").addEventListener("click",()=>{closeDrawer();$("#search")?.foc
 $("#desktop-search").addEventListener("click",()=>$("#search")?.focus());
 document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#search")?.focus()}if(e.key==="/"&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement?.tagName||"")){e.preventDefault();$("#search")?.focus()}});
 $("#theme-toggle").addEventListener("click",()=>{document.body.classList.toggle("light-preview");const l=document.body.classList.contains("light-preview");document.documentElement.style.colorScheme=l?"light":"dark";$("#theme-toggle").textContent=l?"☀":"☾";document.querySelector('meta[name=theme-color]').content=l?"#f7f9fd":"#05070d"});
-buildNavigation();window.addEventListener("popstate",()=>setPage(location.hash.startsWith("#page=")?location.hash.slice(6):"home",false));
+buildNavigation();$("#nav-search")?.addEventListener("input",buildNavigation);window.addEventListener("popstate",()=>setPage(location.hash.startsWith("#page=")?location.hash.slice(6):"home",false));
 fetch("tools.json").then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.json()}).then(data=>{tools=data;const initial=location.hash.startsWith("#page=")?location.hash.slice(6):"home";view=pageDefinitions.some(p=>p.id===initial)?initial:"home";buildNavigation();render()}).catch(err=>{$("#app").innerHTML='<div class="empty">Unable to load tools.json. Open this page through GitHub Pages or a local static server.</div>';console.error(err)});
 </script>
 </body>
