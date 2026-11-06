@@ -123,7 +123,7 @@ test("home introduces community libraries with real brand marks and animated med
   const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
   assert.match(html, /media\.giphy\.com\/media\/.+\/giphy\.gif/);
   assert.match(html, /cdn\.simpleicons\.org/);
-  assert.match(html, /alt="\'+esc\(lib\.name\)\+' logo"/);
+  assert.match(html, /alt="'\+esc\(lib\.name\)\+' logo"/);
   assert.match(html, /communityLibraries=/);
   assert.match(html, /function renderLibraryCards\(/);
   assert.match(html, /function renderHome\(/);
