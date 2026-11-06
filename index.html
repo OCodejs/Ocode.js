@@ -581,6 +581,95 @@ h1 span{color:#bbb}
 .home-hero-media{position:relative;min-height:230px;background:#05070d;overflow:hidden}.home-hero-media img{width:100%;height:100%;min-height:230px;max-height:330px;object-fit:cover;display:block;opacity:.78}.home-hero-media span{position:absolute;left:12px;bottom:12px;padding:7px 9px;background:#05070de8;border:1px solid var(--line-strong);font-size:10px;letter-spacing:1px;color:var(--cyan)}
 .home-intro-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 24px}.home-intro-grid .page-panel{margin:0}.home-intro-grid h2{margin:8px 0;font-size:18px}.home-intro-grid p,.community-note{color:var(--muted);font-size:12px;line-height:1.7}.community-section{margin:28px 0}.community-section .section-head{align-items:end}.community-section .section-head>div{display:grid;gap:4px}.community-section .section-head h2{font-size:clamp(17px,2vw,22px);color:var(--fg);letter-spacing:0;text-transform:none}.community-note{margin:0 0 14px}.library-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.library-card{min-width:0;border:1px solid var(--line-strong);background:linear-gradient(145deg,#0b1321,#070b13);padding:14px;display:flex;flex-direction:column;gap:10px}.library-card-top{display:flex;justify-content:space-between;align-items:center}.library-rank{color:var(--cyan);font-size:12px;font-weight:800}.library-category,.library-package{color:var(--muted);font-size:10px}.library-brand{display:flex;align-items:center;gap:12px;min-width:0}.library-brand img{width:42px;height:42px;object-fit:contain;padding:7px;background:#111c2e;border:1px solid var(--line-strong);flex:0 0 42px}.library-brand h3{margin:0;font-size:15px}.library-package{display:block;margin-top:3px}.library-card>p{margin:0;min-height:38px;color:var(--muted);font-size:11px;line-height:1.6}.library-downloads{display:flex;align-items:baseline;gap:8px;border-top:1px solid var(--line);padding-top:9px}.library-downloads strong{font-size:18px;color:var(--green);font-variant-numeric:tabular-nums}.library-downloads span{font-size:10px;color:var(--muted)}.library-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}.library-links .btn{font-size:10px;min-height:32px;padding:5px 8px}.library-source{margin-top:12px;color:var(--muted);font-size:10px}.library-source a{color:var(--cyan);text-decoration:underline;text-underline-offset:3px}.home-tools-section{margin-top:32px}
 @media(max-width:768px){.home-hero{grid-template-columns:1fr;gap:0}.home-hero-copy{padding:20px}.home-hero-media{min-height:170px;max-height:190px}.home-hero-media img{min-height:170px;max-height:190px}.home-intro-grid{grid-template-columns:1fr;gap:10px}.library-grid{grid-template-columns:1fr}.library-card{padding:13px}.library-card>p{min-height:0}.community-section .section-head{align-items:flex-start;flex-direction:column}.community-section .section-head .result-count{white-space:normal}.library-links .btn{flex:1 1 auto}.home-hero-copy h1{font-size:34px}}
+
+/* ===== Documentation-inspired monochrome visual system ===== */
+:root{
+ color-scheme:dark;
+ --bg:#08090b;--panel:#0d0f11;--line:#24272a;--line-strong:#3a3f44;
+ --fg:#f1f2f3;--muted:#a3a8ad;--blue:#aeb4ba;--cyan:#d5d9dd;
+ --purple:#7950f2;--yellow:#d6c36b;--pink:#b8a0b2;--green:#75c98b;
+ --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+}
+html,body{background:#08090b;color:var(--fg)}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;font-weight:400}
+.layout{background:#08090b;border-color:#202326}
+.sidebar{background:#090a0c;border-color:#292d31}
+.brand{border-color:#292d31;font-family:inherit;font-size:19px;letter-spacing:-.5px}
+.brand-mark,.mbrand b,.brand small,.mbrand small{color:#f1f2f3;text-shadow:none}
+.nav{gap:2px}
+.nav a{font-family:inherit;font-size:13px;color:#a9adb1}
+.nav a:hover,.nav a.active{background:#17191c;border-color:#393d41;color:#fff}
+.side-card{background:#0d0f11;border-color:#34383c}
+.version{border-color:#555b61;color:#d3d6d9}
+.topbar{background:#08090b;border-color:#303438}
+.icon-button,.shortcut,.submit-tool{background:#0e1012;border-color:#3b4045;color:#e5e7e9}
+.submit-tool:hover,.icon-button:hover{background:#191c1f;border-color:#858c92}
+.content{padding:clamp(24px,5vw,64px)}
+.hero{gap:18px}
+h1{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:500;letter-spacing:-1.8px;line-height:1.12}
+h1 span{color:#f1f2f3}
+.subtitle{font-family:inherit;color:#a9adb1;font-size:clamp(15px,2vw,19px);line-height:1.65}
+.hero-mark{color:#f1f2f3;text-shadow:none}
+.stats{gap:8px}
+.stat,.stat:nth-child(n){background:#0d0f11;border-color:#353a3f;color:#d4d7da}
+.searchbar{gap:10px}
+.searchbox,.filter,.search-submit{background:#0d0f11;border-color:#3a3f44;color:#f1f2f3}
+.search-submit,.btn.primary{background:#f1f2f3;border-color:#f1f2f3;color:#090a0b}
+.search-submit:hover,.btn.primary:hover{background:#d9dcdf;border-color:#d9dcdf;color:#090a0b}
+.section-head h2{font-family:inherit;color:#b3b7bb;font-weight:600;letter-spacing:.04em}
+.grid{gap:12px}
+.card,.detail-panel,.page-panel,.page-tile,.library-card{
+ background:#0d0f11;border:1px solid #34393e;border-radius:0;box-shadow:none
+}
+.card{padding:18px}
+.card:nth-child(n){border-top:1px solid #34393e}
+.card:hover,.page-tile:hover{border-color:#858b91}
+.tool-icon,.card:nth-child(n) .tool-icon{border:1px solid #555b61;color:#e4e6e8;background:#111315}
+.card h3,.page-tile strong{font-family:inherit;font-weight:600}
+.card p,.page-tile span,.page-panel p{color:#a9adb1;line-height:1.7}
+.meta{color:#d1d4d7}
+.meta span+span{color:#92989e}
+.btn,.back{background:#101214;border:1px solid #454b50;color:#e6e8ea;border-radius:0;font-family:inherit}
+.btn:hover,.back:hover{border-color:#a4a9ae;color:#fff;background:#171a1d}
+.btn.favorite[aria-pressed=true]{color:#e0d18b;border-color:#b5a45e}
+.detail h2{font-family:inherit;font-weight:500;letter-spacing:-.7px}
+.command{font-family:var(--mono);background:#090b0d;border:1px solid #25292d;padding:16px;color:#83c995}
+footer{background:#08090b;border-color:#303438;color:#969ca2}
+.page-intro h1,.home-hero-copy h1{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:500;letter-spacing:-1.5px}
+.page-kicker{color:#aeb4ba;letter-spacing:.12em}
+.page-actions .btn{min-height:42px}
+.home-hero{background:#0b0d0f;border-color:#34393e}
+.home-hero-copy h1 span{color:#c9cdd1}
+.home-hero-media{background:#050607}
+.home-hero-media span{background:#090a0c;border-color:#4a5056;color:#e0e3e6}
+.home-intro-grid .page-panel{background:#0d0f11;border-color:#34393e}
+.library-card{background:#0d0f11;border-color:#34393e}
+.library-brand img{background:#f1f2f3;border:1px solid #555b61;padding:7px;filter:grayscale(1)}
+.library-rank,.library-downloads strong{color:#e1e4e7}
+.library-downloads{border-color:#303438}
+.library-source a{color:#cbd0d4}
+.workspace-field input,.workspace-field textarea,.workspace-field select{background:#08090b;color:#f1f2f3;border-color:#444a50;font-family:var(--mono)}
+.workspace-row{border-color:#2b2f33}
+@media(max-width:768px){
+ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+ .topbar{background:rgba(8,9,11,.96);border-color:#303438}
+ .mbrand{font-family:inherit;font-weight:650}
+ .sidebar{background:rgba(9,10,12,.98);border-color:#353a3f}
+ .nav a{font-family:inherit;color:#aeb3b8}
+ .nav a:hover,.nav a.active{background:#171a1d;border-top-color:#c6cbd0;color:#fff}
+ .content{padding:22px 18px 28px}
+ h1{font-size:clamp(30px,8vw,42px);font-weight:500;letter-spacing:-1.1px}
+ .home-hero{border-color:#383d42}
+ .home-hero-copy{padding:22px 18px}
+ .home-hero-copy h1{font-size:clamp(34px,9vw,46px);line-height:1.1}
+ .home-hero-media{min-height:180px;max-height:210px}
+ .home-hero-media img{min-height:180px;max-height:210px}
+ .page-panel,.page-tile,.card,.library-card,.detail-panel{border-color:#34393e;background:#0d0f11}
+ .card-actions .btn,.btn,.back,.icon-button,.submit-tool{border-radius:0!important}
+ .card-actions .btn{font-size:12px}
+ .section-head h2{font-size:12px}
+ .workspace-field input,.workspace-field textarea,.workspace-field select{font-size:16px}
+}
 </style>
 </head>
 <body>
