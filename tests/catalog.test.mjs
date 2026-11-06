@@ -68,3 +68,29 @@ test("the tool submission action points to the repository issue template", async
   assert.match(html, /issues\/new\?template=tool-submission\.md/);
   assert.match(html, /class="submit-tool"/);
 });
+
+
+test("the CLI Hub exposes 25 unique routes across six navigation groups", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  const marker = "const pageDefinitions=";
+  const start = html.indexOf(marker);
+  const end = html.indexOf(".map(([id,title,group,description,status])=>", start);
+  assert.ok(start >= 0 && end > start, "pageDefinitions must remain a JSON-compatible route list");
+  const pages = JSON.parse(html.slice(start + marker.length, end));
+  assert.equal(pages.length, 25);
+  assert.equal(new Set(pages.map(([id]) => id)).size, 25);
+  assert.deepEqual(
+    [...new Set(pages.map(([, , group]) => group))],
+    ["Workspace", "Development", "AI Agents", "Tools", "Developer Hub", "System"]
+  );
+});
+
+test("the CLI Hub keeps grouped navigation and browser history routing", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  assert.match(html, /id="main-nav"/);
+  assert.match(html, /function buildNavigation\(/);
+  assert.match(html, /history\.pushState\(/);
+  assert.match(html, /addEventListener\("popstate"/);
+  assert.match(html, /data-go-page/);
+  assert.match(html, /drawer-open/);
+});
