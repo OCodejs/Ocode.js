@@ -997,6 +997,105 @@ button,.btn,.icon-button,.shortcut,.submit-tool,.search-submit,.back,.filter-chi
  .library-repo-title img{width:36px;height:36px}
  .library-file-list td,.library-file-list th{padding:8px 7px}
 }
+
+/* OCode.js Hub — unified minimal design system, precise surfaces and iconography */
+:root{
+ --bg:#070a10;--panel:#0b111b;--panel-raised:#101927;--panel-soft:#0d1521;
+ --line:#202d3e;--line-strong:#34465e;--line-focus:#52749c;
+ --fg:#edf2f9;--muted:#91a0b4;--muted-strong:#b7c3d2;
+ --surface-glow:rgba(91,145,220,.07)
+}
+html{background:#06090f}
+body{
+ background:
+  radial-gradient(ellipse at 78% -18%,rgba(43,91,157,.12),transparent 38rem),
+  linear-gradient(180deg,#080c13 0%,#06090f 58%,#070a10 100%);
+ color:var(--fg)
+}
+.layout{background:transparent;border-color:#1d2939;box-shadow:0 0 0 1px rgba(255,255,255,.012)}
+.sidebar{
+ background:linear-gradient(180deg,#0b111b 0%,#090e16 100%);
+ border-right:1px solid #29384b
+}
+.brand{border-bottom:1px solid #2a394d}
+.brand-mark{
+ display:grid;place-items:center;width:38px;height:38px;flex:0 0 38px;
+ border:1px solid #34547b;background:linear-gradient(145deg,#142945,#0b1422);
+ color:#8bbcff;text-shadow:3px 2px 0 rgba(151,92,255,.45);font-size:20px;font-weight:900
+}
+.brand small{letter-spacing:.16em;font-size:9px;color:#8fbaff}
+.nav{gap:3px}
+.nav a{min-height:39px;border:1px solid transparent;border-left:2px solid transparent;color:#9aa9bc;transition:background .15s,border-color .15s,color .15s}
+.nav a:hover{background:#111c2b;border-color:#263950;color:#edf4ff}
+.nav a.active{background:linear-gradient(90deg,rgba(54,111,190,.16),rgba(17,28,43,.82));border-color:#2c4563;border-left-color:#70aaff;color:#f4f8ff}
+.nav-icon{display:grid;place-items:center;width:21px;height:21px;flex:0 0 21px}
+.nav-icon [data-lucide],.tool-icon [data-lucide],.page-tile-icon [data-lucide]{
+ width:17px;height:17px;stroke-width:1.8;vector-effect:non-scaling-stroke
+}
+.topbar{
+ background:rgba(9,14,22,.94);border-bottom:1px solid #2a394d;
+ box-shadow:0 1px 0 rgba(255,255,255,.018);backdrop-filter:blur(14px)
+}
+.content{padding-top:26px;padding-bottom:34px}
+.content>.section-head,.content>.page-header{border-bottom:1px solid #27364a;padding-bottom:14px;margin-bottom:18px}
+h1,h2,h3,h4{color:#f0f5fc;letter-spacing:-.025em}
+h1{font-weight:780}
+.section-head h2{font-weight:720}
+p{color:#a6b3c5}
+.card,.detail-panel,.page-tile,.stat,.marketplace-card{
+ background:linear-gradient(145deg,#0e1724 0%,#0a111b 72%)!important;
+ border:1px solid #2a394d!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important
+}
+.card{border-top:2px solid var(--tool-accent,#344b68)!important;transition:border-color .16s,background .16s}
+.card:hover{border-color:#49617e!important;background:linear-gradient(145deg,#121e2d,#0b121d)!important}
+.tool-icon,.page-tile-icon,.marketplace-brand-icon{
+ display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--tool-accent,#496b91) 48%,#26364a);
+ background:linear-gradient(145deg,#142236,#0b1421);color:var(--tool-accent,#a9c7ed)
+}
+.tool-icon [data-lucide]{width:21px;height:21px;stroke-width:1.9}
+.page-tile-icon [data-lucide],.marketplace-brand-icon [data-lucide]{width:20px;height:20px}
+.stat{border-top:2px solid var(--page-accent,#46658b)!important}
+.btn,.icon-button,.shortcut,.back,.filter-chip,.filter-toggle,.page-tile,.library-repo-shell button{
+ border-radius:0!important;box-shadow:none!important
+}
+.btn{border:1px solid #3a4b61;transition:background .15s,border-color .15s,color .15s}
+.btn:not(.primary){background:#101a28;color:#dce6f3}
+.btn:not(.primary):hover{background:#17263a;border-color:#6683a8;color:#fff}
+.btn.primary{background:#eaf1fa!important;color:#101827!important;border:1px solid #eaf1fa!important;font-weight:750}
+.btn.primary:hover{background:#d5e2f2!important;border-color:#d5e2f2!important}
+.icon-button{border:1px solid #34465d;background:#0e1724;color:#d8e4f3}
+.icon-button:hover{background:#17263a;border-color:#6b86a7}
+input,select,textarea{
+ background:#080f19!important;color:#e7eef8!important;border:1px solid #304158!important;
+ border-radius:0!important;box-shadow:none!important
+}
+input::placeholder,textarea::placeholder{color:#718198}
+input:focus,select:focus,textarea:focus{border-color:#76a9e8!important;outline:1px solid rgba(118,169,232,.2)}
+table{border-collapse:collapse}
+th{background:#111c2a;color:#b8c8dc;border-bottom:1px solid #3a4c64}
+td{border-bottom:1px solid #26364a}
+tr:hover td{background:rgba(41,67,99,.16)}
+hr,.divider{border:0;border-top:1px solid #29394d}
+.badge,.tag,.chip{border-radius:0!important}
+a{ text-underline-offset:3px }
+a:hover{color:#a9ceff}
+:focus-visible{outline-color:#83b8f5!important;outline-offset:3px}
+footer{border-top:1px solid #29394d;background:#080d15;color:#8292a8}
+footer a{color:#b5c7dd}
+.library-grid,.library-repo-shell{border-color:#29394d}
+.library-card{border-bottom-color:#29394d!important}
+.library-brand img{box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.library-repo-shell .library-tabs{border-bottom:1px solid #34465d}
+.library-file-list tr:last-child td{border-bottom:0}
+@media(max-width:768px){
+ .content{padding:18px 14px 28px}
+ .topbar{border-bottom-color:#2c3c51}
+ .sidebar{box-shadow:14px 0 40px rgba(0,0,0,.35)}
+ .card{padding:12px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js" defer></script>
 </head>
