@@ -604,7 +604,8 @@ $("#focus-search").addEventListener("click",()=>{closeDrawer();$("#search")?.foc
 $("#desktop-search").addEventListener("click",()=>$("#search")?.focus());
 document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#search")?.focus()}if(e.key==="/"&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement?.tagName||"")){e.preventDefault();$("#search")?.focus()}});
 $("#theme-toggle").addEventListener("click",()=>{document.body.classList.toggle("light-preview");const l=document.body.classList.contains("light-preview");document.documentElement.style.colorScheme=l?"light":"dark";$("#theme-toggle").textContent=l?"☀":"☾";document.querySelector('meta[name=theme-color]').content=l?"#f7f9fd":"#05070d"});
-buildNavigation();window.addEventListener("popstate",()=>setPage(location.hash.startsWith("#page=")?location.hash.slice(6):"home",false));\nfetch("tools.json").then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.json()}).then(data=>{tools=data;const initial=location.hash.startsWith("#page=")?location.hash.slice(6):"home";view=pageDefinitions.some(p=>p.id===initial)?initial:"home";buildNavigation();render()}).catch(err=>{$("#app").innerHTML='<div class="empty">Unable to load tools.json. Open this page through GitHub Pages or a local static server.</div>';console.error(err)});
+buildNavigation();window.addEventListener("popstate",()=>setPage(location.hash.startsWith("#page=")?location.hash.slice(6):"home",false));
+fetch("tools.json").then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.json()}).then(data=>{tools=data;const initial=location.hash.startsWith("#page=")?location.hash.slice(6):"home";view=pageDefinitions.some(p=>p.id===initial)?initial:"home";buildNavigation();render()}).catch(err=>{$("#app").innerHTML='<div class="empty">Unable to load tools.json. Open this page through GitHub Pages or a local static server.</div>';console.error(err)});
 </script>
 </body>
 </html>
