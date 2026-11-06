@@ -84,3 +84,8 @@ Khu vực **Community / Popular Libraries** gọi npm Downloads API cho từng p
 ## Expanded navigation
 
 The CLI Hub navigation contains 50 unique page routes across 11 groups: Workspace, Development, AI Agents, Tools, Developer Hub, System, Project Management, Code Quality, Testing & QA, Deploy & Infrastructure, and Community & Resources. The mobile hamburger drawer includes a searchable navigation field and a vertically scrollable page list. Newly added routes are UI foundations; external integrations, real builds, terminal execution, deployment and monitoring require their respective backends and are not represented as active services.
+
+
+## Brand assets and iconography
+
+Community library cards load their brand marks from Simple Icons using the corresponding brand color hex values. Navigation and CLI tool cards use the Lucide icon set, initialized after the deferred CDN script loads and refreshed after route rendering. The animated Home banner keeps its source GIF and uses full saturation with a subtle color overlay. Brand assets are loaded from external CDNs and require network access in the browser.
