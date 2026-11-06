@@ -670,6 +670,10 @@ footer{background:#08090b;border-color:#303438;color:#969ca2}
  .section-head h2{font-size:12px}
  .workspace-field input,.workspace-field textarea,.workspace-field select{font-size:16px}
 }
+
+/* Prevent double-tap zoom while retaining native scrolling and pinch zoom */
+html,body{touch-action:pan-x pan-y pinch-zoom;-ms-touch-action:pan-x pan-y pinch-zoom}
+button,a,input,select,[role="button"],.btn,.icon-button,.submit-tool,.back{touch-action:manipulation;-ms-touch-action:manipulation}
 </style>
 </head>
 <body>
